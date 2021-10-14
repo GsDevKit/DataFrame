@@ -56,8 +56,13 @@ jobs:
             ls -l /opt/gemstone /opt/gemstone/locks
             $GEMSTONE/bin/startstone superDoit_$GS_VERS
             . ${GITHUB_WORKSPACE}/../superDoit/dev/defPath.env
+            cat - > $GEMSTONE/data/.topazini << EOF
+            SET GEMSTONE superDoit_$GS_VERS
+            set user SystemUser
+            set password swordfish
+            EOF
           popd
-          simple.stone # should run cleanly
+          simple.stone -- -l -I $GEMSTONE/data/.topazini # should run cleanly
   slack-workflow-status:
     if: always()
     name: Post Workflow Status To Slack
