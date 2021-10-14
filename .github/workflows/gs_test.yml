@@ -34,8 +34,9 @@ jobs:
         run: |
           set -x
           pushd ..
-            git clone git@github.com:dalehenrich/superDoit.git
+            git clone https://github.com/dalehenrich/superDoit.git
             pushd superDoit
+             git checkout issue_21
              pushd tests/products
                 ${GITHUB_WORKSPACE}/../superDoit/dev/downloadGemStone.sh ${GS_VERS}
               popd
