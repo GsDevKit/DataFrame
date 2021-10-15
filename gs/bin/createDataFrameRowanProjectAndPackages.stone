@@ -84,6 +84,8 @@ doit
 		packageConvention: 'Monticello';
 		projectSpecPath: 'gs/rowan';	
 		projectsPath: 'gs/rowan/projects';
+		specsPath: 'gs/rowan/specs';
+		projectsPath: 'gs/rowan/projects';
 		packagesPath: 'src';
 		componentsPath: 'gs/rowan/components';
 		yourself.
