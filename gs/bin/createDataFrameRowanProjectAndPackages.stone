@@ -57,7 +57,7 @@ EXAMPLES
 -----
 %
 doit
-	| projectName componentName commonPackageNames pharo6PackageNames pharo67PackageNames definedProject |
+	| projectName componentName commonPackageNames pharo6PackageNames pharo67PackageNames definedProject pharoComponent |
 
 	projectName := 'DataFrame'.
 	componentName := 'Core'.
@@ -90,13 +90,26 @@ doit
 		componentsPath: 'gs/rowan/components';
 		yourself.
 	definedProject addTopLevelComponentNamed: componentName.
-	(commonPackageNames, pharo6PackageNames, pharo67PackageNames) do: [:packageName |
+	commonPackageNames do: [:packageName |
 			definedProject 
 				addPackageNamed: packageName
 				toComponentNamed: componentName ].
-	
-	definedProject resolve
-		write.
+
+	"Rowan doesn't support conditional platform properties for pharo (yet),
+		so we'll use single pharo condition for pharo6 and 7 ... only doing
+		this in case we need to read pharo packages into image and copy relevant
+		classes/methods to gemstone packages"
+	pharoComponent := definedProject
+		addSimpleNestedComponentNamed: 'pharo/pharo' 
+		condition: 'pharo' 
+		comment: ''.
+	pharo67PackageNames, pharo6PackageNames do: [:packageName |
+			definedProject 
+				addPackageNamed: packageName
+				toComponentNamed: 'pharo/pharo' ].
+
+	definedProject resolve	"read project from disk"
+		write.								"write back to disk"
 
 	^ self noResult
 %
