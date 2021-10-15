@@ -9,7 +9,7 @@
 #%
 # Example options section
 #
-#options
+#otions
 #{
 #	SuperDoitOptionalOptionWithNoArg long: 'noarg'.
 #	SuperDoitOptionalOptionWithNoArg long: 'noarg' short: 'n'.
@@ -33,7 +33,8 @@ USAGE
       $basename [--help | -h] [--debug | -D] --  -l -I <path-to-.topazini-file>
 
 DESCRIPTION
-  Install DataFrame in a stone.
+  Script to create the Rowan project metadata for the DataFrame project ... include pharo-specific
+  packages in the Rowan project, so that repackaging can be done programmatically.
 
 OPTIONS
   <stone-name>               Name of the GsDevKit_home stone. <stone-name> argument
@@ -56,6 +57,5 @@ EXAMPLES
 -----
 %
 doit
-	self error: 'Not yet implemented'.
 	^ self noResult
 %

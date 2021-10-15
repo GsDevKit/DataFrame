@@ -45,13 +45,13 @@ OPTIONS
   -D, --debug                bring up topaz debugger in the event of a script error
 
 EXAMPLES
-  $basename -h -- gs_361
+  $basename -h -- rowan_361
   $basename -h -- -l -I $GEMSTONE/data/.topazini
 
-  $basename -D -- gs_361
+  $basename -D -- rowan_361
   $basename -D -- -l -I $GEMSTONE/data/.topazini
 
-  $basename -- gs_361
+  $basename -- rowan_361
   $basename -- -l -I $GEMSTONE/data/.topazini
 -----
 %
