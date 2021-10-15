@@ -47,15 +47,54 @@ OPTIONS
 
 EXAMPLES
   $basename -h -- rowan_361
-  $basename -h -- -l -I $GEMSTONE/data/.topazini
+  $basename -h -- -l -I .topazini
 
   $basename -D -- rowan_361
-  $basename -D -- -l -I $GEMSTONE/data/.topazini
+  $basename -D -- -l -I .topazini
 
   $basename -- rowan_361
-  $basename -- -l -I $GEMSTONE/data/.topazini
+  $basename -- -l -I .topazini
 -----
 %
 doit
+	| projectName componentName commonPackageNames pharo6PackageNames pharo67PackageNames definedProject |
+
+	projectName := 'DataFrame'.
+	componentName := 'Core'.
+	commonPackageNames := 	{
+			'DataFrame'.
+			'DataFrame-IO'.
+			'DataFrame-IO-Tests'.
+			'DataFrame-Math'.
+			'DataFrame-Math-Tests'.
+			'DataFrame-Tests'.
+			'DataFrame-Type'.
+			'DataFrame-Type-Tests'.
+		}.
+	pharo67PackageNames := 	{'DataFrame-Pharo67' }.
+	pharo6PackageNames := 	{'DataFrame-Pharo6' }.
+
+	('$ROWAN_PROJECTS_HOME' asFileReference / projectName / 'gs' / 'rowan') ensureDeleteAll.
+
+	definedProject := Rowan newProjectNamed: projectName.
+	definedProject
+		gemstoneSetDefaultSymbolDictNameTo: 'Globals';
+		repoType: #git;	
+		packageFormat: 'tonel';
+		packageConvention: 'Monticello';
+		projectSpecPath: 'gs/rowan';	
+		projectsPath: 'gs/rowan/projects';
+		packagesPath: 'src';
+		componentsPath: 'gs/rowan/components';
+		yourself.
+	definedProject addTopLevelComponentNamed: componentName.
+	(commonPackageNames, pharo6PackageNames, pharo67PackageNames) do: [:packageName |
+			definedProject 
+				addPackageNamed: packageName
+				toComponentNamed: componentName ].
+	
+	definedProject resolve
+		write.
+
 	^ self noResult
 %
