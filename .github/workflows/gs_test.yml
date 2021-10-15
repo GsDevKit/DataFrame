@@ -34,6 +34,8 @@ jobs:
         run: |
           set -x
           pushd ..
+            # install superDoit and a $GS_VERS stone, so we can use superDoit scripts
+            # to run the DataFrame CI tests using Rowan
             git clone https://github.com/dalehenrich/superDoit.git
             pushd superDoit
              git checkout issue_21
@@ -61,8 +63,9 @@ jobs:
             set user SystemUser
             set password swordfish
             EOF
+            # test a simple doit to confirm superDoit install went well
+            simple.stone -- -l -I $GEMSTONE/data/.topazini
           popd
-          simple.stone -- -l -I $GEMSTONE/data/.topazini # should run cleanly
   slack-workflow-status:
     if: always()
     name: Post Workflow Status To Slack
