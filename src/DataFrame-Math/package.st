@@ -1,1 +1,1 @@
-Package { #name : #'DataFrame-Math' }
+Package { #name : 'DataFrame-Math' }

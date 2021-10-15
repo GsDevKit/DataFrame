@@ -1,0 +1,11 @@
+RwSimpleNestedProjectLoadComponentV2 {
+	#name : 'pharo/pharo',
+	#condition : 'pharo',
+	#projectNames : [ ],
+	#componentNames : [ ],
+	#packageNames : [
+		'DataFrame-Pharo6',
+		'DataFrame-Pharo67'
+	],
+	#comment : 'Rowan does not support conditional platform properties for pharo (yet), so we are usi single pharo condition for pharo6 and pharo7 ... only doing this in case we need to read pharo packages into image and copy relevant classes/methods to gemstone packages'
+}

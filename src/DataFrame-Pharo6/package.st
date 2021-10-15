@@ -1,1 +1,1 @@
-Package { #name : #'DataFrame-Pharo6' }
+Package { #name : 'DataFrame-Pharo6' }

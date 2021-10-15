@@ -1,0 +1,13 @@
+RwSimpleNestedProjectLoadComponentV2 {
+	#name : 'tests/tests',
+	#condition : 'tests',
+	#projectNames : [ ],
+	#componentNames : [ ],
+	#packageNames : [
+		'DataFrame-IO-Tests',
+		'DataFrame-Math-Tests',
+		'DataFrame-Tests',
+		'DataFrame-Type-Tests'
+	],
+	#comment : ''
+}
