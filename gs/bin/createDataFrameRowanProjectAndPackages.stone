@@ -89,6 +89,7 @@ doit
 		projectsPath: 'gs/rowan/projects';
 		specsPath: 'gs/rowan/specs';
 		projectsPath: 'gs/rowan/projects';
+		projectSpecFile: 'gs/rowan/project.ston';
 		packagesPath: 'src';
 		componentsPath: 'gs/rowan/components';
 		yourself.
