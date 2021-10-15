@@ -82,7 +82,7 @@ doit
 	definedProject
 		gemstoneSetDefaultSymbolDictNameTo: 'Globals';
 		repoType: #git;	
-		customConditionalAttributes: #('tests');
+		customConditionalAttributes: #('tests' );
 		packageFormat: 'tonel';
 		packageConvention: 'Monticello';
 		projectSpecPath: 'gs/rowan';	
@@ -99,7 +99,7 @@ doit
 				toComponentNamed: componentName ].
 
 	testsComponent := definedProject
-		addSimpleNestedComponentNamed: 'tests/pharo' 
+		addSimpleNestedComponentNamed: 'tests/tests' 
 		condition: 'tests' 
 		comment: ''.
 	testPackageNames do: [:packageName |
@@ -110,14 +110,10 @@ doit
 		addComponentNamed: testsComponent name 
 		toComponentNamed: componentName.
 
-	"Rowan doesn't support conditional platform properties for pharo (yet),
-		so we'll use single pharo condition for pharo6 and 7 ... only doing
-		this in case we need to read pharo packages into image and copy relevant
-		classes/methods to gemstone packages"
 	pharoComponent := definedProject
 		addSimpleNestedComponentNamed: 'pharo/pharo' 
 		condition: 'pharo' 
-		comment: ''.
+		comment: 'Rowan does not support conditional platform properties for pharo (yet), so we are usi single pharo condition for pharo6 and pharo7 ... only doing this in case we need to read pharo packages into image and copy relevant classes/methods to gemstone packages'.
 	pharo67PackageNames, pharo6PackageNames do: [:packageName |
 			definedProject 
 				addPackageNamed: packageName
@@ -126,8 +122,8 @@ doit
 		addComponentNamed: pharoComponent name 
 		toComponentNamed: componentName.
 
-	definedProject resolve	"read project from disk"
-		write.								"write back to disk"
+	definedProject resolve	"create or attach to existing repository"
+	write.									"write to disk"
 
 	^ self noResult
 %
