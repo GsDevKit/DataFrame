@@ -62,7 +62,7 @@ doit
 	projectName := 'DataFrame'.
 	componentName := 'Core'.
 	commonPackageNames := 	{
-			'DataFrame'.
+			'DataFrame-Core'.
 			'DataFrame-IO'.
 			'DataFrame-IO-Tests'.
 			'DataFrame-Math'.
