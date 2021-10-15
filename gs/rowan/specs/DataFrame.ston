@@ -1,6 +1,6 @@
 RwLoadSpecificationV2 {
 	#projectName : 'DataFrame',
-	#projectSpecFile : 'rowan/project.ston',
+	#projectSpecFile : 'gs/rowan/project.ston',
 	#componentNames : [
 		'Core'
 	],
