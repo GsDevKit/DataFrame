@@ -57,22 +57,24 @@ EXAMPLES
 -----
 %
 doit
-	| projectName componentName commonPackageNames pharo6PackageNames pharo67PackageNames definedProject pharoComponent |
+	| projectName componentName commonPackageNames pharo6PackageNames pharo67PackageNames definedProject pharoComponent testPackageNames testsComponent |
 
 	projectName := 'DataFrame'.
 	componentName := 'Core'.
 	commonPackageNames := 	{
 			'DataFrame-Core'.
 			'DataFrame-IO'.
-			'DataFrame-IO-Tests'.
 			'DataFrame-Math'.
-			'DataFrame-Math-Tests'.
-			'DataFrame-Tests'.
 			'DataFrame-Type'.
-			'DataFrame-Type-Tests'.
 		}.
 	pharo67PackageNames := 	{'DataFrame-Pharo67' }.
 	pharo6PackageNames := 	{'DataFrame-Pharo6' }.
+	testPackageNames := { 
+			'DataFrame-Tests'.
+			'DataFrame-IO-Tests' .
+			'DataFrame-Math-Tests' .
+			'DataFrame-Type-Tests' .
+		}.
 
 	('$ROWAN_PROJECTS_HOME' asFileReference / projectName / 'gs' / 'rowan') ensureDeleteAll.
 
@@ -80,6 +82,7 @@ doit
 	definedProject
 		gemstoneSetDefaultSymbolDictNameTo: 'Globals';
 		repoType: #git;	
+		customConditionalAttributes: #('tests');
 		packageFormat: 'tonel';
 		packageConvention: 'Monticello';
 		projectSpecPath: 'gs/rowan';	
@@ -95,6 +98,18 @@ doit
 				addPackageNamed: packageName
 				toComponentNamed: componentName ].
 
+	testsComponent := definedProject
+		addSimpleNestedComponentNamed: 'tests/pharo' 
+		condition: 'tests' 
+		comment: ''.
+	testPackageNames do: [:packageName |
+			definedProject 
+				addPackageNamed: packageName
+				toComponentNamed: testsComponent name ].
+	definedProject 
+		addComponentNamed: testsComponent name 
+		toComponentNamed: componentName.
+
 	"Rowan doesn't support conditional platform properties for pharo (yet),
 		so we'll use single pharo condition for pharo6 and 7 ... only doing
 		this in case we need to read pharo packages into image and copy relevant
@@ -106,7 +121,10 @@ doit
 	pharo67PackageNames, pharo6PackageNames do: [:packageName |
 			definedProject 
 				addPackageNamed: packageName
-				toComponentNamed: 'pharo/pharo' ].
+				toComponentNamed: pharoComponent name ].
+	definedProject 
+		addComponentNamed: pharoComponent name 
+		toComponentNamed: componentName.
 
 	definedProject resolve	"read project from disk"
 		write.								"write back to disk"
