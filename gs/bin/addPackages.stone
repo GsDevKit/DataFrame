@@ -24,7 +24,7 @@
 #}
 #%
 #
-option
+options
 {
 	SuperDoitOptionalOptionWithRequiredArg long: 'symbolDictName'.
 	SuperDoitOptionalOptionWithRequiredArg long: 'componentName' default: 'Core'.
@@ -54,7 +54,11 @@ EXAMPLES
   $basename -h -- rowan_361
   $basename -h -- -l -I $GEMSTONE/data/.topazini
 
-  $basename -D addPackage DataFrame platform/gs3.6- gs3.[6-]  DataFrame-GemStone36- --symbolDictName=Globals -- -l -I $GEMSTONE/data/.topazini
+  installRowamSample1.stone -D -- -l -I .topazini
+  $basename -D addPackage RowanSample1 platform/gs3.6- gs3.[6-]  RowanSample1-GemStone36- --symbolDictName=Globals -- -l -I .topazini
+
+  installDataFrame.stone -D -- -l -I .topazini
+  $basename -D addPackage DataFrame platform/gs3.6- gs3.[6-]  DataFrame-GemStone36- --symbolDictName=Globals -- -l -I .topazini
 -----
 %
 instvars
@@ -69,7 +73,7 @@ self halt.
 	^ resolvedProject load.
 %
 doit
-	| packages projectName componentName condition |
+	| command components packages projectName componentName condition |
 	self positionalArgs size = 5
 		ifFalse: [ self error: 'incorrect number of positional arguments' ].
 	packages := self positionalArgs copy.
@@ -92,14 +96,14 @@ doit
 			self symbolDictName
 				ifNotNil: [:symbolDictName |
 					packages do: [:packageName |
-						loadedProject 
-							addNewPackageNamed: packageName 
-							inSybolDictionaryNamed: symbolDictName 
-							toComponentNamed: componentName ] ]
+						definedProject 
+							addPackageNamed: packageName 
+							toComponentNamed: componentName
+							gemstoneDefaultSymbolDictionaryForUser: (System myUserProfile userId -> symbolDictName) ] ]
 				ifNil: [
 					packages do: [:packageName |
-						loadedProject 
-							addNewPackageNamed: packageName 
+						definedProject 
+							addPackageNamed: packageName 
 							toComponentNamed: componentName ] ].
 				self writeAndReloadProject.
 				^ System commit ].
