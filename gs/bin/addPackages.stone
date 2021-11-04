@@ -34,9 +34,11 @@ usage
 -----
 USAGE
       # with GS_HOME env var set
-      $basename [--help | -h] [--debug | -D] [-- [<stone-name> [<topaz-command-line-args>] ] ]
+      $basename [--help | -h] [--debug | -D] <options>[-- [<stone-name> [<topaz-command-line-args>] ] ]
       # with GEMSTONE env var set
-      $basename [--help | -h] [--debug | -D] --  -l -I <path-to-.topazini-file>
+      $basename [--help | -h] [--debug | -D] <options> --  -l -I <path-to-.topazini-file>
+
+      $basename addPackage <project-name> <component-name> <condition> <package-name-list>
 
 DESCRIPTION
   Add new common or pharo or gemstone package 
@@ -65,23 +67,63 @@ instvars
 definedProject
 %
 method
+writeAndReloadProjectV3
+	| resolvedProject |
+	resolvedProject := definedProject resolveProject.
+	resolvedProject export.
+	^ resolvedProject loadAsDefined.
+%
+method
 writeAndReloadProject
 	| resolvedProject |
-self halt.
-	resolvedProject := definedProject resolve.
+	resolvedProject := (RwResolvedProject newNamed: definedProject name)
+		_resolvedProject: definedProject _resolvedProject;
+		yourself.
 	resolvedProject export.
 	^ resolvedProject load.
 %
 doit
 	| command components packages projectName componentName condition |
 	self positionalArgs size = 5
-		ifFalse: [ self error: 'incorrect number of positional arguments' ].
+		ifFalse: [
+			self usage. 
+			self error: 'incorrect number of positional arguments' ].
 	packages := self positionalArgs copy.
 	command := packages removeFirst asLowercase.
 	projectName := packages removeFirst.
 	componentName := packages removeFirst.
 	condition := packages removeFirst.
+Rowan version = (RwSemanticVersionNumber fromString: '3.0.0')
+ifTrue: [
+ 	definedProject := (Rowan projectNamed: projectName) defined.
+	definedProject
+		componentNamed: componentName 
+		ifAbsent: [
+			definedProject
+				addPlatformSubcomponentNamed: componentName 
+				condition: { condition } 
+				comment: '' ].
+	(definedProject componentNamed: self componentName) addComponentNamed: componentName.
+	command = 'addpackage'
+		ifTrue: [
+			self symbolDictName
+				ifNotNil: [:symbolDictName |
+					packages do: [:packageName |
+						definedProject 
+							addPackageNamed: packageName 
+							toComponentNamed: componentName
+							gemstoneDefaultSymbolDictionaryForUser: (System myUserProfile userId -> symbolDictName) ] ]
+				ifNil: [
+					packages do: [:packageName |
+						definedProject 
+							addPackageNamed: packageName 
+							toComponentNamed: componentName ] ].
+				self writeAndReloadProjectV3 ].
+				^ System commit.
+]
+ifFalse: [
 	definedProject := (Rowan projectNamed: projectName) defined.
+	definedProject := definedProject resolve defined. "yeah, I know..."
 	components := definedProject _resolvedProject _projectDefinition components.
 	definedProject
 		componentNamed: componentName 
@@ -105,7 +147,7 @@ doit
 						definedProject 
 							addPackageNamed: packageName 
 							toComponentNamed: componentName ] ].
-				self writeAndReloadProject.
+				self writeAndReloadProject ].
 				^ System commit ].
 	self error: 'Unknown command ', command printString.
 	^ self noResult
