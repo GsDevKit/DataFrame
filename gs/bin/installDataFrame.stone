@@ -79,6 +79,6 @@ RwLoadSpecificationV2 {
 %
 doit
 	self preDoitSpecLoad. "load the DataFrame project using spec"
-	self stdout nextPutAll: 'RowanSample1 project loaded'; lf.
+	self stdout nextPutAll: 'DataFrame project loaded'; lf.
 	^ System commit
 %
