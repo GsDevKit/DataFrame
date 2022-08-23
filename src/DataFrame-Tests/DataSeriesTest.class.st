@@ -20,7 +20,7 @@ DataSeriesTest >> setUp [
 
 { #category : #arithmetic }
 DataSeriesTest >> testArithmeticsAddArrayToSeries [
-	| series array actual expected |
+	| array actual expected |
 	
 	series := DataSeries withKeys: #(a b c) values: #(1 2 3) name: #X.
 	array := #(3 4 5).
@@ -33,7 +33,7 @@ DataSeriesTest >> testArithmeticsAddArrayToSeries [
 
 { #category : #arithmetic }
 DataSeriesTest >> testArithmeticsAddScalarToSeries [
-	| series scalar actual expected |
+	| scalar actual expected |
 	
 	series := DataSeries withKeys: #(a b c) values: #(1 2 3) name: #X.
 	scalar := 10.
@@ -46,7 +46,7 @@ DataSeriesTest >> testArithmeticsAddScalarToSeries [
 
 { #category : #arithmetic }
 DataSeriesTest >> testArithmeticsAddSeriesToArray [
-	| array series actual expected |
+	| array actual expected |
 	
 	array := #(1 2 3).
 	series := DataSeries withKeys: #(a b c) values: #(3 4 5) name: #X.
@@ -59,7 +59,7 @@ DataSeriesTest >> testArithmeticsAddSeriesToArray [
 
 { #category : #arithmetic }
 DataSeriesTest >> testArithmeticsAddSeriesToScalar [
-	| scalar series actual expected |
+	| scalar actual expected |
 	
 	scalar := 10.
 	series := DataSeries withKeys: #(a b c) values: #(3 4 5) name: #X.

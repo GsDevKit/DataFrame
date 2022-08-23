@@ -1,0 +1,10 @@
+RwPlatformNestedProjectLoadComponentV2 {
+	#name : 'tests/platform/gs3.6-',
+	#condition : [
+		'gs3.[6-]'
+	],
+	#packageNames : [
+		'DataFrame-GemStone36--Tests'
+	],
+	#comment : ''
+}

@@ -34,7 +34,7 @@ DataFrameJsonWriterTest >> setUp [
 
 { #category : #tests }
 DataFrameJsonWriterTest >> testWriteAsString [
-	| actual expected |.
+	| actual expected |
 	actual := DataFrameJsonWriter new writeAsString: df.
 	expected := '' join: (TestJsonStrings recordsJsonString 
 		regex: '[^\s]+' matchesCollect: [:x|x]).

@@ -705,7 +705,7 @@ DataFrameTest >> testColumnsAtPut [
 			(2.4 true rain)
 			(0.5 true rain)
 			(-1.2 true snow)
-			(-2.3 false -)
+			(-2.3 false #-)
 			(3.2 true rain))
 		rowNames: rowNames
 		columnNames: columnNames.
@@ -758,7 +758,7 @@ DataFrameTest >> testColumnsFromToPut [
 			(2.4 true rain)
 			(0.5 true rain)
 			(-1.2 true snow)
-			(-2.3 false -)
+			(-2.3 false #-)
 			(3.2 true rain))
 		rowNames: rowNames
 		columnNames: columnNames.
@@ -793,7 +793,7 @@ DataFrameTest >> testColumnsPut [
 			(2.4 true rain)
 			(0.5 true rain)
 			(-1.2 true snow)
-			(-2.3 false -)
+			(-2.3 false #-)
 			(3.2 true rain))
 		rowNames: rowNames
 		columnNames: columnNames.
@@ -4064,7 +4064,7 @@ DataFrameTest >> testRowsAtPut [
 			(2.4 true rain)
 			(0.5 true rain)
 			(-1.2 true snow)
-			(-2.3 false -)
+			(-2.3 false #-)
 			(3.2 true rain))
 		rowNames: rowNames
 		columnNames: columnNames.
@@ -4079,7 +4079,7 @@ DataFrameTest >> testRowsAtPut [
 			(2.4 true rain)
 			(3 3 3)
 			(1 1 1)
-			(-2.3 false -)
+			(-2.3 false #-)
 			(2 2 2))
 		rowNames: rowNames
 		columnNames: columnNames.
@@ -4117,7 +4117,7 @@ DataFrameTest >> testRowsFromToPut [
 			(2.4 true rain)
 			(0.5 true rain)
 			(-1.2 true snow)
-			(-2.3 false -)
+			(-2.3 false #-)
 			(3.2 true rain))
 		rowNames: rowNames
 		columnNames: columnNames.
@@ -4153,7 +4153,7 @@ DataFrameTest >> testRowsPut [
 			(2.4 true rain)
 			(0.5 true rain)
 			(-1.2 true snow)
-			(-2.3 false -)
+			(-2.3 false #-)
 			(3.2 true rain))
 		rowNames: rowNames
 		columnNames: columnNames.
@@ -4168,7 +4168,7 @@ DataFrameTest >> testRowsPut [
 			(2.4 true rain)
 			(3 3 3)
 			(1 1 1)
-			(-2.3 false -)
+			(-2.3 false #-)
 			(2 2 2))
 		rowNames: rowNames
 		columnNames: columnNames.

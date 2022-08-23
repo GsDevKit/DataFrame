@@ -1,0 +1,14 @@
+RwSimpleNestedProjectLoadComponentV2 {
+	#name : 'platform/gs3.6-',
+	#condition : [
+		'gs3.[6-]'
+	],
+	#projectNames : [
+		'OrderedDictionary'
+	],
+	#componentNames : [ ],
+	#packageNames : [
+		'DataFrame-GemStone36-'
+	],
+	#comment : ''
+}

@@ -1,0 +1,20 @@
+RwLoadSpecificationV2 {
+	#projectName : 'NeoJSON',
+	#gitUrl : 'git@github.com:GsDevKit/NeoJSON.git',
+	#revision : 'github-ci',
+	#projectSpecFile : 'gs/rowan/project.ston',
+	#componentNames : [
+		'Core'
+	],
+	#customConditionalAttributes : [
+		'tests'
+	],
+	#platformProperties : {
+		'gemstone' : {
+			'allusers' : {
+				#defaultSymbolDictName : 'Globals'
+			}
+		}
+	},
+	#comment : ''
+}
