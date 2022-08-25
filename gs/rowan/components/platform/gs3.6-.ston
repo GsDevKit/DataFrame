@@ -4,7 +4,8 @@ RwSimpleNestedProjectLoadComponentV2 {
 		'gs3.[6-]'
 	],
 	#projectNames : [
-		'OrderedDictionary'
+		'OrderedDictionary',
+		'PharoRegex'
 	],
 	#componentNames : [ ],
 	#packageNames : [

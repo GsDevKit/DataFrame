@@ -2,7 +2,10 @@ RwSimpleProjectLoadComponentV2 {
 	#name : 'Core',
 	#condition : 'common',
 	#projectNames : [
-		'NeoJSON'
+		'NeoJSON',
+		'NeoCSV',
+		'OrderedDictionary',
+		'PharoRegex'
 	],
 	#componentNames : [
 		'pharo/pharo',
