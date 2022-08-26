@@ -1,6 +1,6 @@
 Class {
-	#name : #DataFrameCsvReaderTest,
-	#superclass : #TestCase,
+	#name : 'DataFrameCsvReaderTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'directory',
 		'commaCsvFile',
@@ -10,10 +10,10 @@ Class {
 		'dataFrameWithoutRowNames',
 		'dataFrameWithRowNames'
 	],
-	#category : #'DataFrame-IO-Tests'
+	#category : 'DataFrame-IO-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 DataFrameCsvReaderTest >> createFile: aFileReference withContents: aString [
 	| stream |
 	stream := aFileReference writeStream.
@@ -21,7 +21,7 @@ DataFrameCsvReaderTest >> createFile: aFileReference withContents: aString [
 	stream close.
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 DataFrameCsvReaderTest >> setUp [
 	directory := FileSystem memory workingDirectory / 'testData'.
 	directory createDirectory.
@@ -42,20 +42,20 @@ DataFrameCsvReaderTest >> setUp [
 		(3.2 true 'rain')).
 		
 	dataFrameWithRowNames columnNames: #(temperature precipitation type).
-	dataFrameWithRowNames rowNames: (#('01:10' '01:30' '01:50' '02:10' '02:30')
+	dataFrameWithRowNames rowNames: (#('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00')
 		collect: #asTime).
 		
 	dataFrameWithoutRowNames := DataFrame withRows: {
-		{ '01:10' asTime . 2.4 . true . 'rain' } .
-		{ '01:30' asTime . 0.5 . true . 'rain' } .
-		{ '01:50' asTime . -1.2 . true . 'snow' } .
-		{ '02:10' asTime . -2.3 . false . '-' } . 
-		{ '02:30' asTime . 3.2 . true . 'rain' }}.
+		{ '01:10:00' asTime . 2.4 . true . 'rain' } .
+		{ '01:30:00' asTime . 0.5 . true . 'rain' } .
+		{ '01:50:00' asTime . -1.2 . true . 'snow' } .
+		{ '02:10:00' asTime . -2.3 . false . '-' } . 
+		{ '02:30:00' asTime . 3.2 . true . 'rain' }}.
 		
 	dataFrameWithoutRowNames columnNames: #(nil temperature precipitation type).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameCsvReaderTest >> testReadCsv [
 	| actualDataFrame |
 	actualDataFrame := DataFrame readFromCsv: commaCsvFile.
@@ -63,7 +63,7 @@ DataFrameCsvReaderTest >> testReadCsv [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameCsvReaderTest >> testReadCsvWithRowNames [
 	| actualDataFrame |
 	actualDataFrame := DataFrame readFromCsvWithRowNames: commaCsvFile.
@@ -71,7 +71,7 @@ DataFrameCsvReaderTest >> testReadCsvWithRowNames [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameCsvReaderTest >> testReadCsvWithRowNamesWithSeparatorTab [
 	| actualDataFrame |
 	actualDataFrame := DataFrame readFromCsvWithRowNames: tabCsvFile separator: Character tab.
@@ -79,7 +79,7 @@ DataFrameCsvReaderTest >> testReadCsvWithRowNamesWithSeparatorTab [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameCsvReaderTest >> testReadCsvWithSeparatorTab [
 	| actualDataFrame |
 	actualDataFrame := DataFrame readFromCsv: tabCsvFile withSeparator: Character tab.

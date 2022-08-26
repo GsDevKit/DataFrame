@@ -1,14 +1,14 @@
 Class {
-	#name : #DataFrameCsvWriter,
-	#superclass : #DataFrameWriter,
+	#name : 'DataFrameCsvWriter',
+	#superclass : 'DataFrameWriter',
 	#instVars : [
 		'separator',
 		'lineEndConvention'
 	],
-	#category : #'DataFrame-IO'
+	#category : 'DataFrame-IO'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvWriter >> defaultLineEndConvention [
 	^ { 
 		String cr -> #cr.
@@ -17,43 +17,44 @@ DataFrameCsvWriter >> defaultLineEndConvention [
 	} asDictionary at: Smalltalk os lineEnding.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvWriter >> defaultSeparator [
 	^ $,
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrameCsvWriter >> initialize [ 
 	super initialize.
 	separator := self defaultSeparator.
 	lineEndConvention := self defaultLineEndConvention.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvWriter >> lineEndConvention [
 	^ lineEndConvention 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvWriter >> lineEndConvention: aSymbol [
 	"Set the end of line convention to be used.
 	Either #cr, #lf or #crlf (os convention by default)."
 	
-	self assert: (#(cr lf crlf) includes: aSymbol).
+	(#(cr lf crlf) includes: aSymbol)
+		ifFalse: [^self error: aSymbol printString, ' is not a valid line end convention (#cr, #lf, or #crlf)'].
 	lineEndConvention := aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvWriter >> separator [
 	^ separator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvWriter >> separator: anObject [
 	separator := anObject
 ]
 
-{ #category : #writing }
+{ #category : 'writing' }
 DataFrameCsvWriter >> write: aDataFrame to: aFileReference [
 	| stream writer |
 	stream := aFileReference writeStream.

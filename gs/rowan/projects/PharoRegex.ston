@@ -1,7 +1,7 @@
 RwLoadSpecificationV2 {
 	#projectName : 'PharoRegex',
 	#gitUrl : 'git@github.com:GsDevKit/PharoRegex.git',
-	#revision : 'github-ci',
+	#revision : 'rowanize',
 	#projectSpecFile : 'rowan/project.ston',
 	#componentNames : [
 		'Core'
