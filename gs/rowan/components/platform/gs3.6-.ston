@@ -1,4 +1,4 @@
-RwSimpleNestedProjectLoadComponentV2 {
+RwPlatformNestedProjectLoadComponentV2 {
 	#name : 'platform/gs3.6-',
 	#condition : [
 		'gs3.[6-]'
