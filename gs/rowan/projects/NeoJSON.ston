@@ -1,7 +1,7 @@
 RwLoadSpecificationV2 {
 	#projectName : 'NeoJSON',
 	#gitUrl : 'git@github.com:GsDevKit/NeoJSON.git',
-	#revision : 'github-ci',
+	#revision : 'rowan_master',
 	#projectSpecFile : 'gs/rowan/project.ston',
 	#componentNames : [
 		'Core'
