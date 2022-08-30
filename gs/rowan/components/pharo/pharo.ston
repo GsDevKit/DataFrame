@@ -4,6 +4,7 @@ RwSimpleNestedProjectLoadComponentV2 {
 	#projectNames : [ ],
 	#componentNames : [ ],
 	#packageNames : [
+		'DataFrame-Core-Pharo9-',
 		'DataFrame-Pharo6',
 		'DataFrame-Pharo67'
 	],
