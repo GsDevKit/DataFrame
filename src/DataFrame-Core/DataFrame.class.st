@@ -1,4 +1,5 @@
 "
+
 I am a tabular data structure designed for data analysis.
 
 I store data in a table and provide an API for querying and modifying that data. I know row and column names associated with the table of data, which allows you to treat rows as observations and columns as features and reference them by their names. I also know the type of data stored in each column. In general, I am similar to spreadsheets such as Excel or to data frames in other languages, for example pandas (Python) or R.
@@ -146,31 +147,34 @@ Public API and Key Messages
 Internal Representation and Key Implementation Points.
 
 	DataFrameInternal defines how data is stored inside me.
+
 "
 Class {
-	#name : #DataFrame,
-	#superclass : #Collection,
+	#name : 'DataFrame',
+	#superclass : 'Collection',
 	#instVars : [
 		'contents',
 		'rowNames',
 		'columnNames'
 	],
-	#category : #'DataFrame-Core'
+	#category : 'DataFrame-Core'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> new [
 	
 	^ super new initialize.
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> new: aPoint [
 	
 	^ super new initialize: aPoint.
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withColumnNames: anArrayOfColumnNames [
 	"Create an empty data frame with given column names"
 	| numberOfColumns df |
@@ -180,33 +184,37 @@ DataFrame class >> withColumnNames: anArrayOfColumnNames [
 	
 	df columnNames: anArrayOfColumnNames.
 	^ df
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withColumns: anArrayOfArrays [
 
 	^ self new initializeColumns: anArrayOfArrays.
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withColumns: anArrayOfArrays columnNames: anArrayOfColumnNames [
 
 	| df |
 	df := self withColumns: anArrayOfArrays.
 	df columnNames: anArrayOfColumnNames.
 	^ df
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withColumns: anArrayOfArrays rowNames: anArrayOfRowNames [
 	^ anArrayOfArrays
 		ifNotEmpty: [ (self withColumns: anArrayOfArrays)
 				rowNames: anArrayOfRowNames;
 				yourself ]
 		ifEmpty: [ self withRowNames: anArrayOfRowNames ]
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withColumns: anArrayOfArrays rowNames: anArrayOfRowNames columnNames: anArrayOfColumnNames [
 	^ anArrayOfArrays
 		ifNotEmpty: [ (self withColumns: anArrayOfArrays)
@@ -214,18 +222,20 @@ DataFrame class >> withColumns: anArrayOfArrays rowNames: anArrayOfRowNames colu
 				columnNames: anArrayOfColumnNames;
 				yourself ]
 		ifEmpty: [ self withRowNames: anArrayOfRowNames ]
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withDataFrameInternal: aDataFrameIndernal rowNames: rows columnNames: columns [
 
 	^ self new
 		initializeContents: aDataFrameIndernal
 		rowNames: rows
 		columnNames: columns.
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withRowNames: anArrayOfRowNames [
 	"Create an empty data frame with given row names"
 	| numberOfRows df |
@@ -235,9 +245,10 @@ DataFrame class >> withRowNames: anArrayOfRowNames [
 	
 	df rowNames: anArrayOfRowNames.
 	^ df
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withRowNames: anArrayOfRowNames columnNames: anArrayOfColumnNames [
 	"Create an empty data frame with given row and column names"
 	| numberOfRows numberOfColumns df |
@@ -251,33 +262,37 @@ DataFrame class >> withRowNames: anArrayOfRowNames columnNames: anArrayOfColumnN
 	df columnNames: anArrayOfColumnNames.
 	
 	^ df
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withRows: anArrayOfArrays [
 
 	^ self new initializeRows: anArrayOfArrays.
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withRows: anArrayOfArrays columnNames: anArrayOfColumnNames [
 	^ anArrayOfArrays
 		ifNotEmpty: [ (self withRows: anArrayOfArrays)
 				columnNames: anArrayOfColumnNames;
 				yourself ]
 		ifEmpty: [ self withColumnNames: anArrayOfColumnNames ]
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withRows: anArrayOfArrays rowNames: anArrayOfRowNames [
 
 	| df |
 	df := self withRows: anArrayOfArrays.
 	df rowNames: anArrayOfRowNames.
 	^ df
+
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 DataFrame class >> withRows: anArrayOfArrays rowNames: anArrayOfRowNames columnNames: anArrayOfColumnNames [
 	^ anArrayOfArrays
 		ifNotEmpty: [ (self withRows: anArrayOfArrays)
@@ -285,9 +300,10 @@ DataFrame class >> withRows: anArrayOfArrays rowNames: anArrayOfRowNames columnN
 				columnNames: anArrayOfColumnNames;
 				yourself ]
 		ifEmpty: [ self withColumnNames: anArrayOfColumnNames ]
+
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataFrame >> = aDataFrame [
 
 	"Most objects will fail here"
@@ -304,33 +320,38 @@ DataFrame >> = aDataFrame [
 		ifFalse: [ ^ false ].
 		
 	^ aDataFrame contents = self contents.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> add: aDataSeries [
 	"Add DataSeries as a new row at the end"
 	self addRow: aDataSeries.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addColumn: aDataSeries [
 	"Add DataSeries as a new column at the end"
 	self addColumn: aDataSeries named: aDataSeries name.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addColumn: aDataSeries atPosition: aNumber [
 	"Add DataSeries as a new column at the given position"
 	self addColumn: aDataSeries asArray named: aDataSeries name atPosition: aNumber.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addColumn: anArray named: aString [
 	"Add a new column at the end"
 	self addColumn: anArray named: aString atPosition: self numberOfColumns + 1.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addColumn: anArray named: aString atPosition: aNumber [
 	"Add a new column at the given position"
 	(self columnNames includes: aString)
@@ -338,51 +359,59 @@ DataFrame >> addColumn: anArray named: aString atPosition: aNumber [
 	
 	contents addColumn: anArray asArray atPosition: aNumber.
 	columnNames add: aString afterIndex: aNumber - 1.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addEmptyColumnNamed: aString [
 	"Add an empty column at the end"
 	self addEmptyColumnNamed: aString atPosition: self numberOfColumns + 1
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addEmptyColumnNamed: aString atPosition: aNumber [
 	"Add an empty column at the given position"
 	self addColumn: (Array new: self numberOfRows) named: aString atPosition: aNumber
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addEmptyRowNamed: aString [
 	"Add an empty row at the end"
 	self addEmptyRowNamed: aString atPosition: self numberOfRows + 1
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addEmptyRowNamed: aString atPosition: aNumber [
 	"Add an empty row at the given position"
 	self addRow: (Array new: self numberOfColumns) named: aString atPosition: aNumber
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addRow: aDataSeries [
 	"Add DataSeries as a new row at the end"
 	self addRow: aDataSeries asArray named: aDataSeries name.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addRow: aDataSeries atPosition: aNumber [
 	"Add DataSeries as a new row at the given position"
 	self addRow: aDataSeries named: aDataSeries name atPosition: aNumber.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addRow: anArray named: aString [
 	"Add a new row at the end"
 	self addRow: anArray named: aString atPosition: self numberOfRows + 1.
+
 ]
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrame >> addRow: anArray named: aString atPosition: aNumber [
 	"Add a new row at the given position"
 	(self rowNames includes: aString)
@@ -390,16 +419,18 @@ DataFrame >> addRow: anArray named: aString atPosition: aNumber [
 	
 	contents addRow: anArray atPosition: aNumber.
 	rowNames add: aString afterIndex: aNumber - 1.
+
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 DataFrame >> applyElementwise: aBlock [
 	"Applies a given block to all columns of a data frame"
 		
 	self toColumns: self columnNames applyElementwise: aBlock.
+
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 DataFrame >> applyToAllColumns: aSymbol [
 "Sends the unary selector, aSymbol, to all columns of DataFrame and collects the result into a DataSeries object. Used by statistical functions of DataFrame"
 
@@ -414,62 +445,71 @@ DataFrame >> applyToAllColumns: aSymbol [
 	series keys: self columnNames.
 	
 	^ series
+
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 DataFrame >> asArrayOfColumns [
 	"Converts DataFrame to the array of columns"
 
 	^ contents asArrayOfColumns. 
+
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 DataFrame >> asArrayOfRows [
 	"Converts DataFrame to the array of rows"
 	
 	^ (1 to: self numberOfRows) collect: [ :i |
 		self at: i ]
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> at: aNumber [
 
 	^ self rowAt: aNumber
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> at: rowNumber at: columnNumber [
 
 	^ contents at: rowNumber at: columnNumber
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> at: rowNumber at: columnNumber put: value [
 
 	contents at: rowNumber at: columnNumber put: value.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> at: rowIndex at: columnIndex transform: aBlock [
 	"Evaluate aBlock on the value at the intersection of rowIndex and columnIndex and replace that value with the result"
 	| value |
 	value := self at: rowIndex at: columnIndex.
 	self at: rowIndex at: columnIndex put: (aBlock value: value)
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> at: aNumber transform: aBlock [
 	"Evaluate aBlock on the row at aNumber and replace that row with the result"
 	^ self rowAt: aNumber transform: aBlock
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> average [
 
 	^ self applyToAllColumns: #average
+
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataFrame >> closeTo: aDataFrame [
 
 	aDataFrame species = self species
@@ -488,9 +528,10 @@ DataFrame >> closeTo: aDataFrame [
 				ifFalse: [ ^ false ] ] ].
 	
 	^ true
+
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataFrame >> collect: aBlock [ 
 	"Overrides the Collection>>collect to create DataFrame with the same number of columns as values in the first row"
 	| firstRow newDataFrame |
@@ -501,17 +542,19 @@ DataFrame >> collect: aBlock [
 	
 	self do: [:each | newDataFrame add: (aBlock value: each copy)].
 	^ newDataFrame
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> column: columnName [
 	"Answer the column with columnName as a DataSeries or signal an exception if a column with that name was not found"
 	| index |
 	index := self indexOfColumnNamed: columnName.
 	^ self columnAt: index
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> column: columnName ifAbsent: exceptionBlock [
 	"Answer the column with columnName as a DataSeries or evaluate exception block if a column with that name was not found"
 	| index |
@@ -520,17 +563,19 @@ DataFrame >> column: columnName ifAbsent: exceptionBlock [
 		ifAbsent: [ ^ exceptionBlock value ].
 		
 	^ self columnAt: index
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> column: columnName put: anArray [
 	"Replace the current values of column with columnName with anArray or signal an exception if a column with that name was not found"
 	| index |
 	index := self indexOfColumnNamed: columnName.
 	^ self columnAt: index put: anArray.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> column: columnName put: anArray ifAbsent: exceptionBlock [
 	"Replace the current values of column with columnName with anArray or evaluate exception block if a column with that name was not found"
 	| index |
@@ -539,25 +584,28 @@ DataFrame >> column: columnName put: anArray ifAbsent: exceptionBlock [
 		ifAbsent: [ ^ exceptionBlock value ].
 		
 	^ self columnAt: index put: anArray
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> column: columnName transform: aBlock [
 	"Evaluate aBlock on the column with columnName and replace column with the result. Signal an exception if columnName was not found"
 	| column |
 	column := self column: columnName.
 	self column: columnName put: (aBlock value: column) asArray
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> column: columnName transform: aBlock ifAbsent: exceptionBlock [
 	"Evaluate aBlock on the column with columnName and replace column with the result. Evaluate exceptionBlock if columnName was not found"
 	| column |
 	column := self column: columnName ifAbsent: [ ^ exceptionBlock value ].
 	self column: columnName put: (aBlock value: column)
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnAt: aNumber [
 
 	| series |
@@ -565,32 +613,36 @@ DataFrame >> columnAt: aNumber [
 	series name: (self columnNames at: aNumber).
 	series keys: self rowNames.
 	^ series
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnAt: aNumber put: anArray [
 	
 	anArray size = self numberOfRows
 		ifFalse: [ SizeMismatch signal ].	
 	
 	contents columnAt: aNumber put: anArray.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnAt: aNumber transform: aBlock [
 	"Evaluate aBlock on the column at aNumber and replace that column with the result"
 	| column |
 	column := self columnAt: aNumber.
 	self columnAt: aNumber put: (aBlock value: column) asArray
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnNames [
 
 	^ columnNames
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnNames: anArray [
 	anArray size = self numberOfColumns 
 		ifFalse: [ SizeMismatch signal: 'Wrong number of column names' ].
@@ -599,17 +651,19 @@ DataFrame >> columnNames: anArray [
 		ifFalse: [ Error signal: 'All column names must be distinct' ].
 		
 	columnNames := anArray asOrderedCollection
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columns [
 
 	"Returns a collection of all columns"
 
 	^ self asArrayOfColumns
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columns: anArrayOfNames [
 	
 	| anArrayOfNumbers |
@@ -619,9 +673,10 @@ DataFrame >> columns: anArrayOfNames [
 			self indexOfColumnNamed: name ].
 			
 	^ self columnsAt: anArrayOfNumbers.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columns: anArrayOfColumnNames put: anArrayOfArrays [
 	
 	anArrayOfArrays size = anArrayOfColumnNames size
@@ -629,9 +684,10 @@ DataFrame >> columns: anArrayOfColumnNames put: anArrayOfArrays [
 	
 	anArrayOfColumnNames with: anArrayOfArrays do: [ :name :array |
 		self column: name put: array ].
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnsAt: anArrayOfNumbers [
 
 	| newColumnNames |
@@ -643,9 +699,10 @@ DataFrame >> columnsAt: anArrayOfNumbers [
 		withDataFrameInternal: (self contents columnsAt: anArrayOfNumbers)
 		rowNames: self rowNames
 		columnNames: newColumnNames.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnsAt: anArrayOfNumbers put: anArrayOfArrays [
 	
 	anArrayOfArrays size = anArrayOfNumbers size
@@ -653,9 +710,10 @@ DataFrame >> columnsAt: anArrayOfNumbers put: anArrayOfArrays [
 	
 	anArrayOfNumbers with: anArrayOfArrays do: [ :index :array |
 		self columnAt: index put: array ].
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnsFrom: begin to: end [
 
 	| array |
@@ -665,9 +723,10 @@ DataFrame >> columnsFrom: begin to: end [
 		ifFalse: [ (end to: begin) asArray reverse ].
 	
 	^ self columnsAt: array.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> columnsFrom: firstNumber to: secondNumber put: anArrayOfArrays [
 
 	| interval |
@@ -681,21 +740,24 @@ DataFrame >> columnsFrom: firstNumber to: secondNumber put: anArrayOfArrays [
 	
 	interval withIndexDo: [ :columnIndex :i |
 		self columnAt: columnIndex put: (anArrayOfArrays at: i) ].
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> contents [
 
 	^ contents
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> correlationMatrix [
 	"Calculate a correlation matrix (correlation of every column with every column) using Pearson's correlation coefficient"
 	^ self correlationMatrixUsing: DataPearsonCorrelationMethod
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> correlationMatrixUsing: aCorrelationCoefficient [
 	"Calculate a correlation matrix (correlation of every column with every column) using the given correlation coefficient"
 	
@@ -724,9 +786,10 @@ DataFrame >> correlationMatrixUsing: aCorrelationCoefficient [
 		correlationMatrix at: i at: i put: 1 ].
 		
 	^ correlationMatrix
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> crossTabulate: colName1 with: colName2 [
 
 	| col1 col2 |
@@ -735,21 +798,24 @@ DataFrame >> crossTabulate: colName1 with: colName2 [
 	col2 := self column: colName2.
 	
 	^ col1 crossTabulateWith: col2.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> defaultHeadTailSize [
 
 	^ 5
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> dimensions [
 
 	^ (self numberOfRows) @ (self numberOfColumns)
+
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataFrame >> do: aBlock [
 "We enumerate through the data enrties - through rows of a data frame"
 	| row |
@@ -759,31 +825,35 @@ DataFrame >> do: aBlock [
 		aBlock value: row. 
 		"A hack to allow modification of rows inside do block"
 		self rowAt: i put: row asArray ].
+
 ]
 
-{ #category : #'find-select' }
+{ #category : 'find-select' }
 DataFrame >> findAll: anObject atColumn: columnName [
 	"Returns rowNames of rows having anObject at columnName"
 
 	^ self rowNames select: [ :row | ((self column: columnName) at: row) = anObject ]
+
 ]
 
-{ #category : #'find-select' }
+{ #category : 'find-select' }
 DataFrame >> findAllIndicesOf: anObject atColumn: columnName [
 	"Returns indices of rows having anObject at columnName"
 	| output |
 	output := OrderedCollection new.
 	self rowNames withIndexDo: [ :row :index | ((self column: columnName) at: row) = anObject ifTrue: [ output add: index ]].
 	^ output
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> firstQuartile [
 
 	^ self applyToAllColumns: #firstQuartile
+
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 DataFrame >> getJointColumnsWith: aDataFrame [
 	"comment stating purpose of message"
 
@@ -802,14 +872,16 @@ DataFrame >> getJointColumnsWith: aDataFrame [
 			].
 	
 	^ outputColumns
+
 ]
 
-{ #category : #grouping }
+{ #category : 'grouping' }
 DataFrame >> group: anAggregateColumnName by: aGroupColumnName aggregateUsing: aBlock [
 	^ self group: anAggregateColumnName by: aGroupColumnName aggregateUsing: aBlock as: anAggregateColumnName.
+
 ]
 
-{ #category : #grouping }
+{ #category : 'grouping' }
 DataFrame >> group: anAggregateColumnName by: aGroupColumnName aggregateUsing: aBlock as: aNewColumnName [
 
 	| groupColumn aggregateColumn |
@@ -821,9 +893,10 @@ DataFrame >> group: anAggregateColumnName by: aGroupColumnName aggregateUsing: a
 	aggregateColumn := self column: anAggregateColumnName.
 	
 	^ aggregateColumn groupBy: groupColumn aggregateUsing: aBlock as: aNewColumnName
+
 ]
 
-{ #category : #grouping }
+{ #category : 'grouping' }
 DataFrame >> groupBy: columnName aggregate: anArrayOfUsingAsStatements [
 
 	| aggregatedColumns |
@@ -835,33 +908,17 @@ DataFrame >> groupBy: columnName aggregate: anArrayOfUsingAsStatements [
 		withColumns: aggregatedColumns
 		rowNames: aggregatedColumns first keys
 		columnNames: (aggregatedColumns collect: #name)
+
 ]
 
-{ #category : #'gt-inspector-extension' }
-DataFrame >> gtInspectorFastTableIn: composite [
-	<gtInspectorPresentationOrder: 0>
-	<gtInspectorTag: #basic>
-	
-	composite morph
-		title: 'Fast Table';
-		display: [ self showWithGlamourIn: composite ].
-]
-
-{ #category : #'gt-inspector-extension' }
-DataFrame >> gtInspectorItemsIn: composite [
-"Hide Items from inspector"
-
-	composite fastTable
-		when: [ false ].
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> head [ 
 
 	^ self head: self defaultHeadTailSize.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> head: aNumber [
 
 	| n |
@@ -871,66 +928,74 @@ DataFrame >> head: aNumber [
 		ifFalse: [ n := self numberOfRows ].
 		
 	^ self rowsAt: (1 to: n).
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> indexOfColumnNamed: columnName [
 	"Answer the index of a column with a given name or signal an exception if the column with that name was not found"
 	^ self
 		indexOfColumnNamed: columnName
 		ifAbsent: [ LibrarySymbolNotFoundError signal: ('Column ', columnName, ' was not found') ].
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> indexOfColumnNamed: columnName ifAbsent: exceptionBlock [
 	"Answer the index of a column with a given name or evaluate the exceptionBlock if the column with that name was not found"
 	^ self columnNames
 		indexOf: columnName
 		ifAbsent: exceptionBlock.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> indexOfRowNamed: rowName [
 	"Answer the index of a row with a given name or signal an exception if the row with that name was not found"
 	^ self
 		indexOfRowNamed: rowName
 		ifAbsent: [ LibrarySymbolNotFoundError signal: ('Row ', rowName, ' was not found') ].
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> indexOfRowNamed: rowName ifAbsent: exceptionBlock [
 	"Answer the index of a row with a given name or evaluate the exceptionBlock if the row with that name was not found"
 	^ self rowNames
 		indexOf: rowName
 		ifAbsent: exceptionBlock.
+
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrame >> initialize [
 
 	super initialize.
 	
 	contents := DataFrameInternal new.
 	self setDefaultRowColumnNames.
+
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrame >> initialize: aPoint [
 
 	super initialize.
 	
 	contents := DataFrameInternal new: aPoint.
 	self setDefaultRowColumnNames.
+
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrame >> initializeColumns: anArrayOfArrays [
 
 	contents := DataFrameInternal withColumns: anArrayOfArrays.
 	self setDefaultRowColumnNames.
+
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrame >> initializeContents: aDataFrameInternal rowNames: rows columnNames: columns [
 
 	super initialize.
@@ -938,24 +1003,27 @@ DataFrame >> initializeContents: aDataFrameInternal rowNames: rows columnNames: 
 	contents := aDataFrameInternal.
 	self rowNames: rows.
 	self columnNames: columns.
+
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrame >> initializeRows: anArrayOfArrays [
 
 	contents := DataFrameInternal withRows: anArrayOfArrays.
 	self setDefaultRowColumnNames.
+
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataFrame >> inject: thisValue into: binaryBlock [ 
 	| series |
 	series := super inject: thisValue into: binaryBlock.
 	series name: series defaultName.
 	^ series
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> innerJoin: aDataFrame [
 	"Performs inner join on aDataFrame with rowNames as keys"
 
@@ -972,15 +1040,17 @@ DataFrame >> innerJoin: aDataFrame [
 		].
 	
 	^ outputDf
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> innerJoin: aDataFrame on: aColumnName [
 	"Inner join of self with aDataFrame on a column that has a name aColumnName in both data frames"
 	^ self innerJoin: aDataFrame onLeft: aColumnName onRight: aColumnName
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> innerJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 	"Performs inner join on aDataFrame with rowNames as keys.
 	 rowNames are not preserved.
@@ -1013,15 +1083,17 @@ DataFrame >> innerJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 		].
 	
 	^ outputDf
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> interquartileRange [
 
 	^ self applyToAllColumns: #interquartileRange
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> leftJoin: aDataFrame [
 	"Performs left join on aDataFrame with rowNames as keys"
 
@@ -1037,15 +1109,17 @@ DataFrame >> leftJoin: aDataFrame [
 		outputDf addRow: rowToAdd named: rowName ].
 	
 	^ outputDf
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> leftJoin: aDataFrame on: aColumnName [
 	"Left join of self with aDataFrame on a column that has a name aColumnName in both data frames"
 	^ self leftJoin: aDataFrame onLeft: aColumnName onRight: aColumnName
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> leftJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 	"Performs left join on aDataFrame with rowNames as keys.
 	 rowNames are not preserved.
@@ -1082,45 +1156,52 @@ DataFrame >> leftJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 		].
 	
 	^ outputDf
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> max [
 
 	^ self applyToAllColumns: #max
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> median [
 
 	^ self applyToAllColumns: #median
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> min [
 
 	^ self applyToAllColumns: #min
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> mode [
 
 	^ self applyToAllColumns: #mode
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> numberOfColumns [
 
 	^ contents numberOfColumns
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> numberOfRows [
 
 	^ contents numberOfRows
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> outerJoin: aDataFrame [
 	"Performs outer join on aDataFrame with rowNames as keys"
 
@@ -1142,15 +1223,17 @@ DataFrame >> outerJoin: aDataFrame [
 				named: rowName ] ].
 	
 	^ outputDf
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> outerJoin: aDataFrame on: aColumnName [
 	"Outer join of self with aDataFrame on a column that has a name aColumnName in both data frames"
 	^ self outerJoin: aDataFrame onLeft: aColumnName onRight: aColumnName
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> outerJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 	"Performs outer join on aDataFrame with rowNames as keys.
 	 rowNames are not preserved.
@@ -1201,9 +1284,10 @@ DataFrame >> outerJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 		].
 	
 	^ outputDf
+
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 DataFrame >> printOn: aStream [
 
 	| title |
@@ -1213,46 +1297,52 @@ DataFrame >> printOn: aStream [
 		nextPutAll: title;
 		space;
 		nextPutAll: self dimensions asString.
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> range [
 
 	^ self applyToAllColumns: #range
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeColumn: columnName [
 
 	| index |
 	index := self indexOfColumnNamed: columnName.
 	self removeColumnAt: index.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeColumnAt: columnNumber [
 	(columnNumber < 1 or: [ columnNumber > self numberOfColumns ])
 		ifTrue: [ SubscriptOutOfBounds signalFor: columnNumber ].
 
 	contents removeColumnAt: columnNumber.
 	columnNames := columnNames copyWithoutIndex: columnNumber.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeColumns: aCollectionOfColumnNames [
 	aCollectionOfColumnNames do: [ :each |
 		self removeColumn: each ].
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeColumnsAt: aCollectionOfColumnIndices [
 	| columnNamesToRemove |
 	columnNamesToRemove := aCollectionOfColumnIndices collect: [ :i |
 		columnNames at: i ].
 	self removeColumns: columnNamesToRemove
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeColumnsOfRowElementsSatisfing: aBlock onRow: rowNumber [
 
 	| columnNamesCopy |
@@ -1267,58 +1357,66 @@ DataFrame >> removeColumnsOfRowElementsSatisfing: aBlock onRow: rowNumber [
 	contents removeColumnsOfRowElementsSatisfing: aBlock onRow: rowNumber.
 	
 	self numberOfColumns = 0 ifTrue: [ rowNames removeAll ].
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeColumnsOfRowElementsSatisfing: aBlock onRowNamed: rowName [
 
 	| index |
 	index := self indexOfRowNamed: rowName.
 	self removeColumnsOfRowElementsSatisfing: aBlock onRow: index.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeColumnsWithNilsAtRow: rowNumber [
 	self removeColumnsOfRowElementsSatisfing: [ :ele | ele isNil ] onRow: rowNumber.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeColumnsWithNilsAtRowNamed: rowName [
 	self removeColumnsOfRowElementsSatisfing: [ :ele | ele isNil ] onRowNamed: rowName.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeRow: rowName [
 
 	| index |
 	index := self indexOfRowNamed: rowName.
 	self removeRowAt: index.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeRowAt: rowNumber [
 	(rowNumber < 1 or: [ rowNumber > self numberOfRows ])
 		ifTrue: [ SubscriptOutOfBounds signalFor: rowNumber ].
 		
 	contents removeRowAt: rowNumber.
 	rowNames := rowNames copyWithoutIndex: rowNumber.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeRows: aCollectionOfRowNames [
 	aCollectionOfRowNames do: [ :each |
 		self removeRow: each ]
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeRowsAt: aCollectionOfRowIndices [
 	| rowNamesToRemove |
 	rowNamesToRemove := aCollectionOfRowIndices collect: [ :i |
 		rowNames at: i ].
 	self removeRows: rowNamesToRemove
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeRowsOfColumnElementsSatisfing: aBlock onColumn: columnNumber [
 	
 	| rowNamesCopy |
@@ -1333,43 +1431,49 @@ DataFrame >> removeRowsOfColumnElementsSatisfing: aBlock onColumn: columnNumber 
 	contents removeRowsOfColumnElementsSatisfing: aBlock onColumn: columnNumber.
 	
 	self numberOfRows = 0 ifTrue: [ columnNames removeAll ].
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeRowsOfColumnElementsSatisfing: aBlock onColumnNamed: columnName [
 
 	| index |
 	index := self indexOfColumnNamed: columnName.
 	self removeRowsOfColumnElementsSatisfing: aBlock onColumn: index.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeRowsWithNilsAtColumn: columnNumber [
 	self removeRowsOfColumnElementsSatisfing: [ :ele | ele isNil ] onColumn: columnNumber.
+
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrame >> removeRowsWithNilsAtColumnNamed: columnName [
 	self removeRowsOfColumnElementsSatisfing: [ :ele | ele isNil ] onColumnNamed: columnName.
+
 ]
 
-{ #category : #renaming }
+{ #category : 'renaming' }
 DataFrame >> renameColumn: oldName to: newName [
 	"Find a column with oldName and rename it to newName"
 	| index |
 	index := self indexOfColumnNamed: oldName.
 	self columnNames at: index put: newName.
+
 ]
 
-{ #category : #renaming }
+{ #category : 'renaming' }
 DataFrame >> renameRow: oldName to: newName [
 	"Find a row with oldName and rename it to newName"
 	| index |
 	index := self indexOfRowNamed: oldName.
 	self rowNames at: index put: newName.
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> rightJoin: aDataFrame [
 	"Performs right join on aDataFrame with rowNames as keys"
 
@@ -1386,15 +1490,17 @@ DataFrame >> rightJoin: aDataFrame [
 		outputDf addRow: rowToAdd named: rowName ].
 	
 	^ outputDf
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> rightJoin: aDataFrame on: aColumnName [
 	"Right join of self with aDataFrame on a column that has a name aColumnName in both data frames"
 	^ self rightJoin: aDataFrame onLeft: aColumnName onRight: aColumnName
+
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrame >> rightJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 	"Performs right join on aDataFrame with rowNames as keys.
 	 rowNames are not preserved.
@@ -1435,17 +1541,19 @@ DataFrame >> rightJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 		].
 	
 	^ outputDf
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> row: rowName [
 	"Answer the row with rowName as a DataSeries or signal an exception if a row with that name was not found"
 	| index |
 	index := self indexOfRowNamed: rowName.
 	^ self rowAt: index
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> row: rowName ifAbsent: exceptionBlock [
 	"Answer the row with rowName as a DataSeries or evaluate exception block if a row with that name was not found"
 	| index |
@@ -1454,17 +1562,19 @@ DataFrame >> row: rowName ifAbsent: exceptionBlock [
 		ifAbsent: [ ^ exceptionBlock value ].
 		
 	^ self rowAt: index
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> row: rowName put: anArray [
 	"Replace the current values of row with rowName with anArray or signal an exception if a row with that name was not found"
 	| index |
 	index := self indexOfRowNamed: rowName.
 	^ self rowAt: index put: anArray.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> row: rowName put: anArray ifAbsent: exceptionBlock [
 	"Replace the current values of row with rowName with anArray or evaluate exception block if a row with that name was not found"
 	| index |
@@ -1473,25 +1583,28 @@ DataFrame >> row: rowName put: anArray ifAbsent: exceptionBlock [
 		ifAbsent: [ ^ exceptionBlock value ].
 		
 	^ self rowAt: index put: anArray
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> row: rowName transform: aBlock [
 	"Evaluate aBlock on the row with rowName and replace row with the result. Signal an exception if rowName was not found"
 	| row |
 	row := self row: rowName.
 	self row: rowName put: (aBlock value: row) asArray
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> row: rowName transform: aBlock ifAbsent: exceptionBlock [
 	"Evaluate aBlock on the row with rowName and replace row with the result. Evaluate exceptionBlock if rowName was not found"
 	| row |
 	row := self row: rowName ifAbsent: [ ^ exceptionBlock value ].
 	self row: rowName put: (aBlock value: row)
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowAt: aNumber [
 
 	| series |
@@ -1499,32 +1612,36 @@ DataFrame >> rowAt: aNumber [
 	series name: (self rowNames at: aNumber).
 	series keys: self columnNames.
 	^ series
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowAt: aNumber put: anArray [
 
 	anArray size = self numberOfColumns
 		ifFalse: [ SizeMismatch signal ].
 		
 	contents rowAt: aNumber put: anArray.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowAt: aNumber transform: aBlock [
 	"Evaluate aBlock on the row at aNumber and replace that row with the result"
 	| row |
 	row := self rowAt: aNumber.
 	self rowAt: aNumber put: (aBlock value: row) asArray
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowNames [
 
 	^ rowNames
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowNames: anArray [
 	anArray size = self numberOfRows 
 		ifFalse: [ SizeMismatch signal: 'Wrong number of row names' ].
@@ -1533,9 +1650,10 @@ DataFrame >> rowNames: anArray [
 		ifFalse: [ Error signal: 'All row names must be distinct' ].
 		
 	rowNames := anArray asOrderedCollection
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rows: anArrayOfNames [
 	
 	| anArrayOfNumbers |
@@ -1545,9 +1663,10 @@ DataFrame >> rows: anArrayOfNames [
 			self indexOfRowNamed: name ].
 			
 	^ self rowsAt: anArrayOfNumbers.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rows: anArrayOfRowNames put: anArrayOfArrays [
 	
 	anArrayOfArrays size = anArrayOfRowNames size
@@ -1555,9 +1674,10 @@ DataFrame >> rows: anArrayOfRowNames put: anArrayOfArrays [
 	
 	anArrayOfRowNames with: anArrayOfArrays do: [ :name :array |
 		self row: name put: array ].
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowsAt: anArrayOfNumbers [
 
 	| newRowNames |
@@ -1569,9 +1689,10 @@ DataFrame >> rowsAt: anArrayOfNumbers [
 		withDataFrameInternal: (self contents rowsAt: anArrayOfNumbers)
 		rowNames: newRowNames
 		columnNames: self columnNames.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowsAt: anArrayOfNumbers put: anArrayOfArrays [
 	
 	anArrayOfArrays size = anArrayOfNumbers size
@@ -1579,15 +1700,17 @@ DataFrame >> rowsAt: anArrayOfNumbers put: anArrayOfArrays [
 	
 	anArrayOfNumbers with: anArrayOfArrays do: [ :index :array |
 		self rowAt: index put: array ].
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowsFrom: begin to: end [
 
 	^ self rowsAt: (begin to: end).
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> rowsFrom: firstNumber to: secondNumber put: anArrayOfArrays [
 
 	| interval |
@@ -1601,9 +1724,10 @@ DataFrame >> rowsFrom: firstNumber to: secondNumber put: anArrayOfArrays [
 	
 	interval withIndexDo: [ :rowIndex :i |
 		self rowAt: rowIndex put: (anArrayOfArrays at: i) ].
+
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataFrame >> select: aBlock [ 
 	"Evaluate aBlock with each of the receiver's elements as the argument. 
 	Collect into a new collection like the receiver, only those elements for 
@@ -1625,46 +1749,30 @@ DataFrame >> select: aBlock [
 		columnNames: selectedColumnNames.
 	
 	^ df
+
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 DataFrame >> setDefaultRowColumnNames [
 
 	self rowNames: (1 to: self numberOfRows).
 	self columnNames: (1 to: self numberOfColumns).
+
 ]
 
-{ #category : #'gt-inspector-extension' }
-DataFrame >> showWithGlamourIn: composite [
-	| table headerNames |
-	table := FTTableMorph new.
-	"extent: 650@500"
-	table
-		beResizable;
-		intercellSpacing: 1;
-		dataSource: (DataFrameFTData elements: self);
-		onAnnouncement: FTSelectionChanged
-			do: [ :ann | (self rowAt: ann newSelectedIndexes first) inspect ].
-
-	"		onAnnouncement: FTSelectionChanged 
-			do: [ :ann | (self rowsAt: ann newSelectedRowIndexes) gtInspectorItemsIn: composite ];"
-	headerNames := #('#') , self columnNames.
-	table
-		columns: (headerNames collect: [ :name | (FTColumn id: name) width: 100 ]).
-	^ table
-]
-
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> size [
 	^ self numberOfRows
+
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataFrame >> sortBy: columnName [
 	self sortBy: columnName using: [ :a :b | a <= b ]
+
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataFrame >> sortBy: columnName using: aBlock [
 
 	| column sortedKeys newContents |
@@ -1680,26 +1788,30 @@ DataFrame >> sortBy: columnName using: aBlock [
 		
 	contents := newContents.
 	self rowNames: sortedKeys.
+
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataFrame >> sortDescendingBy: columnName [
 	self sortBy: columnName using: [ :a :b | a >= b ].
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> stdev [
 
 	^ self applyToAllColumns: #stdev
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> tail [
 
 	^ self tail: self defaultHeadTailSize.
+
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrame >> tail: aNumber [
 
 	| n rows |
@@ -1711,44 +1823,50 @@ DataFrame >> tail: aNumber [
 		ifFalse: [ n := rows ].
 			
 	^ self rowsAt: ((rows - n + 1) to: rows).
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> thirdQuartile [
 
 	^ self applyToAllColumns: #thirdQuartile
+
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 DataFrame >> toColumn: columnName applyElementwise: aBlock [
 	| column |
 	column := (self column: columnName) asArray.
 	column := column collect: [ :each | aBlock value: each ].
 	self column: columnName put: column asArray.
+
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 DataFrame >> toColumnAt: columnNumber applyElementwise: aBlock [
 	| columnName |
 	columnName := self columnNames at: columnNumber.
 	^ self toColumn: columnName applyElementwise: aBlock.
+
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 DataFrame >> toColumns: arrayOfColumnNames applyElementwise: aBlock [
 		
 	arrayOfColumnNames do: [ :each |
 		self toColumn: each applyElementwise: aBlock ].
+
 ]
 
-{ #category : #applying }
+{ #category : 'applying' }
 DataFrame >> toColumnsAt: arrayOfColumnNumbers applyElementwise: aBlock [
 		
 	arrayOfColumnNumbers do: [ :each |
 		self toColumnAt: each applyElementwise: aBlock ].
+
 ]
 
-{ #category : #geometry }
+{ #category : 'geometry' }
 DataFrame >> transposed [
 	"Returs a transposed DataFrame. Columns become rows and rows become columns."
 
@@ -1757,15 +1875,17 @@ DataFrame >> transposed [
 	transposedDf rowNames: self columnNames.
 	transposedDf columnNames: self rowNames.
 	^ transposedDf
+
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataFrame >> variance [
 
 	^ self applyToAllColumns: #variance
+
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataFrame >> withIndexCollect: elementAndIndexBlock [
 	"Overrides withIndexCollect: to create DataFrame with the same number of columns as values in the first row"
 	| firstRow newDataFrame |
@@ -1776,9 +1896,10 @@ DataFrame >> withIndexCollect: elementAndIndexBlock [
 	
 	self withIndexDo: [ :each :index | newDataFrame add: (elementAndIndexBlock value: each copy value: index)].
 	^ newDataFrame
+
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataFrame >> withIndexDo: elementAndIndexBlock [
 
 	1 to: self size do: [ :i |
@@ -1788,17 +1909,19 @@ DataFrame >> withIndexDo: elementAndIndexBlock [
 			
 		"A hack to allow modification of rows inside do block"
 		self rowAt: i put: row asArray ].
+
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataFrame >> withIndexReject: elementAndIndexBlock [ 
 	"Evaluate aBlock with each of the receiver's elements and index as the arguments. 
 	Collect into a new collection like the receiver, only those elements for 
 	which aBlock evaluates to false. Answer the new collection."
 	^ self withIndexSelect: [ :row :index | (elementAndIndexBlock value: row value: index) not ]
+
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataFrame >> withIndexSelect: elementAndIndexBlock [ 
 	"Evaluate aBlock with each of the receiver's elements and index as the arguments. 
 	Collect into a new collection like the receiver, only those elements for 
@@ -1818,4 +1941,5 @@ DataFrame >> withIndexSelect: elementAndIndexBlock [
 		columnNames: self columnNames.
 	
 	^ df
+
 ]

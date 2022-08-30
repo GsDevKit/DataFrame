@@ -14,6 +14,7 @@ RwSimpleProjectLoadComponentV2 {
 	],
 	#packageNames : [
 		'DataFrame-Core',
+		'DataFrame-Core-Pharo9-',
 		'DataFrame-IO',
 		'DataFrame-Math',
 		'DataFrame-Type'
