@@ -1,13 +1,13 @@
 Class {
-	#name : #DataFrameTest,
-	#superclass : #TestCase,
+	#name : 'DataFrameTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'df'
 	],
-	#category : #'DataFrame-Tests'
+	#category : 'DataFrame-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrameTest >> setUp [
 
 	df := DataFrame withRows: #(
@@ -19,7 +19,7 @@ DataFrameTest >> setUp [
 	df columnNames: #(City Population BeenThere).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAdd [
 
 	| row expected |
@@ -39,7 +39,7 @@ DataFrameTest >> testAdd [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddColumn [
 
 	| column expected |
@@ -58,7 +58,7 @@ DataFrameTest >> testAddColumn [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddColumnAtPosition [
 	| column expected |
 	
@@ -76,15 +76,7 @@ DataFrameTest >> testAddColumnAtPosition [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
-DataFrameTest >> testAddColumnNameMustBeDistinct [
-
-	| series |
-	series := DataSeries withValues: #(1 2 3) name: #City.
-	self should: [ df addColumn: series ] raise: Error.
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddColumnNamed [
 	| expected |
 	
@@ -101,7 +93,7 @@ DataFrameTest >> testAddColumnNamed [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddColumnNamedAtPosition [
 	| expected |
 	
@@ -118,13 +110,21 @@ DataFrameTest >> testAddColumnNamedAtPosition [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddColumnNamedNameMustBeDistinct [
 
 	self should: [ df addColumn: #(1 2 3) named: #City ] raise: Error.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+DataFrameTest >> testAddColumnNameMustBeDistinct [
+
+	| series |
+	series := DataSeries withValues: #(1 2 3) name: #City.
+	self should: [ df addColumn: series ] raise: Error.
+]
+
+{ #category : 'tests' }
 DataFrameTest >> testAddEmptyColumnNamed [
 
 	| expected |
@@ -142,7 +142,7 @@ DataFrameTest >> testAddEmptyColumnNamed [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddEmptyColumnNamedAtPosition [
 
 	| expected |
@@ -160,7 +160,7 @@ DataFrameTest >> testAddEmptyColumnNamedAtPosition [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddEmptyRowNamed [
 
 	| expected |
@@ -179,7 +179,7 @@ DataFrameTest >> testAddEmptyRowNamed [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddEmptyRowNamedAtPosition [
 
 	| expected |
@@ -198,7 +198,7 @@ DataFrameTest >> testAddEmptyRowNamedAtPosition [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddRow [
 
 	| row expected |
@@ -218,7 +218,7 @@ DataFrameTest >> testAddRow [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddRowAtPosition [
 	| row expected |
 	
@@ -237,15 +237,7 @@ DataFrameTest >> testAddRowAtPosition [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
-DataFrameTest >> testAddRowNameMustBeDistinct [
-
-	| series |
-	series := DataSeries withValues: #(1 2 3) name: #A.
-	self should: [ df addRow: series ] raise: Error.
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddRowNamed [
 	| expected |
 	
@@ -263,7 +255,7 @@ DataFrameTest >> testAddRowNamed [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddRowNamedAtPosition [
 	| expected |
 	
@@ -281,13 +273,21 @@ DataFrameTest >> testAddRowNamedAtPosition [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAddRowNamedNameMustBeDistinct [
 
 	self should: [ df addRow: #(1 2 3) named: #A ] raise: Error.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+DataFrameTest >> testAddRowNameMustBeDistinct [
+
+	| series |
+	series := DataSeries withValues: #(1 2 3) name: #A.
+	self should: [ df addRow: series ] raise: Error.
+]
+
+{ #category : 'tests' }
 DataFrameTest >> testAddRowSizeMismatch [
 
 	| aBlock |
@@ -296,30 +296,28 @@ DataFrameTest >> testAddRowSizeMismatch [
 	self should: aBlock raise: SizeMismatch.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAsArrayOfColumns [
 
 	| expected |
 	
 	expected := #(
-		('Barcelona' 'Dubai' 'London')
+		(Barcelona Dubai London)
 		(1.609 2.789 8.788)
    		(true true false)).
 	
 	self assert: df asArrayOfColumns equals: expected.
-	
-
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAsArrayOfRows [
 
 	| expected |
 	
 	expected := {
-		#('Barcelona' 1.609 true) asDataSeries name: 'A'; keys: df columnNames; yourself .
-   		#('Dubai' 2.789 true) asDataSeries name: 'B'; keys: df columnNames; yourself .
-   		#('London' 8.788 false) asDataSeries name: 'C'; keys: df columnNames; yourself
+		#(Barcelona 1.609 true) asDataSeries name: #A; keys: df columnNames; yourself .
+   		#(Dubai 2.789 true) asDataSeries name: #B; keys: df columnNames; yourself .
+   		#(London 8.788 false) asDataSeries name: #C; keys: df columnNames; yourself
 	}.
 	
 	self assert: df asArrayOfRows equals: expected.
@@ -327,13 +325,13 @@ DataFrameTest >> testAsArrayOfRows [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAt [
 
 	| actual expected |
 
 	expected := DataSeries withValues:
-		#('Dubai' 2.789 true).
+		#(Dubai 2.789 true).
 		
 	expected name: #B.
 	expected keys: df columnNames.
@@ -343,13 +341,13 @@ DataFrameTest >> testAt [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAtAt [
 
-	self assert: (df at: 2 at: 1) equals: 'Dubai'.
+	self assert: (df at: 2 at: 1) equals: #Dubai.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAtAtPut [
 
 	| expectedDataFrame |
@@ -367,7 +365,7 @@ DataFrameTest >> testAtAtPut [
 	self assert: df equals: expectedDataFrame. 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAtAtTransform [
 
 	| expected |
@@ -384,7 +382,7 @@ DataFrameTest >> testAtAtTransform [
 	self assert: df equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testAtTransform [
 
 	| expected |
@@ -401,7 +399,7 @@ DataFrameTest >> testAtTransform [
 	self assert: df equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCollect [
 	| expectedDf expectedResult actualResult |
 	
@@ -431,7 +429,7 @@ DataFrameTest >> testCollect [
 	self assert: df equals: expectedDf.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumn [
 
 	| actualSeries expectedSeries |
@@ -447,7 +445,7 @@ DataFrameTest >> testColumn [
 	self assert: actualSeries equals: expectedSeries.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnAt [
 
 	| actualSeries expectedSeries |
@@ -463,7 +461,7 @@ DataFrameTest >> testColumnAt [
 	self assert: actualSeries equals: expectedSeries.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnAtPut [
 
 	| actual expected |
@@ -483,7 +481,7 @@ DataFrameTest >> testColumnAtPut [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnAtTransform [
 
 	| expected |
@@ -500,7 +498,7 @@ DataFrameTest >> testColumnAtTransform [
 	self assert: df equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnIfAbsent [
 
 	| exceptionBlockEvaluated |
@@ -513,7 +511,7 @@ DataFrameTest >> testColumnIfAbsent [
 	self assert: exceptionBlockEvaluated.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnNames [
 	| newNames |
 	newNames := #(X Y Z).
@@ -521,14 +519,14 @@ DataFrameTest >> testColumnNames [
 	self assert: df columnNames equals: newNames asOrderedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnNamesMustBeDistinct [
 	| newNames |
 	newNames := #(x y y).
 	self should: [ df columnNames: newNames ] raise: Error.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnNamesSizeMismatch [
 	| tooManyNames notEnoughNames |
 	
@@ -539,14 +537,14 @@ DataFrameTest >> testColumnNamesSizeMismatch [
 	self should: [ df columnNames: notEnoughNames ] raise: SizeMismatch.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnNotFound [
 	self
 		should: [ df column: #NoSuchColumn ]
 		raise: LibrarySymbolNotFoundError.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnPut [
 
 	| actual expected |
@@ -566,7 +564,7 @@ DataFrameTest >> testColumnPut [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnPutIfAbsent [
 
 	| expected exceptionBlockEvaluated |
@@ -589,76 +587,14 @@ DataFrameTest >> testColumnPutIfAbsent [
 	self assert: exceptionBlockEvaluated.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnPutNotFound [
 	self
 		should: [ df column: #NoSuchColumn put: #(0 0 0) ]
 		raise: LibrarySymbolNotFoundError.
 ]
 
-{ #category : #tests }
-DataFrameTest >> testColumnTransform [
-
-	| expected |
-
-	expected := DataFrame
-		withRows: #(
-			(Barcelona 1.609 true)
-   			(Dubai 0 true)
-   			(London 8.788 false))
-		rowNames: #(A B C)
-		columnNames: #(City Population BeenThere).
-		
-	df column: #Population transform: [ :column | column at: #B put: 0; yourself ].
-	self assert: df equals: expected
-]
-
-{ #category : #tests }
-DataFrameTest >> testColumnTransformIfAbsent [
-
-	| expected exceptionBlockEvaluated |
-
-	exceptionBlockEvaluated := false.
-	
-	expected := DataFrame
-		withRows: #(
-			(Barcelona 1.609 true)
-   			(Dubai 2.789 true)
-   			(London 8.788 false))
-		rowNames: #(A B C)
-		columnNames: #(City Population BeenThere).
-		
-	df column: #NoSuchColumn
-		transform: [ :column | column at: #B put: 0 ]
-		ifAbsent: [ exceptionBlockEvaluated := true ].
-		
-	self assert: df equals: expected.
-	self assert: exceptionBlockEvaluated.
-]
-
-{ #category : #tests }
-DataFrameTest >> testColumnTransformNotFound [
-
-	| expected |
-	
-	expected := DataFrame
-		withRows: #(
-			(Barcelona 1.609 true)
-   			(Dubai 2.789 true)
-   			(London 8.788 false))
-		rowNames: #(A B C)
-		columnNames: #(City Population BeenThere).
-		
-	self
-		should: [
-			df column: #NoSuchColumn
-				transform: [ :column | column at: #B put: 0 ] ]
-		raise: LibrarySymbolNotFoundError.
-		
-	self assert: df equals: expected.
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumns [
 
 	| expectedCollection |
@@ -671,7 +607,7 @@ DataFrameTest >> testColumns [
 	self assert: df columns equals: expectedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnsAt [
 
 	| columnNumbers actualDataFrame expectedDataFrame |
@@ -693,11 +629,11 @@ DataFrameTest >> testColumnsAt [
 	self assert: actualDataFrame equals: expectedDataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnsAtPut [
 	| rowNames columnNames dataFrame newColumns expected |
 	
-	rowNames := #('01:10' '01:30' '01:50' '02:10' '02:30') collect: #asTime.
+	rowNames := #('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00') collect: #asTime.
 	columnNames := #(temperature precipitation type).
 	
 	dataFrame := DataFrame
@@ -728,7 +664,7 @@ DataFrameTest >> testColumnsAtPut [
 	self assert: dataFrame equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnsFromTo [
 
 	| actualDataFrame expectedDataFrame |
@@ -746,11 +682,11 @@ DataFrameTest >> testColumnsFromTo [
 	self assert: actualDataFrame equals: expectedDataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnsFromToPut [
 	| rowNames columnNames dataFrame newColumns expected |
 	
-	rowNames := #('01:10' '01:30' '01:50' '02:10' '02:30') collect: #asTime.
+	rowNames := #('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00') collect: #asTime.
 	columnNames := #(temperature precipitation type).
 	
 	dataFrame := DataFrame
@@ -781,11 +717,11 @@ DataFrameTest >> testColumnsFromToPut [
 	self assert: dataFrame equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnsPut [
 	| rowNames columnNames dataFrame newColumns expected |
 	
-	rowNames := #('01:10' '01:30' '01:50' '02:10' '02:30') collect: #asTime.
+	rowNames := #('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00') collect: #asTime.
 	columnNames := #(temperature precipitation type).
 	
 	dataFrame := DataFrame
@@ -816,7 +752,7 @@ DataFrameTest >> testColumnsPut [
 	self assert: dataFrame equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testColumnsSubset [
 
 	| columnNames actualDataFrame expectedDataFrame |
@@ -836,7 +772,69 @@ DataFrameTest >> testColumnsSubset [
 	self assert: actualDataFrame equals: expectedDataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+DataFrameTest >> testColumnTransform [
+
+	| expected |
+
+	expected := DataFrame
+		withRows: #(
+			(Barcelona 1.609 true)
+   			(Dubai 0 true)
+   			(London 8.788 false))
+		rowNames: #(A B C)
+		columnNames: #(City Population BeenThere).
+		
+	df column: #Population transform: [ :column | column at: #B put: 0; yourself ].
+	self assert: df equals: expected
+]
+
+{ #category : 'tests' }
+DataFrameTest >> testColumnTransformIfAbsent [
+
+	| expected exceptionBlockEvaluated |
+
+	exceptionBlockEvaluated := false.
+	
+	expected := DataFrame
+		withRows: #(
+			(Barcelona 1.609 true)
+   			(Dubai 2.789 true)
+   			(London 8.788 false))
+		rowNames: #(A B C)
+		columnNames: #(City Population BeenThere).
+		
+	df column: #NoSuchColumn
+		transform: [ :column | column at: #B put: 0 ]
+		ifAbsent: [ exceptionBlockEvaluated := true ].
+		
+	self assert: df equals: expected.
+	self assert: exceptionBlockEvaluated.
+]
+
+{ #category : 'tests' }
+DataFrameTest >> testColumnTransformNotFound [
+
+	| expected |
+	
+	expected := DataFrame
+		withRows: #(
+			(Barcelona 1.609 true)
+   			(Dubai 2.789 true)
+   			(London 8.788 false))
+		rowNames: #(A B C)
+		columnNames: #(City Population BeenThere).
+		
+	self
+		should: [
+			df column: #NoSuchColumn
+				transform: [ :column | column at: #B put: 0 ] ]
+		raise: LibrarySymbolNotFoundError.
+		
+	self assert: df equals: expected.
+]
+
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWith3ColumnsAndNoRows [
 	| dataFrame |
 	dataFrame := DataFrame new: 0@3.
@@ -847,7 +845,7 @@ DataFrameTest >> testCreateDataFrameWith3ColumnsAndNoRows [
 	self assert: dataFrame columnNames equals: #(1 2 3) asOrderedCollection.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithColumns [
 
 	| columns dataFrame expectedValues |
@@ -868,7 +866,7 @@ DataFrameTest >> testCreateDataFrameWithColumns [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithColumnsColumnNames [
 
 	| columns columnNames dataFrame expectedValues |
@@ -892,7 +890,7 @@ DataFrameTest >> testCreateDataFrameWithColumnsColumnNames [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithColumnsRowNames [
 
 	| columns rowNames dataFrame expectedValues |
@@ -916,7 +914,7 @@ DataFrameTest >> testCreateDataFrameWithColumnsRowNames [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithColumnsRowNamesColumnNames [
 
 	| columns rowNames columnNames dataFrame expectedValues |
@@ -943,7 +941,7 @@ DataFrameTest >> testCreateDataFrameWithColumnsRowNamesColumnNames [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithDataFrameInternalRowNamesColumnNames [
 
 	| rows dataFrameInternal rowNames columnNames dataFrame expectedValues |
@@ -971,7 +969,7 @@ DataFrameTest >> testCreateDataFrameWithDataFrameInternalRowNamesColumnNames [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithRows [
 
 	| rows dataFrame expectedValues |
@@ -993,7 +991,7 @@ DataFrameTest >> testCreateDataFrameWithRows [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithRowsColumnNames [
 
 	| rows columnNames dataFrame expectedValues |
@@ -1018,7 +1016,7 @@ DataFrameTest >> testCreateDataFrameWithRowsColumnNames [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithRowsRowNames [
 
 	| rows rowNames dataFrame expectedValues |
@@ -1043,7 +1041,7 @@ DataFrameTest >> testCreateDataFrameWithRowsRowNames [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateDataFrameWithRowsRowNamesColumnNames [
 
 	| rows rowNames columnNames dataFrame expectedValues |
@@ -1070,7 +1068,7 @@ DataFrameTest >> testCreateDataFrameWithRowsRowNamesColumnNames [
 	self assert: dataFrame contents equals: expectedValues.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrame [
 	| dataFrame |
 	dataFrame := DataFrame new.
@@ -1081,7 +1079,7 @@ DataFrameTest >> testCreateEmptyDataFrame [
 	self assert: dataFrame columnNames equals: #() asOrderedCollection.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithColumnNames [
 	| columnNames dataFrame |
 	
@@ -1094,7 +1092,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithColumnNames [
 	self assert: dataFrame columnNames equals: columnNames.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithColumns [
 
 	| dataFrame  |
@@ -1103,7 +1101,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithColumns [
 	self assert: dataFrame class equals: DataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithColumnsColumnNames [
 
 	| dataFrame  |
@@ -1112,7 +1110,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithColumnsColumnNames [
 	self assert: dataFrame class equals: DataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithColumnsRowNames [
 
 	| dataFrame  |
@@ -1121,7 +1119,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithColumnsRowNames [
 	self assert: dataFrame class equals: DataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithColumnsRowNamesColumnNames [
 
 	| dataFrame  |
@@ -1130,7 +1128,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithColumnsRowNamesColumnNames [
 	self assert: dataFrame class equals: DataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithRowNames [
 	| rowNames dataFrame |
 	
@@ -1143,7 +1141,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithRowNames [
 	self assert: dataFrame columnNames equals: #() asOrderedCollection.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithRowNamesColumnNames [
 	| rowNames columnNames dataFrame |
 	
@@ -1160,7 +1158,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithRowNamesColumnNames [
 	self assert: dataFrame columnNames equals: columnNames.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithRows [
 
 	| dataFrame  |
@@ -1169,7 +1167,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithRows [
 	self assert: dataFrame class equals: DataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithRowsColumnNames [
 
 	| dataFrame  |
@@ -1178,7 +1176,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithRowsColumnNames [
 	self assert: dataFrame class equals: DataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithRowsRowNames [
 
 	| dataFrame  |
@@ -1187,7 +1185,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithRowsRowNames [
 	self assert: dataFrame class equals: DataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCreateEmptyDataFrameWithRowsRowNamesColumnNames [
 
 	| dataFrame  |
@@ -1196,7 +1194,7 @@ DataFrameTest >> testCreateEmptyDataFrameWithRowsRowNamesColumnNames [
 	self assert: dataFrame class equals: DataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testCrossTabulation [
 
 	| dataFrame expected |
@@ -1218,7 +1216,7 @@ DataFrameTest >> testCrossTabulation [
 	self assert: (dataFrame crossTabulate: #Gender with: #Age) equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testDetect [
 	| actual expected |
 
@@ -1233,7 +1231,7 @@ DataFrameTest >> testDetect [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testDetectIfNone [
 	| actual expected |
 
@@ -1249,7 +1247,7 @@ DataFrameTest >> testDetectIfNone [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testDetectIfNoneNotFound [
 	| actual expected |
 	
@@ -1262,14 +1260,14 @@ DataFrameTest >> testDetectIfNoneNotFound [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testDetectNotFound [
 	self
-		should: [ df detect: [ :row | row at: #City = 'Paris' ] ]
-		raise: NotFound
+		should: [ df detect: [ :row | row at: #City = #Paris ] ]
+		raise: self notFoundErrorClass
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testDo [
 
 	| actual expected |
@@ -1291,7 +1289,7 @@ DataFrameTest >> testDo [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testDoCanModifyRows [
 	| expected |
 
@@ -1304,12 +1302,12 @@ DataFrameTest >> testDoCanModifyRows [
 		columnNames: df columnNames.
 	
 	df do: [ :row |
-		row at: #City put: (row at: #City) asUppercase ].
+		row at: #City put: (row at: #City) asUppercase asSymbol ].
 	
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testEquality [
 
 	| df1 df2 |
@@ -1321,49 +1319,49 @@ DataFrameTest >> testEquality [
 	self assert: (df1 = df2).
 ]
 
-{ #category : #'find-select' }
+{ #category : 'find-select' }
 DataFrameTest >> testFindAllAtColumn [
 
-	df addRow: #('London' 8.788 false) named: #D.
-	self assert: (df findAll: 'London' atColumn: 'City') equals: #('C' 'D') asOrderedCollection.
+	df addRow: #(#London 8.788 false) named: #D.
+	self assert: (df findAll: #London atColumn: #'City') equals: #(#C #D) asOrderedCollection.
 ]
 
-{ #category : #'find-select' }
+{ #category : 'find-select' }
 DataFrameTest >> testFindAllAtColumnBoolean [
 
 	df addRow: #(Barcelona 1.609 true) named: #D.
-	self assert: (df findAll: true atColumn: 'BeenThere') equals: #('A' 'B' 'D') asOrderedCollection.
+	self assert: (df findAll: true atColumn: #'BeenThere') equals: #(#A #B #D) asOrderedCollection.
 ]
 
-{ #category : #'find-select' }
+{ #category : 'find-select' }
 DataFrameTest >> testFindAllAtColumnFloat [
 
 	df addRow: #(Dubai 2.789 true) named: #D.
-	self assert: (df findAll: 2.789 atColumn: 'Population') equals: #('B' 'D') asOrderedCollection.
+	self assert: (df findAll: 2.789 atColumn: #'Population') equals: #(#B #D) asOrderedCollection.
 ]
 
-{ #category : #'find-select' }
+{ #category : 'find-select' }
 DataFrameTest >> testFindAllIndicesOfAtColumn [
 
-	df addRow: #('London' 8.788 false) named: #D.
-	self assert: (df findAllIndicesOf: 'London' atColumn: 'City') equals: #(3 4) asOrderedCollection.
+	df addRow: #(London 8.788 false) named: #D.
+	self assert: (df findAllIndicesOf: #London atColumn: #'City') equals: #(3 4) asOrderedCollection.
 ]
 
-{ #category : #'find-select' }
+{ #category : 'find-select' }
 DataFrameTest >> testFindAllIndicesOfAtColumnBoolean [
 
 	df addRow: #(Barcelona 1.609 true) named: #D.
-	self assert: (df findAllIndicesOf: true atColumn: 'BeenThere') equals: #(1 2 4) asOrderedCollection.
+	self assert: (df findAllIndicesOf: true atColumn: #BeenThere) equals: #(1 2 4) asOrderedCollection.
 ]
 
-{ #category : #'find-select' }
+{ #category : 'find-select' }
 DataFrameTest >> testFindAllIndicesOfAtColumnFloat [
 
 	df addRow: #(Dubai 2.789 true) named: #D.
-	self assert: (df findAllIndicesOf: 2.789 atColumn: 'Population') equals: #(2 4) asOrderedCollection.
+	self assert: (df findAllIndicesOf: 2.789 atColumn: #Population) equals: #(2 4) asOrderedCollection.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testIndexOfColumnNamed [
 	| expected actual |
 	expected := 2.
@@ -1371,7 +1369,7 @@ DataFrameTest >> testIndexOfColumnNamed [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testIndexOfColumnNamedIfAbsent [ 
 	| expected actual exceptionBlockEvaluated |
 	exceptionBlockEvaluated := false.
@@ -1385,7 +1383,7 @@ DataFrameTest >> testIndexOfColumnNamedIfAbsent [
 	self deny: exceptionBlockEvaluated
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testIndexOfColumnNamedIfAbsentNotFound [
 	| exceptionBlockEvaluated |
 	exceptionBlockEvaluated := false.
@@ -1396,14 +1394,14 @@ DataFrameTest >> testIndexOfColumnNamedIfAbsentNotFound [
 	self assert: exceptionBlockEvaluated
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testIndexOfColumnNamedNotFound [
 	self
 		should: [ df indexOfColumnNamed: #NoSuchColumn ]
 		raise: LibrarySymbolNotFoundError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testIndexOfRowNamed [
 	| expected actual |
 	expected := 2.
@@ -1411,7 +1409,7 @@ DataFrameTest >> testIndexOfRowNamed [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testIndexOfRowNamedIfAbsent [ 
 	| expected actual exceptionBlockEvaluated |
 	exceptionBlockEvaluated := false.
@@ -1425,7 +1423,7 @@ DataFrameTest >> testIndexOfRowNamedIfAbsent [
 	self deny: exceptionBlockEvaluated
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testIndexOfRowNamedIfAbsentNotFound [
 	| exceptionBlockEvaluated |
 	exceptionBlockEvaluated := false.
@@ -1436,14 +1434,14 @@ DataFrameTest >> testIndexOfRowNamedIfAbsentNotFound [
 	self assert: exceptionBlockEvaluated
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testIndexOfRowNamedNotFound [
 	self
 		should: [ df indexOfRowNamed: #NoSuchRow ]
 		raise: LibrarySymbolNotFoundError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testInequality [
 
 	| df1 df2 df3 df4 df5 |
@@ -1479,7 +1477,7 @@ DataFrameTest >> testInequality [
 	self assert: (df5 = df1) not.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testInjectInto [
 	| numericDataFrame actual expected |
 	
@@ -1503,7 +1501,7 @@ DataFrameTest >> testInjectInto [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoin [
 	| df2 expected |
 	
@@ -1524,7 +1522,7 @@ DataFrameTest >> testInnerJoin [
 	self assert: (df innerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinNoIntersection [
 	| df2 expected |
 	
@@ -1540,7 +1538,7 @@ DataFrameTest >> testInnerJoinNoIntersection [
 	self assert: (df innerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOn [
 
 	| df2 expected |
@@ -1569,10 +1567,10 @@ DataFrameTest >> testInnerJoinOn [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df innerJoin: df2 on: 'Key') equals: expected.
+	self assert: (df innerJoin: df2 on: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnEmpty [
 	| df2 expected |
 	
@@ -1584,7 +1582,7 @@ DataFrameTest >> testInnerJoinOnEmpty [
 	self assert: (df2 innerJoin: df) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnEmptyWithColumnNames [
 	| df2 expected |
 	
@@ -1595,7 +1593,7 @@ DataFrameTest >> testInnerJoinOnEmptyWithColumnNames [
 	self assert: (df innerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRight [
 
 	| df2 expected |
@@ -1624,10 +1622,10 @@ DataFrameTest >> testInnerJoinOnLeftOnRight [
 		)
 		columnNames: #(Key1 A B Key2 C D).
 		
-	self assert: (df innerJoin: df2 onLeft: 'Key1' onRight: 'Key2') equals: expected.
+	self assert: (df innerJoin: df2 onLeft: #Key1 onRight: #Key2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightDuplicateKeys [
 
 	| df2 expected |
@@ -1664,10 +1662,10 @@ DataFrameTest >> testInnerJoinOnLeftOnRightDuplicateKeys [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df innerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df innerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightMissingKey [
 
 	| df2 |
@@ -1694,7 +1692,7 @@ DataFrameTest >> testInnerJoinOnLeftOnRightMissingKey [
 	self should: [df innerJoin: df2 onLeft: 'Key' onRight: 'Key'] raise: Error.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightNoIntersection [
 
 	| df2 expected |
@@ -1718,10 +1716,10 @@ DataFrameTest >> testInnerJoinOnLeftOnRightNoIntersection [
 	
 	expected := DataFrame withColumnNames: #(Key A B C D).
 		
-	self assert: (df innerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df innerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightOnEmpty [
 
 	| df2 |
@@ -1739,7 +1737,7 @@ DataFrameTest >> testInnerJoinOnLeftOnRightOnEmpty [
 	self should: [df innerJoin: df2 onLeft: 'Key' onRight: 'Key'] raise: Error.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightOnEmptyWithColumnNames [
 
 	| df2 expected |
@@ -1755,13 +1753,13 @@ DataFrameTest >> testInnerJoinOnLeftOnRightOnEmptyWithColumnNames [
 	df2 := DataFrame withColumnNames: #(Key C D).
 	
 	expected := DataFrame withColumnNames: #(Key A B C D).
-	self assert: (df innerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df innerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 	
 	expected := DataFrame withColumnNames: #(Key C D A B).
-	self assert: (df2 innerJoin: df onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df2 innerJoin: df onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightOnSelf [
 	
 	| expected |
@@ -1781,10 +1779,10 @@ DataFrameTest >> testInnerJoinOnLeftOnRightOnSelf [
 		)
 		columnNames: #(Key A_x B_x A_y B_y).
 		
-	self assert: (df innerJoin: df onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df innerJoin: df onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightRowMismatch [
 
 	| df2 expected |
@@ -1813,10 +1811,10 @@ DataFrameTest >> testInnerJoinOnLeftOnRightRowMismatch [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df innerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df innerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightSameColumnNames [
 
 	| df2 expected |
@@ -1845,10 +1843,10 @@ DataFrameTest >> testInnerJoinOnLeftOnRightSameColumnNames [
 		)
 		columnNames: #(Key A_x B_x A_y B_y).
 		
-	self assert: (df innerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df innerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnLeftOnRightSameKeyName [
 
 	| df2 expected |
@@ -1877,10 +1875,10 @@ DataFrameTest >> testInnerJoinOnLeftOnRightSameKeyName [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df innerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df innerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinOnSelf [
 	| expected |
 	
@@ -1894,7 +1892,7 @@ DataFrameTest >> testInnerJoinOnSelf [
 	self assert: (df innerJoin: df) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinRowMismatch [
 	| df2 expected |
 	
@@ -1914,7 +1912,7 @@ DataFrameTest >> testInnerJoinRowMismatch [
 	self assert: (df innerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testInnerJoinSameColumnNames [
 	| df2 expected |
 	
@@ -1934,7 +1932,7 @@ DataFrameTest >> testInnerJoinSameColumnNames [
 	self assert: (df innerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoin [
 	| df2 expected |
 	
@@ -1955,7 +1953,7 @@ DataFrameTest >> testLeftJoin [
 	self assert: (df leftJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinNoIntersection [
 	| df2 expected |
 	
@@ -1976,7 +1974,7 @@ DataFrameTest >> testLeftJoinNoIntersection [
 	self assert: (df leftJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOn [
 
 	| df2 expected |
@@ -2005,10 +2003,10 @@ DataFrameTest >> testLeftJoinOn [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df leftJoin: df2 on: 'Key') equals: expected.
+	self assert: (df leftJoin: df2 on: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnEmpty [
 	| df2 expected |
 	
@@ -2020,7 +2018,7 @@ DataFrameTest >> testLeftJoinOnEmpty [
 	self assert: (df2 leftJoin: df) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnEmptyWithColumnNames [
 	| df2 expected |
 	
@@ -2036,7 +2034,7 @@ DataFrameTest >> testLeftJoinOnEmptyWithColumnNames [
 	self assert: (df leftJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRight [
 
 	| df2 expected |
@@ -2065,10 +2063,10 @@ DataFrameTest >> testLeftJoinOnLeftOnRight [
 		)
 		columnNames: #(Key1 A B Key2 C D).
 		
-	self assert: (df leftJoin: df2 onLeft: 'Key1' onRight: 'Key2') equals: expected.
+	self assert: (df leftJoin: df2 onLeft: #Key1 onRight: #Key2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightDuplicateKeys [
 
 	| df2 expected |
@@ -2109,10 +2107,10 @@ DataFrameTest >> testLeftJoinOnLeftOnRightDuplicateKeys [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df leftJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df leftJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightMissingKey [
 
 	| df2 |
@@ -2139,7 +2137,7 @@ DataFrameTest >> testLeftJoinOnLeftOnRightMissingKey [
 	self should: [df leftJoin: df2 onLeft: 'Key' onRight: 'Key'] raise: Error.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightNoIntersection [
 
 	| df2 expected |
@@ -2168,10 +2166,10 @@ DataFrameTest >> testLeftJoinOnLeftOnRightNoIntersection [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df leftJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df leftJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightOnEmpty [
 
 	| df2 |
@@ -2189,7 +2187,7 @@ DataFrameTest >> testLeftJoinOnLeftOnRightOnEmpty [
 	self should: [df leftJoin: df2 onLeft: 'Key' onRight: 'Key'] raise: Error.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightOnEmptyWithColumnNames [
 
 	| df2 expected |
@@ -2210,13 +2208,13 @@ DataFrameTest >> testLeftJoinOnLeftOnRightOnEmptyWithColumnNames [
 		('K2' 'A2' 2 nil nil)
 		)
 		columnNames: #(Key A B C D).
-	self assert: (df leftJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df leftJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 	
 	expected := DataFrame withColumnNames: #(Key C D A B).
-	self assert: (df2 leftJoin: df onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df2 leftJoin: df onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightOnSelf [
 	
 	| expected |
@@ -2236,10 +2234,10 @@ DataFrameTest >> testLeftJoinOnLeftOnRightOnSelf [
 		)
 		columnNames: #(Key A_x B_x A_y B_y).
 		
-	self assert: (df leftJoin: df onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df leftJoin: df onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightRowMismatch [
 
 	| df2 expected |
@@ -2268,10 +2266,10 @@ DataFrameTest >> testLeftJoinOnLeftOnRightRowMismatch [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df leftJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df leftJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightSameColumnNames [
 
 	| df2 expected |
@@ -2300,10 +2298,10 @@ DataFrameTest >> testLeftJoinOnLeftOnRightSameColumnNames [
 		)
 		columnNames: #(Key A_x B_x A_y B_y).
 		
-	self assert: (df leftJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df leftJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnLeftOnRightSameKeyName [
 
 	| df2 expected |
@@ -2332,10 +2330,10 @@ DataFrameTest >> testLeftJoinOnLeftOnRightSameKeyName [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df leftJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df leftJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinOnSelf [
 	| expected |
 	
@@ -2349,7 +2347,7 @@ DataFrameTest >> testLeftJoinOnSelf [
 	self assert: (df leftJoin: df) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinRowMismatch [
 	| df2 expected |
 	
@@ -2370,7 +2368,7 @@ DataFrameTest >> testLeftJoinRowMismatch [
 	self assert: (df leftJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testLeftJoinSameColumnNames [
 	| df2 expected |
 	
@@ -2391,7 +2389,7 @@ DataFrameTest >> testLeftJoinSameColumnNames [
 	self assert: (df leftJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoin [
 	| df2 expected |
 	
@@ -2413,7 +2411,7 @@ DataFrameTest >> testOuterJoin [
 	self assert: (df outerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinNoIntersection [
 	| df2 expected |
 	
@@ -2437,7 +2435,7 @@ DataFrameTest >> testOuterJoinNoIntersection [
 	self assert: (df outerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOn [
 
 	| df2 expected |
@@ -2467,10 +2465,10 @@ DataFrameTest >> testOuterJoinOn [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df outerJoin: df2 on: 'Key') equals: expected.
+	self assert: (df outerJoin: df2 on: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnEmpty [
 	| df2 |
 	
@@ -2480,7 +2478,7 @@ DataFrameTest >> testOuterJoinOnEmpty [
 	self assert: (df2 outerJoin: df) equals: df.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnEmptyWithColumnNames [
 	| df2 expected |
 	
@@ -2496,7 +2494,7 @@ DataFrameTest >> testOuterJoinOnEmptyWithColumnNames [
 	self assert: (df outerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRight [
 
 	| df2 expected |
@@ -2526,10 +2524,10 @@ DataFrameTest >> testOuterJoinOnLeftOnRight [
 		)
 		columnNames: #(Key1 A B Key2 C D).
 		
-	self assert: (df outerJoin: df2 onLeft: 'Key1' onRight: 'Key2') equals: expected.
+	self assert: (df outerJoin: df2 onLeft: #Key1 onRight: #Key2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightDuplicateKeys [
 
 	| df2 expected |
@@ -2573,10 +2571,10 @@ DataFrameTest >> testOuterJoinOnLeftOnRightDuplicateKeys [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df outerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df outerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightMissingKey [
 
 	| df2 |
@@ -2603,7 +2601,7 @@ DataFrameTest >> testOuterJoinOnLeftOnRightMissingKey [
 	self should: [df outerJoin: df2 onLeft: 'Key' onRight: 'Key'] raise: Error.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightNoIntersection [
 
 	| df2 expected |
@@ -2636,10 +2634,10 @@ DataFrameTest >> testOuterJoinOnLeftOnRightNoIntersection [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df outerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df outerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightOnEmpty [
 
 	| df2 |
@@ -2657,7 +2655,7 @@ DataFrameTest >> testOuterJoinOnLeftOnRightOnEmpty [
 	self should: [df outerJoin: df2 onLeft: 'Key' onRight: 'Key'] raise: Error.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightOnEmptyWithColumnNames [
 
 	| df2 expected |
@@ -2678,7 +2676,7 @@ DataFrameTest >> testOuterJoinOnLeftOnRightOnEmptyWithColumnNames [
 		('K2' 'A2' 2 nil nil)
 		)
 		columnNames: #(Key A B C D).
-	self assert: (df outerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df outerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 	
 	expected := DataFrame withRows: #(
 		('K0' nil nil 'A0' 0)
@@ -2686,10 +2684,10 @@ DataFrameTest >> testOuterJoinOnLeftOnRightOnEmptyWithColumnNames [
 		('K2' nil nil 'A2' 2)
 		)
 		columnNames: #(Key C D A B).
-	self assert: (df2 outerJoin: df onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df2 outerJoin: df onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightOnSelf [
 	
 	| expected |
@@ -2709,10 +2707,10 @@ DataFrameTest >> testOuterJoinOnLeftOnRightOnSelf [
 		)
 		columnNames: #(Key A_x B_x A_y B_y).
 		
-	self assert: (df outerJoin: df onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df outerJoin: df onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightRowMismatch [
 
 	| df2 expected |
@@ -2742,10 +2740,10 @@ DataFrameTest >> testOuterJoinOnLeftOnRightRowMismatch [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df outerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df outerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightSameColumnNames [
 
 	| df2 expected |
@@ -2775,10 +2773,10 @@ DataFrameTest >> testOuterJoinOnLeftOnRightSameColumnNames [
 		)
 		columnNames: #(Key A_x B_x A_y B_y).
 		
-	self assert: (df outerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df outerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnLeftOnRightSameKeyName [
 
 	| df2 expected |
@@ -2808,10 +2806,10 @@ DataFrameTest >> testOuterJoinOnLeftOnRightSameKeyName [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df outerJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df outerJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinOnSelf [
 	| expected |
 	
@@ -2825,7 +2823,7 @@ DataFrameTest >> testOuterJoinOnSelf [
 	self assert: (df outerJoin: df) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinRowMismatch [
 	| df2 expected |
 	
@@ -2847,7 +2845,7 @@ DataFrameTest >> testOuterJoinRowMismatch [
 	self assert: (df outerJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testOuterJoinSameColumnNames [
 	| df2 expected |
 	
@@ -2869,7 +2867,7 @@ DataFrameTest >> testOuterJoinSameColumnNames [
 	self assert: (df outerJoin: df2) equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testPrintOn [
 
 	| expected actual |
@@ -2883,12 +2881,12 @@ DataFrameTest >> testPrintOn [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRangeError [
 	self should: [ df range ] raise: MessageNotUnderstood	"Instance of Character did not understand #Barcelona"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testReject [
 	| actual expected |
 
@@ -2905,7 +2903,7 @@ DataFrameTest >> testReject [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRejectEntireDataFrame [
 	| actual expected |
 
@@ -2918,7 +2916,7 @@ DataFrameTest >> testRejectEntireDataFrame [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumn [
 
 	| expected |
@@ -2936,7 +2934,7 @@ DataFrameTest >> testRemoveColumn [
 	self assert: df equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnAt [
 
 	| expected |
@@ -2954,17 +2952,17 @@ DataFrameTest >> testRemoveColumnAt [
 	self assert: df equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnAtOutOfRange [
 	self should: [ df removeColumnAt: 100 ] raise: SubscriptOutOfBounds.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnNotFound [
 	self should: [ df removeColumn: #NoSuchColumn ] raise: LibrarySymbolNotFoundError.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumns [
 	| expected |
 	
@@ -2980,7 +2978,7 @@ DataFrameTest >> testRemoveColumns [
 	self assert: df equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnsAt [
 	| expected |
 	
@@ -2996,7 +2994,7 @@ DataFrameTest >> testRemoveColumnsAt [
 	self assert: df equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnsOfRowElementsSatisfingOnRow [
 
 	| expected aBlock |
@@ -3021,7 +3019,7 @@ DataFrameTest >> testRemoveColumnsOfRowElementsSatisfingOnRow [
 	self assert: (df removeColumnsOfRowElementsSatisfing: aBlock onRow: 2) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnsOfRowElementsSatisfingOnRowAllTrue [
 
 	| expected aBlock |
@@ -3032,7 +3030,7 @@ DataFrameTest >> testRemoveColumnsOfRowElementsSatisfingOnRowAllTrue [
 	self assert: (df removeColumnsOfRowElementsSatisfing: aBlock onRow: 2) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnsOfRowElementsSatisfingOnRowNamed [
 
 	| expected aBlock |
@@ -3054,10 +3052,10 @@ DataFrameTest >> testRemoveColumnsOfRowElementsSatisfingOnRowNamed [
 	
 	aBlock := [ :rowElement | rowElement ~= 4 ].
 	
-	self assert: (df removeColumnsOfRowElementsSatisfing: aBlock onRowNamed: 'B') equals: expected.
+	self assert: (df removeColumnsOfRowElementsSatisfing: aBlock onRowNamed: #B) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnsWithNilsAtRow [
 
 	| expected |
@@ -3080,7 +3078,7 @@ DataFrameTest >> testRemoveColumnsWithNilsAtRow [
 	self assert: (df removeColumnsWithNilsAtRow: 2) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnsWithNilsAtRowNamed [
 
 	| expected |
@@ -3103,12 +3101,12 @@ DataFrameTest >> testRemoveColumnsWithNilsAtRowNamed [
 	self assert: (df removeColumnsWithNilsAtRowNamed: #B) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveColumnsWithNilsAtRowOutOfRange [
 	self should: [ df removeColumnsWithNilsAtRow: 100 ] raise: SubscriptOutOfBounds.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRow [
 
 	| expected |
@@ -3125,7 +3123,7 @@ DataFrameTest >> testRemoveRow [
 	self assert: df equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowAt [
 
 	| expected |
@@ -3142,17 +3140,17 @@ DataFrameTest >> testRemoveRowAt [
 	self assert: df equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowAtOutOfRange [
 	self should: [ df removeRowAt: 100 ] raise: SubscriptOutOfBounds.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowNotFound [
 	self should: [ df removeRow: #NoSuchRow ] raise: LibrarySymbolNotFoundError.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRows [
 	| expected |
 	
@@ -3166,7 +3164,7 @@ DataFrameTest >> testRemoveRows [
 	self assert: df equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowsAt [
 	| expected |
 	
@@ -3180,7 +3178,7 @@ DataFrameTest >> testRemoveRowsAt [
 	self assert: df equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowsOfColumnElementsSatisfingOnColumn [
 
 	| expected aBlock |
@@ -3203,7 +3201,7 @@ DataFrameTest >> testRemoveRowsOfColumnElementsSatisfingOnColumn [
 	self assert: (df removeRowsOfColumnElementsSatisfing: aBlock onColumn: 2) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowsOfColumnElementsSatisfingOnColumnAllTrue [
 
 	| expected aBlock |
@@ -3214,7 +3212,7 @@ DataFrameTest >> testRemoveRowsOfColumnElementsSatisfingOnColumnAllTrue [
 	self assert: (df removeRowsOfColumnElementsSatisfing: aBlock onColumn: 2) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowsOfColumnElementsSatisfingOnColumnNamed [
 
 	| expected aBlock |
@@ -3237,7 +3235,7 @@ DataFrameTest >> testRemoveRowsOfColumnElementsSatisfingOnColumnNamed [
 	self assert: (df removeRowsOfColumnElementsSatisfing: aBlock onColumnNamed: #Y) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowsWithNilsAtColumn [
 
 	| expected |
@@ -3258,7 +3256,7 @@ DataFrameTest >> testRemoveRowsWithNilsAtColumn [
 	self assert: (df removeRowsWithNilsAtColumn: 3) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowsWithNilsAtColumnNamed [
 
 	| expected |
@@ -3279,12 +3277,12 @@ DataFrameTest >> testRemoveRowsWithNilsAtColumnNamed [
 	self assert: (df removeRowsWithNilsAtColumnNamed: #BeenThere) equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataFrameTest >> testRemoveRowsWithNilsAtColumnOutOfRange [
 	self should: [ df removeRowsWithNilsAtColumn: 100 ] raise: SubscriptOutOfBounds.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRenameColumnTo [
 	| expected |
 	expected := DataFrame
@@ -3299,14 +3297,14 @@ DataFrameTest >> testRenameColumnTo [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRenameColumnToNotFound [
 	self
 		should: [ df renameColumn: #NoSuchColumn to: #Sth ]
 		raise: LibrarySymbolNotFoundError.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRenameRowTo [
 	| expected |
 	expected := DataFrame
@@ -3321,14 +3319,14 @@ DataFrameTest >> testRenameRowTo [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRenameRowToNotFound [
 	self
 		should: [ df renameRow: #NoSuchRow to: #Sth ]
 		raise: LibrarySymbolNotFoundError.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoin [
 	| df2 expected |
 	
@@ -3349,7 +3347,7 @@ DataFrameTest >> testRightJoin [
 	self assert: (df rightJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinNoIntersection [
 	| df2 expected |
 	
@@ -3370,7 +3368,7 @@ DataFrameTest >> testRightJoinNoIntersection [
 	self assert: (df rightJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOn [
 
 	| df2 expected |
@@ -3400,10 +3398,10 @@ DataFrameTest >> testRightJoinOn [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df rightJoin: df2 on: 'Key') equals: expected.
+	self assert: (df rightJoin: df2 on: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnEmpty [
 	| df2 expected |
 	
@@ -3415,7 +3413,7 @@ DataFrameTest >> testRightJoinOnEmpty [
 	self assert: (df2 rightJoin: df) equals: df.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnEmptyWithColumnNames [
 	| df2 expected |
 	
@@ -3426,7 +3424,7 @@ DataFrameTest >> testRightJoinOnEmptyWithColumnNames [
 	self assert: (df rightJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRight [
 
 	| df2 expected |
@@ -3456,10 +3454,10 @@ DataFrameTest >> testRightJoinOnLeftOnRight [
 		)
 		columnNames: #(Key1 A B Key2 C D).
 		
-	self assert: (df rightJoin: df2 onLeft: 'Key1' onRight: 'Key2') equals: expected.
+	self assert: (df rightJoin: df2 onLeft: #Key1 onRight: #Key2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightDuplicateKeys [
 
 	| df2 expected |
@@ -3501,10 +3499,10 @@ DataFrameTest >> testRightJoinOnLeftOnRightDuplicateKeys [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df rightJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df rightJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightMissingKey [
 
 	| df2 |
@@ -3531,7 +3529,7 @@ DataFrameTest >> testRightJoinOnLeftOnRightMissingKey [
 	self should: [df rightJoin: df2 onLeft: 'Key' onRight: 'Key'] raise: Error.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightNoIntersection [
 
 	| df2 expected |
@@ -3561,10 +3559,10 @@ DataFrameTest >> testRightJoinOnLeftOnRightNoIntersection [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df rightJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df rightJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightOnEmpty [
 
 	| df2 |
@@ -3582,7 +3580,7 @@ DataFrameTest >> testRightJoinOnLeftOnRightOnEmpty [
 	self should: [df rightJoin: df2 onLeft: 'Key' onRight: 'Key'] raise: Error.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightOnEmptyWithColumnNames [
 
 	| df2 expected |
@@ -3598,7 +3596,7 @@ DataFrameTest >> testRightJoinOnLeftOnRightOnEmptyWithColumnNames [
 	df2 := DataFrame withColumnNames: #(Key C D).
 		
 	expected := DataFrame withColumnNames: #(Key A B C D).
-	self assert: (df rightJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df rightJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 	
 	expected := DataFrame withRows: #(
 		('K0' nil nil 'A0' 0)
@@ -3606,10 +3604,10 @@ DataFrameTest >> testRightJoinOnLeftOnRightOnEmptyWithColumnNames [
 		('K2' nil nil 'A2' 2)
 		)
 		columnNames: #(Key C D A B).
-	self assert: (df2 rightJoin: df onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df2 rightJoin: df onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightOnSelf [
 	
 	| expected |
@@ -3629,10 +3627,10 @@ DataFrameTest >> testRightJoinOnLeftOnRightOnSelf [
 		)
 		columnNames: #(Key A_x B_x A_y B_y).
 		
-	self assert: (df rightJoin: df onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df rightJoin: df onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightRowMismatch [
 
 	| df2 expected |
@@ -3662,10 +3660,10 @@ DataFrameTest >> testRightJoinOnLeftOnRightRowMismatch [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df rightJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df rightJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightSameColumnNames [
 
 	| df2 expected |
@@ -3695,10 +3693,10 @@ DataFrameTest >> testRightJoinOnLeftOnRightSameColumnNames [
 		)
 		columnNames: #(Key A_x B_x A_y B_y).
 		
-	self assert: (df rightJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df rightJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnLeftOnRightSameKeyName [
 
 	| df2 expected |
@@ -3728,10 +3726,10 @@ DataFrameTest >> testRightJoinOnLeftOnRightSameKeyName [
 		)
 		columnNames: #(Key A B C D).
 		
-	self assert: (df rightJoin: df2 onLeft: 'Key' onRight: 'Key') equals: expected.
+	self assert: (df rightJoin: df2 onLeft: #Key onRight: #Key) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinOnSelf [
 	| expected |
 	
@@ -3745,7 +3743,7 @@ DataFrameTest >> testRightJoinOnSelf [
 	self assert: (df rightJoin: df) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinRowMismatch [
 	| df2 expected |
 	
@@ -3766,7 +3764,7 @@ DataFrameTest >> testRightJoinRowMismatch [
 	self assert: (df rightJoin: df2) equals: expected.
 ]
 
-{ #category : #splitjoin }
+{ #category : 'splitjoin' }
 DataFrameTest >> testRightJoinSameColumnNames [
 	| df2 expected |
 	
@@ -3787,13 +3785,13 @@ DataFrameTest >> testRightJoinSameColumnNames [
 	self assert: (df rightJoin: df2) equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRow [
 
 	| actualSeries expectedSeries |
 
 	expectedSeries := DataSeries withValues:
-		#('Dubai' 2.789 true).
+		#(Dubai 2.789 true).
 		
 	expectedSeries name: #B.
 	expectedSeries keys: df columnNames.
@@ -3803,13 +3801,13 @@ DataFrameTest >> testRow [
 	self assert: actualSeries equals: expectedSeries.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowAt [
 
 	| actualSeries expectedSeries |
 
 	expectedSeries := DataSeries withValues:
-		#('Dubai' 2.789 true).
+		#(Dubai 2.789 true).
 		
 	expectedSeries name: #B.
 	expectedSeries keys: df columnNames.
@@ -3819,7 +3817,7 @@ DataFrameTest >> testRowAt [
 	self assert: actualSeries equals: expectedSeries.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowAtPut [
 
 	| actual expected |
@@ -3838,7 +3836,7 @@ DataFrameTest >> testRowAtPut [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowAtTransform [
 
 	| expected |
@@ -3855,7 +3853,7 @@ DataFrameTest >> testRowAtTransform [
 	self assert: df equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowIfAbsent [
 
 	| exceptionBlockEvaluated |
@@ -3868,7 +3866,7 @@ DataFrameTest >> testRowIfAbsent [
 	self assert: exceptionBlockEvaluated.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowNames [
 	| newNames |
 	newNames := #(X Y Z).
@@ -3876,14 +3874,14 @@ DataFrameTest >> testRowNames [
 	self assert: df rowNames equals: newNames asOrderedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowNamesMustBeDistinct [
 	| newNames |
 	newNames := #(x y y).
 	self should: [ df rowNames: newNames ] raise: Error.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowNamesSizeMismatch [
 	| tooManyNames notEnoughNames |
 	
@@ -3894,14 +3892,14 @@ DataFrameTest >> testRowNamesSizeMismatch [
 	self should: [ df rowNames: notEnoughNames ] raise: SizeMismatch.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowNotFound [
 	self
 		should: [ df row: #NoSuchRow ]
 		raise: LibrarySymbolNotFoundError.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowPut [
 
 	| actual expected |
@@ -3920,7 +3918,7 @@ DataFrameTest >> testRowPut [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowPutIfAbsent [
 
 	| expected exceptionBlockEvaluated |
@@ -3943,76 +3941,14 @@ DataFrameTest >> testRowPutIfAbsent [
 	self assert: exceptionBlockEvaluated.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowPutNotFound [
 	self
 		should: [ df row: #NoSuchRow put: #(0 0 0) ]
 		raise: LibrarySymbolNotFoundError.
 ]
 
-{ #category : #tests }
-DataFrameTest >> testRowTransform [
-
-	| expected |
-
-	expected := DataFrame
-		withRows: #(
-			(Barcelona 1.609 true)
-   			(Dubai 0 true)
-   			(London 8.788 false))
-		rowNames: #(A B C)
-		columnNames: #(City Population BeenThere).
-		
-	df row: #B transform: [ :row | row at: #Population put: 0; yourself ].
-	self assert: df equals: expected
-]
-
-{ #category : #tests }
-DataFrameTest >> testRowTransformIfAbsent [
-
-	| expected exceptionBlockEvaluated |
-
-	exceptionBlockEvaluated := false.
-	
-	expected := DataFrame
-		withRows: #(
-			(Barcelona 1.609 true)
-   			(Dubai 2.789 true)
-   			(London 8.788 false))
-		rowNames: #(A B C)
-		columnNames: #(City Population BeenThere).
-		
-	df row: #NoSuchRow
-		transform: [ :row | row at: #Population put: 0 ]
-		ifAbsent: [ exceptionBlockEvaluated := true ].
-		
-	self assert: df equals: expected.
-	self assert: exceptionBlockEvaluated.
-]
-
-{ #category : #tests }
-DataFrameTest >> testRowTransformNotFound [
-
-	| expected |
-	
-	expected := DataFrame
-		withRows: #(
-			(Barcelona 1.609 true)
-   			(Dubai 2.789 true)
-   			(London 8.788 false))
-		rowNames: #(A B C)
-		columnNames: #(City Population BeenThere).
-		
-	self
-		should: [
-			df row: #NoSuchRow
-				transform: [ :row | row at: #Population put: 0 ] ]
-		raise: LibrarySymbolNotFoundError.
-		
-	self assert: df equals: expected.
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRows [
 
 	| rowNames actualDataFrame expectedDataFrame |
@@ -4031,7 +3967,7 @@ DataFrameTest >> testRows [
 	self assert: actualDataFrame equals: expectedDataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowsAt [
 
 	| rowNumbers actualDataFrame expectedDataFrame |
@@ -4052,11 +3988,11 @@ DataFrameTest >> testRowsAt [
 	self assert: actualDataFrame equals: expectedDataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowsAtPut [
 	| rowNames columnNames dataFrame newRows expected |
 	
-	rowNames := #('01:10' '01:30' '01:50' '02:10' '02:30') collect: #asTime.
+	rowNames := #('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00') collect: #asTime.
 	columnNames := #(temperature precipitation type).
 	
 	dataFrame := DataFrame
@@ -4088,7 +4024,7 @@ DataFrameTest >> testRowsAtPut [
 	self assert: dataFrame equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowsFromTo [
 
 	| actualDataFrame expectedDataFrame |
@@ -4105,11 +4041,11 @@ DataFrameTest >> testRowsFromTo [
 	self assert: actualDataFrame equals: expectedDataFrame.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowsFromToPut [
 	| rowNames columnNames dataFrame newRows expected |
 	
-	rowNames := #('01:10' '01:30' '01:50' '02:10' '02:30') collect: #asTime.
+	rowNames := #('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00') collect: #asTime.
 	columnNames := #(temperature precipitation type).
 	
 	dataFrame := DataFrame
@@ -4141,11 +4077,11 @@ DataFrameTest >> testRowsFromToPut [
 	self assert: dataFrame equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testRowsPut [
 	| rowNames columnNames dataFrame newRows expected |
 	
-	rowNames := #('01:10' '01:30' '01:50' '02:10' '02:30') collect: #asTime.
+	rowNames := #('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00') collect: #asTime.
 	columnNames := #(temperature precipitation type).
 	
 	dataFrame := DataFrame
@@ -4173,11 +4109,73 @@ DataFrameTest >> testRowsPut [
 		rowNames: rowNames
 		columnNames: columnNames.
 	
-	dataFrame rows: { '01:50' asTime . '02:30' asTime . '01:30' asTime } put: newRows.
+	dataFrame rows: { '01:50:00' asTime . '02:30:00' asTime . '01:30:00' asTime } put: newRows.
 	self assert: dataFrame equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+DataFrameTest >> testRowTransform [
+
+	| expected |
+
+	expected := DataFrame
+		withRows: #(
+			(Barcelona 1.609 true)
+   			(Dubai 0 true)
+   			(London 8.788 false))
+		rowNames: #(A B C)
+		columnNames: #(City Population BeenThere).
+		
+	df row: #B transform: [ :row | row at: #Population put: 0; yourself ].
+	self assert: df equals: expected
+]
+
+{ #category : 'tests' }
+DataFrameTest >> testRowTransformIfAbsent [
+
+	| expected exceptionBlockEvaluated |
+
+	exceptionBlockEvaluated := false.
+	
+	expected := DataFrame
+		withRows: #(
+			(Barcelona 1.609 true)
+   			(Dubai 2.789 true)
+   			(London 8.788 false))
+		rowNames: #(A B C)
+		columnNames: #(City Population BeenThere).
+		
+	df row: #NoSuchRow
+		transform: [ :row | row at: #Population put: 0 ]
+		ifAbsent: [ exceptionBlockEvaluated := true ].
+		
+	self assert: df equals: expected.
+	self assert: exceptionBlockEvaluated.
+]
+
+{ #category : 'tests' }
+DataFrameTest >> testRowTransformNotFound [
+
+	| expected |
+	
+	expected := DataFrame
+		withRows: #(
+			(Barcelona 1.609 true)
+   			(Dubai 2.789 true)
+   			(London 8.788 false))
+		rowNames: #(A B C)
+		columnNames: #(City Population BeenThere).
+		
+	self
+		should: [
+			df row: #NoSuchRow
+				transform: [ :row | row at: #Population put: 0 ] ]
+		raise: LibrarySymbolNotFoundError.
+		
+	self assert: df equals: expected.
+]
+
+{ #category : 'tests' }
 DataFrameTest >> testSelect [
 	| actual expected |
 
@@ -4194,7 +4192,7 @@ DataFrameTest >> testSelect [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testSelectEmptyDataFrame [
 	| actual expected |
 
@@ -4206,7 +4204,7 @@ DataFrameTest >> testSelectEmptyDataFrame [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testSortBy [
 
 	| actual expected |
@@ -4223,7 +4221,7 @@ DataFrameTest >> testSortBy [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testSortByUsing [
 	"Sort by second letter of city name"
 	| actual expected |
@@ -4242,7 +4240,7 @@ DataFrameTest >> testSortByUsing [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testSortDescendingBy [
 
 	| actual expected |
@@ -4259,7 +4257,7 @@ DataFrameTest >> testSortDescendingBy [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testToColumnApplyElementwise [
 
 	| expected |
@@ -4278,7 +4276,7 @@ DataFrameTest >> testToColumnApplyElementwise [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testToColumnAtApplyElementwise [
 
 	| expected |
@@ -4297,7 +4295,7 @@ DataFrameTest >> testToColumnAtApplyElementwise [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testToColumnsApplyElementwise [
 
 	| expected |
@@ -4316,7 +4314,7 @@ DataFrameTest >> testToColumnsApplyElementwise [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testToColumnsAtApplyElementwise [
 
 	| expected |
@@ -4335,13 +4333,13 @@ DataFrameTest >> testToColumnsAtApplyElementwise [
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testTransposed [
 
 	| expected |
 	
 	expected := DataFrame withRows: #(
-		('Barcelona' 'Dubai' 'London')
+		(Barcelona Dubai London)
 		(1.609 2.789 8.788)
    		(true true false)).
 		
@@ -4349,11 +4347,9 @@ DataFrameTest >> testTransposed [
 	expected columnNames: df rowNames.
 	
 	self assert: df transposed equals: expected.
-	
-
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testVarSizeInstanceCreation [
 
 	| dataFrame |
@@ -4366,7 +4362,7 @@ DataFrameTest >> testVarSizeInstanceCreation [
 	self assert: dataFrame columnNames equals: #(1 2) asOrderedCollection.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithColumnsRowNames [
 	| dataframe |
 	dataframe := DataFrame
@@ -4380,7 +4376,19 @@ DataFrameTest >> testWithColumnsRowNames [
 	self assert: (dataframe row: 'three') asArray equals: #(3 6)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
+DataFrameTest >> testWithColumnsRowNames_emptyColumns [
+	| dataframe |
+	dataframe := DataFrame
+		withColumns: #()
+		rowNames: #('one' 'two' 'three').
+	self
+		assert: dataframe rowNames asArray
+		equals: #('one' 'two' 'three').
+	self assert: (dataframe row: 'one') isEmpty
+]
+
+{ #category : 'tests' }
 DataFrameTest >> testWithColumnsRowNamesColumnNames [
 	| dataframe |
 	dataframe := DataFrame
@@ -4398,7 +4406,7 @@ DataFrameTest >> testWithColumnsRowNamesColumnNames [
 	self assert: ((dataframe column: 'three') at: '2') equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithColumnsRowNamesColumnNames_emptyColumns [
 	| dataframe |
 	dataframe := DataFrame
@@ -4410,19 +4418,7 @@ DataFrameTest >> testWithColumnsRowNamesColumnNames_emptyColumns [
 	self assert: (dataframe row: '2') isEmpty
 ]
 
-{ #category : #tests }
-DataFrameTest >> testWithColumnsRowNames_emptyColumns [
-	| dataframe |
-	dataframe := DataFrame
-		withColumns: #()
-		rowNames: #('one' 'two' 'three').
-	self
-		assert: dataframe rowNames asArray
-		equals: #('one' 'two' 'three').
-	self assert: (dataframe row: 'one') isEmpty
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithIndexCollect [
 	| expectedDf expectedResult actualResult |
 	
@@ -4452,15 +4448,15 @@ DataFrameTest >> testWithIndexCollect [
 	self assert: df equals: expectedDf.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithIndexDo [
 
 	| actual expected |
 
 	expected := { 
-		1 -> (DataSeries withKeys: df columnNames values: #(Barcelona 1.609 true) name: 'A') .
-		2 -> (DataSeries withKeys: df columnNames values: #(Dubai 2.789 true) name: 'B') .
-		3 -> (DataSeries withKeys: df columnNames values: #(London 8.788 false) name: 'C') } asDictionary.
+		1 -> (DataSeries withKeys: df columnNames values: #(Barcelona 1.609 true) name: #A) .
+		2 -> (DataSeries withKeys: df columnNames values: #(Dubai 2.789 true) name: #B) .
+		3 -> (DataSeries withKeys: df columnNames values: #(London 8.788 false) name: #C) } asDictionary.
 		
 	actual := Dictionary new.
 	
@@ -4470,7 +4466,7 @@ DataFrameTest >> testWithIndexDo [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithIndexDoCanModifyRows [
 	| expected |
 
@@ -4483,13 +4479,13 @@ DataFrameTest >> testWithIndexDoCanModifyRows [
 		columnNames: df columnNames.
 	
 	df withIndexDo: [ :row :index |
-		row name = 'A'
+		row name = #A
 			ifFalse: [ row at: #Population put: ((row at: #Population) + index) ] ].
 	
 	self assert: df equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithIndexReject [
 	| actual expected |
 
@@ -4506,7 +4502,7 @@ DataFrameTest >> testWithIndexReject [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithIndexSelect [
 	| actual expected |
 
@@ -4522,7 +4518,7 @@ DataFrameTest >> testWithIndexSelect [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithRowsColumnNames [
 	| dataframe |
 	dataframe := DataFrame
@@ -4536,7 +4532,7 @@ DataFrameTest >> testWithRowsColumnNames [
 	self assert: (dataframe column: 'three') asArray equals: #(3 6)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithRowsColumnNames_emptyRows [
 	| dataframe |
 	dataframe := DataFrame
@@ -4548,7 +4544,7 @@ DataFrameTest >> testWithRowsColumnNames_emptyRows [
 	self assert: (dataframe column: 'one') isEmpty
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithRowsRowNamesColumnNames [
 	| dataframe |
 	dataframe := DataFrame
@@ -4566,7 +4562,7 @@ DataFrameTest >> testWithRowsRowNamesColumnNames [
 	self assert: ((dataframe column: 'three') at: '2') equals: 6
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameTest >> testWithRowsRowNamesColumnNames_emptyRows [
 	| dataframe |
 	dataframe := DataFrame

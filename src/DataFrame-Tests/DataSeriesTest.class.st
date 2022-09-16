@@ -1,14 +1,14 @@
 Class {
-	#name : #DataSeriesTest,
-	#superclass : #TestCase,
+	#name : 'DataSeriesTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'series',
 		'keyArray'
 	],
-	#category : #'DataFrame-Tests'
+	#category : 'DataFrame-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataSeriesTest >> setUp [
 	keyArray := #(a b c d e f g h i j k).
 	
@@ -18,7 +18,7 @@ DataSeriesTest >> setUp [
 		name: 'ExampleSeries'.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsAddArrayToSeries [
 	| array actual expected |
 	
@@ -31,7 +31,7 @@ DataSeriesTest >> testArithmeticsAddArrayToSeries [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsAddScalarToSeries [
 	| scalar actual expected |
 	
@@ -44,7 +44,7 @@ DataSeriesTest >> testArithmeticsAddScalarToSeries [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsAddSeriesToArray [
 	| array actual expected |
 	
@@ -57,7 +57,7 @@ DataSeriesTest >> testArithmeticsAddSeriesToArray [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsAddSeriesToScalar [
 	| scalar actual expected |
 	
@@ -70,7 +70,7 @@ DataSeriesTest >> testArithmeticsAddSeriesToScalar [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsAddSeriesToSeriesDifferentKeys [
 	| firstSeries secondSeries |
 	
@@ -80,7 +80,7 @@ DataSeriesTest >> testArithmeticsAddSeriesToSeriesDifferentKeys [
 	self should: [ firstSeries + secondSeries ] raise: Error.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsAddSeriesToSeriesSameKeysAndName [
 	| firstSeries secondSeries actual expected |
 	
@@ -93,7 +93,7 @@ DataSeriesTest >> testArithmeticsAddSeriesToSeriesSameKeysAndName [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsAddSeriesToSeriesSameKeysDifferentName [
 	| firstSeries secondSeries actual expected |
 	
@@ -106,7 +106,7 @@ DataSeriesTest >> testArithmeticsAddSeriesToSeriesSameKeysDifferentName [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsDivideArrayBySeries [
 
 	| array a b |
@@ -118,7 +118,7 @@ DataSeriesTest >> testArithmeticsDivideArrayBySeries [
 	self assert: array / a equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsDivideSeriesByArray [
 
 	| array a b |
@@ -130,7 +130,7 @@ DataSeriesTest >> testArithmeticsDivideSeriesByArray [
 	self assert: a / array equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsDivideSeriesByScalar [
 
 	| a b |
@@ -141,7 +141,7 @@ DataSeriesTest >> testArithmeticsDivideSeriesByScalar [
 	self assert: a / 2 equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsDivideSeriesBySeries [
 
 	| a b c |
@@ -153,7 +153,7 @@ DataSeriesTest >> testArithmeticsDivideSeriesBySeries [
 	self assert: a / b equals: c.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsDivideSeriesBySeriesDifferentKeys [
 	| firstSeries secondSeries |
 	
@@ -163,7 +163,7 @@ DataSeriesTest >> testArithmeticsDivideSeriesBySeriesDifferentKeys [
 	self should: [ firstSeries / secondSeries ] raise: Error.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsDivideSeriesBySeriesSameKeysAndName [
 	| firstSeries secondSeries actual expected |
 	
@@ -176,7 +176,7 @@ DataSeriesTest >> testArithmeticsDivideSeriesBySeriesSameKeysAndName [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsDivideSeriesBySeriesSameKeysDifferentName [
 	| firstSeries secondSeries actual expected |
 	
@@ -189,7 +189,7 @@ DataSeriesTest >> testArithmeticsDivideSeriesBySeriesSameKeysDifferentName [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsMultiplyArrayBySeries [
 
 	| array a b |
@@ -201,7 +201,7 @@ DataSeriesTest >> testArithmeticsMultiplyArrayBySeries [
 	self assert: array * a equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsMultiplyScalarBySeries [
 
 	| a b |
@@ -212,7 +212,7 @@ DataSeriesTest >> testArithmeticsMultiplyScalarBySeries [
 	self assert: 2 * a equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsMultiplySeriesByArray [
 
 	| array a b |
@@ -224,7 +224,7 @@ DataSeriesTest >> testArithmeticsMultiplySeriesByArray [
 	self assert: a * array equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsMultiplySeriesByScalar [
 
 	| a b |
@@ -235,7 +235,7 @@ DataSeriesTest >> testArithmeticsMultiplySeriesByScalar [
 	self assert: a * 2 equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsMultiplySeriesBySeries [
 
 	| a b c |
@@ -247,7 +247,7 @@ DataSeriesTest >> testArithmeticsMultiplySeriesBySeries [
 	self assert: a * b equals: c.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsMultiplySeriesBySeriesDifferentKeys [
 	| firstSeries secondSeries |
 	
@@ -257,7 +257,7 @@ DataSeriesTest >> testArithmeticsMultiplySeriesBySeriesDifferentKeys [
 	self should: [ firstSeries * secondSeries ] raise: Error.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsMultiplySeriesBySeriesSameKeysAndName [
 	| firstSeries secondSeries actual expected |
 	
@@ -270,7 +270,7 @@ DataSeriesTest >> testArithmeticsMultiplySeriesBySeriesSameKeysAndName [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsMultiplySeriesBySeriesSameKeysDifferentName [
 	| firstSeries secondSeries actual expected |
 	
@@ -283,7 +283,7 @@ DataSeriesTest >> testArithmeticsMultiplySeriesBySeriesSameKeysDifferentName [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsSubtractArrayFromSeries [
 
 	| array a b |
@@ -295,7 +295,7 @@ DataSeriesTest >> testArithmeticsSubtractArrayFromSeries [
 	self assert: a - array equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsSubtractScalarFromSeries [
 
 	| a b |
@@ -306,7 +306,7 @@ DataSeriesTest >> testArithmeticsSubtractScalarFromSeries [
 	self assert: a - 2 equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsSubtractSeriesFromArray [
 
 	| array a b |
@@ -318,7 +318,7 @@ DataSeriesTest >> testArithmeticsSubtractSeriesFromArray [
 	self assert: array - a equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsSubtractSeriesFromScalar [
 
 	| a b |
@@ -329,7 +329,7 @@ DataSeriesTest >> testArithmeticsSubtractSeriesFromScalar [
 	self assert: 2 - a equals: b.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsSubtractSeriesFromSeries [
 
 	| a b c |
@@ -341,7 +341,7 @@ DataSeriesTest >> testArithmeticsSubtractSeriesFromSeries [
 	self assert: a - b equals: c.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsSubtractSeriesFromSeriesDifferentKeys [
 	| firstSeries secondSeries |
 	
@@ -351,7 +351,7 @@ DataSeriesTest >> testArithmeticsSubtractSeriesFromSeriesDifferentKeys [
 	self should: [ firstSeries - secondSeries ] raise: Error.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsSubtractSeriesFromSeriesSameKeysAndName [
 	| firstSeries secondSeries actual expected |
 	
@@ -364,7 +364,7 @@ DataSeriesTest >> testArithmeticsSubtractSeriesFromSeriesSameKeysAndName [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testArithmeticsSubtractSeriesFromSeriesSameKeysDifferentName [
 	| firstSeries secondSeries actual expected |
 	
@@ -377,20 +377,20 @@ DataSeriesTest >> testArithmeticsSubtractSeriesFromSeriesSameKeysDifferentName [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 DataSeriesTest >> testAsDataFrame [
 	| expected actual |
 	
 	expected := DataFrame
 		withColumns: #((3 7 6 20 8 9 8 10 15 13 16))
 		rowNames: #(a b c d e f g h i j k)
-		columnNames: #(ExampleSeries).
+		columnNames: #('ExampleSeries').
 	
 	actual := series asDataFrame.
 	self assert: actual equals: expected
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 DataSeriesTest >> testAsDataSeriesEmpty [
 
 	| dataseries expected |
@@ -401,32 +401,32 @@ DataSeriesTest >> testAsDataSeriesEmpty [
 	self assert: dataseries equals: expected.
 ]
 
-{ #category : #converting }
+{ #category : 'converting' }
 DataSeriesTest >> testAsDictionary [
 	| expected actual |
 	
 	expected := {
-		'a' -> 3 . 'b' -> 7 . 'c' -> 6 . 'd' -> 20 .
-		'e' -> 8 . 'f' -> 9 . 'g' -> 8 . 'h' -> 10 .
-		'i' -> 15 . 'j' -> 13 . 'k' -> 16 } asDictionary.
+		#a -> 3 . #b -> 7 . #c -> 6 . #d -> 20 .
+		#e -> 8 . #f -> 9 . #g -> 8 . #h -> 10 .
+		#i -> 15 . #j -> 13 . #k -> 16 } asDictionary.
 	
 	actual := series asDictionary.
 	self assert: actual equals: expected
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testAt [
 
 	self assert: (series at: #b) equals: 7.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testAtIndex [
 
 	self assert: (series atIndex: 2) equals: 7.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testAtIndexPut [
 
 	| expected |
@@ -441,7 +441,7 @@ DataSeriesTest >> testAtIndexPut [
 	self assert: series equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testAtIndexTransform [
 
 	| expected |
@@ -456,7 +456,7 @@ DataSeriesTest >> testAtIndexTransform [
 	self assert: series equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testAtPut [
 
 	| expected |
@@ -471,7 +471,7 @@ DataSeriesTest >> testAtPut [
 	self assert: series equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testAtPutNewElement [
 
 	| expected |
@@ -486,7 +486,7 @@ DataSeriesTest >> testAtPutNewElement [
 	self assert: series equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testAtTransform [
 
 	| expected |
@@ -501,7 +501,7 @@ DataSeriesTest >> testAtTransform [
 	self assert: series equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testAtTransformIfAbsent [
 
 	| expected exceptionBlockEvaluated |
@@ -521,7 +521,7 @@ DataSeriesTest >> testAtTransformIfAbsent [
 	self assert: exceptionBlockEvaluated.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanEqualFromScalar [
 
 	| aSeries expected |
@@ -532,7 +532,7 @@ DataSeriesTest >> testBooleanGreaterThanEqualFromScalar [
 	self assert: 1 >= aSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanEqualWithArray [
 
 	| aSeries expected |
@@ -543,7 +543,7 @@ DataSeriesTest >> testBooleanGreaterThanEqualWithArray [
 	self assert: aSeries >= #(1 0.1 'b') equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanEqualWithScalar [
 
 	| firstSeries expected |
@@ -554,7 +554,7 @@ DataSeriesTest >> testBooleanGreaterThanEqualWithScalar [
 	self assert: firstSeries >= 0.8 equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanEqualWithSeries [
 
 	| firstSeries secondSeries expected |
@@ -566,7 +566,7 @@ DataSeriesTest >> testBooleanGreaterThanEqualWithSeries [
 	self assert: firstSeries >= secondSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanEqualWithSeriesDifferentKeys [
 
 	| firstSeries secondSeries |
@@ -577,7 +577,7 @@ DataSeriesTest >> testBooleanGreaterThanEqualWithSeriesDifferentKeys [
 	self should: [ firstSeries >= secondSeries ] raise: Error.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanEqualWithSeriesDifferentNames [
 
 	| firstSeries secondSeries expected |
@@ -589,7 +589,7 @@ DataSeriesTest >> testBooleanGreaterThanEqualWithSeriesDifferentNames [
 	self assert: firstSeries >= secondSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanFromScalar [
 
 	| aSeries expected |
@@ -600,7 +600,7 @@ DataSeriesTest >> testBooleanGreaterThanFromScalar [
 	self assert: 1 > aSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanWithArray [
 
 	| aSeries expected |
@@ -611,7 +611,7 @@ DataSeriesTest >> testBooleanGreaterThanWithArray [
 	self assert: aSeries > #(1 0.1 'b') equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanWithScalar [
 
 	| firstSeries expected |
@@ -622,7 +622,7 @@ DataSeriesTest >> testBooleanGreaterThanWithScalar [
 	self assert: firstSeries >= 0.8 equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanWithSeries [
 
 	| firstSeries secondSeries expected |
@@ -634,7 +634,7 @@ DataSeriesTest >> testBooleanGreaterThanWithSeries [
 	self assert: firstSeries > secondSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanWithSeriesDifferentKeys [
 
 	| firstSeries secondSeries |
@@ -645,7 +645,7 @@ DataSeriesTest >> testBooleanGreaterThanWithSeriesDifferentKeys [
 	self should: [ firstSeries > secondSeries ] raise: Error.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanGreaterThanWithSeriesDifferentNames [
 
 	| firstSeries secondSeries expected |
@@ -657,7 +657,7 @@ DataSeriesTest >> testBooleanGreaterThanWithSeriesDifferentNames [
 	self assert: firstSeries > secondSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanEqualFromScalar [
 
 	| aSeries expected |
@@ -668,7 +668,7 @@ DataSeriesTest >> testBooleanLessThanEqualFromScalar [
 	self assert: 1 <= aSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanEqualWithArray [
 
 	| aSeries expected |
@@ -679,7 +679,7 @@ DataSeriesTest >> testBooleanLessThanEqualWithArray [
 	self assert: aSeries <= #(1 0.1 'b') equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanEqualWithScalar [
 
 	| firstSeries expected |
@@ -690,7 +690,7 @@ DataSeriesTest >> testBooleanLessThanEqualWithScalar [
 	self assert: firstSeries <= 0.8 equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanEqualWithSeries [
 
 	| firstSeries secondSeries expected |
@@ -702,7 +702,7 @@ DataSeriesTest >> testBooleanLessThanEqualWithSeries [
 	self assert: firstSeries <= secondSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanEqualWithSeriesDifferentKeys [
 
 	| firstSeries secondSeries |
@@ -713,7 +713,7 @@ DataSeriesTest >> testBooleanLessThanEqualWithSeriesDifferentKeys [
 	self should: [ firstSeries <= secondSeries ] raise: Error.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanEqualWithSeriesDifferentNames [
 
 	| firstSeries secondSeries expected |
@@ -725,7 +725,7 @@ DataSeriesTest >> testBooleanLessThanEqualWithSeriesDifferentNames [
 	self assert: firstSeries <= secondSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanFromScalar [
 
 	| aSeries expected |
@@ -736,7 +736,7 @@ DataSeriesTest >> testBooleanLessThanFromScalar [
 	self assert: 1 < aSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanWithArray [
 
 	| aSeries expected |
@@ -747,7 +747,7 @@ DataSeriesTest >> testBooleanLessThanWithArray [
 	self assert: aSeries < #(1 0.1 'b') equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanWithScalar [
 
 	| firstSeries expected |
@@ -758,7 +758,7 @@ DataSeriesTest >> testBooleanLessThanWithScalar [
 	self assert: firstSeries < 0.8 equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanWithSeries [
 
 	| firstSeries secondSeries expected |
@@ -770,7 +770,7 @@ DataSeriesTest >> testBooleanLessThanWithSeries [
 	self assert: firstSeries < secondSeries equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanWithSeriesDifferentKeys [
 
 	| firstSeries secondSeries |
@@ -781,7 +781,7 @@ DataSeriesTest >> testBooleanLessThanWithSeriesDifferentKeys [
 	self should: [ firstSeries < secondSeries ] raise: Error.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testBooleanLessThanWithSeriesDifferentNames [
 
 	| firstSeries secondSeries expected |
@@ -793,7 +793,7 @@ DataSeriesTest >> testBooleanLessThanWithSeriesDifferentNames [
 	self assert: firstSeries < secondSeries equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testCategoricalCanBeMadeCategorical [
 
 	| categoricalSeries |
@@ -801,7 +801,7 @@ DataSeriesTest >> testCategoricalCanBeMadeCategorical [
 	self assert: categoricalSeries makeCategorical isCategorical
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testCategoricalCanBeMadeNumerical [
 
 	| categoricalSeries |
@@ -809,7 +809,7 @@ DataSeriesTest >> testCategoricalCanBeMadeNumerical [
 	self assert: categoricalSeries makeNumerical isNumerical
 ]
 
-{ #category : #categorical }
+{ #category : 'categorical' }
 DataSeriesTest >> testCategoricalCrossTabulateWith [
 
 	| series1 series2 expected |
@@ -825,7 +825,7 @@ DataSeriesTest >> testCategoricalCrossTabulateWith [
 	self assert: (series1 crossTabulateWith: series2) equals: expected.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testCategoricalIsCategorical [
 
 	| categoricalSeries |
@@ -833,7 +833,7 @@ DataSeriesTest >> testCategoricalIsCategorical [
 	self assert: categoricalSeries isCategorical
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testCategoricalIsNotNumerical [
 
 	| categoricalSeries |
@@ -841,7 +841,7 @@ DataSeriesTest >> testCategoricalIsNotNumerical [
 	self deny: categoricalSeries isNumerical
 ]
 
-{ #category : #categorical }
+{ #category : 'categorical' }
 DataSeriesTest >> testCategoricalUniqueValues [
 	| aSeries expected actual |
 	aSeries := DataSeries withKeys: #(a b c d e) values: #(z y y z x).
@@ -850,7 +850,7 @@ DataSeriesTest >> testCategoricalUniqueValues [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #categorical }
+{ #category : 'categorical' }
 DataSeriesTest >> testCategoricalValueCounts [
 	| actual expected |
 	
@@ -863,7 +863,7 @@ DataSeriesTest >> testCategoricalValueCounts [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #categorical }
+{ #category : 'categorical' }
 DataSeriesTest >> testCategoricalValueFrequencies [
 
 	| aSeries expected actual |
@@ -881,7 +881,7 @@ DataSeriesTest >> testCategoricalValueFrequencies [
 	self assert: actual equals: expected
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testCloseTo [
 
 	| firstSeries secondSeries |
@@ -892,7 +892,7 @@ DataSeriesTest >> testCloseTo [
 	self assert: firstSeries closeTo: secondSeries.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testCloseToDifferentKeys [
 
 	| firstSeries secondSeries |
@@ -903,7 +903,7 @@ DataSeriesTest >> testCloseToDifferentKeys [
 	self deny: (firstSeries closeTo: secondSeries).
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testCloseToDifferentNames [
 
 	| firstSeries secondSeries |
@@ -914,7 +914,7 @@ DataSeriesTest >> testCloseToDifferentNames [
 	self deny: (firstSeries closeTo: secondSeries).
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testCloseToDifferentValues [
 
 	| firstSeries secondSeries |
@@ -925,7 +925,7 @@ DataSeriesTest >> testCloseToDifferentValues [
 	self deny: (firstSeries closeTo: secondSeries).
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testCollect [
 
 	| actual expected |
@@ -941,7 +941,7 @@ DataSeriesTest >> testCollect [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testCollectWithNotNils [
 
 	| actual expected |
@@ -962,7 +962,7 @@ DataSeriesTest >> testCollectWithNotNils [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 DataSeriesTest >> testCopyCanBeChanged [
 
 	| original seriesCopy expectedCopyAfterChange |
@@ -988,7 +988,7 @@ DataSeriesTest >> testCopyCanBeChanged [
 	
 ]
 
-{ #category : #copying }
+{ #category : 'copying' }
 DataSeriesTest >> testCopyChangeDoesNotAffectOriginal [
 
 	| original seriesCopy expectedOriginalAfterChange |
@@ -1014,7 +1014,7 @@ DataSeriesTest >> testCopyChangeDoesNotAffectOriginal [
 	
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 DataSeriesTest >> testCreateDataSeriesAsDataSeries [
 
 	| dataSeries |
@@ -1026,7 +1026,7 @@ DataSeriesTest >> testCreateDataSeriesAsDataSeries [
 	self assert: dataSeries name equals: '(no name)'.
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 DataSeriesTest >> testCreateDataSeriesWithKeysValues [
 
 	| values keys dataSeries |
@@ -1044,7 +1044,7 @@ DataSeriesTest >> testCreateDataSeriesWithKeysValues [
 	self assert: dataSeries name equals: '(no name)'.
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 DataSeriesTest >> testCreateDataSeriesWithKeysValuesName [
 
 	| values keys name dataSeries |
@@ -1064,7 +1064,7 @@ DataSeriesTest >> testCreateDataSeriesWithKeysValuesName [
 	self assert: dataSeries name equals: name.
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 DataSeriesTest >> testCreateDataSeriesWithValues [
 
 	| values dataSeries |
@@ -1078,7 +1078,7 @@ DataSeriesTest >> testCreateDataSeriesWithValues [
 	self assert: dataSeries name equals: '(no name)'.
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 DataSeriesTest >> testCreateDataSeriesWithValuesName [
 
 	| values name dataSeries |
@@ -1096,7 +1096,7 @@ DataSeriesTest >> testCreateDataSeriesWithValuesName [
 	self assert: dataSeries name equals: name.
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 DataSeriesTest >> testCreateEmptyDataSeries [
 
 	| dataSeries |
@@ -1108,7 +1108,7 @@ DataSeriesTest >> testCreateEmptyDataSeries [
 	self assert: dataSeries name equals: '(no name)'.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testDetect [
 
 	| expected actual |
@@ -1118,7 +1118,7 @@ DataSeriesTest >> testDetect [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testDetectIfNone [
 
 	| expected actual |
@@ -1128,15 +1128,15 @@ DataSeriesTest >> testDetectIfNone [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testDetectNotFound [
 
 	self
 		should: [ series detect: [ :x | x > 100 ] ]
-		raise: NotFound.
+		raise: self notFoundErrorClass.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testDo [
 
 	| sum |
@@ -1148,13 +1148,13 @@ DataSeriesTest >> testDo [
 	self assert: sum equals: 115.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testEighth [
 
 	self assert: series eighth equals: 10.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testEquality [
 
 	| firstSeries secondSeries |
@@ -1165,25 +1165,25 @@ DataSeriesTest >> testEquality [
 	self assert: firstSeries equals: secondSeries.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testFifth [
 
 	self assert: series fifth equals: 8.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testFirst [
 
 	self assert: series first equals: 3.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testFourth [
 
 	self assert: series fourth equals: 20.
 ]
 
-{ #category : #grouping }
+{ #category : 'grouping' }
 DataSeriesTest >> testGroupByAggregateUsing [
 	| firstSeries secondSeries expected actual |
 	
@@ -1199,7 +1199,7 @@ DataSeriesTest >> testGroupByAggregateUsing [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #grouping }
+{ #category : 'grouping' }
 DataSeriesTest >> testGroupByAggregateUsingAs [
 	| firstSeries secondSeries expected actual |
 	
@@ -1215,7 +1215,7 @@ DataSeriesTest >> testGroupByAggregateUsingAs [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #grouping }
+{ #category : 'grouping' }
 DataSeriesTest >> testGroupByAggregateUsingAsSizeMismatch [
 	| firstSeries secondSeries |
 	
@@ -1227,7 +1227,7 @@ DataSeriesTest >> testGroupByAggregateUsingAsSizeMismatch [
 		raise: SizeMismatch.
 ]
 
-{ #category : #grouping }
+{ #category : 'grouping' }
 DataSeriesTest >> testGroupByAggregateUsingSizeMismatch [
 	| firstSeries secondSeries |
 	
@@ -1239,21 +1239,21 @@ DataSeriesTest >> testGroupByAggregateUsingSizeMismatch [
 		raise: SizeMismatch.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testHasNil [
 	| numbers |
 	numbers := #(1 2 nil 3 4) asDataSeries.
 	self assert: numbers hasNil.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testHasNilFalse [
 	| numbers |
 	numbers := #(1 2 3 4) asDataSeries.
 	self deny: numbers hasNil.
 ]
 
-{ #category : #'head/tail' }
+{ #category : 'head/tail' }
 DataSeriesTest >> testHead [
 	| expected actual |
 	
@@ -1266,7 +1266,7 @@ DataSeriesTest >> testHead [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #'head/tail' }
+{ #category : 'head/tail' }
 DataSeriesTest >> testHeadN [
 	| expected actual |
 	
@@ -1279,7 +1279,7 @@ DataSeriesTest >> testHeadN [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testInequality [
 
 	| a b |
@@ -1293,7 +1293,7 @@ DataSeriesTest >> testInequality [
 	self assert: (a ~= b).
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testInequalityDifferentKeys [
 
 	| firstSeries secondSeries |
@@ -1304,7 +1304,7 @@ DataSeriesTest >> testInequalityDifferentKeys [
 	self assert: (firstSeries ~= secondSeries).
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testInequalityDifferentNames [
 
 	| firstSeries secondSeries |
@@ -1315,7 +1315,7 @@ DataSeriesTest >> testInequalityDifferentNames [
 	self assert: (firstSeries ~= secondSeries).
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 DataSeriesTest >> testInequalityDifferentValues [
 
 	| firstSeries secondSeries |
@@ -1326,7 +1326,7 @@ DataSeriesTest >> testInequalityDifferentValues [
 	self assert: (firstSeries ~= secondSeries).
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testInjectInto [
 
 	| expected actual |
@@ -1336,13 +1336,13 @@ DataSeriesTest >> testInjectInto [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testLast [
 
 	self assert: series last equals: 16.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathAbs [
 
 	| a b |
@@ -1353,7 +1353,7 @@ DataSeriesTest >> testMathAbs [
 	self assert: a abs closeTo: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathCorrelationWith [
 	| age income correlationCoefficient |
 	
@@ -1364,7 +1364,7 @@ DataSeriesTest >> testMathCorrelationWith [
 	self assert: correlationCoefficient closeTo: 0.99380799.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathCos [
 
 	| a b pi |
@@ -1376,7 +1376,7 @@ DataSeriesTest >> testMathCos [
 	self assert: a cos closeTo: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathExp [
 
 	| a b |
@@ -1387,7 +1387,7 @@ DataSeriesTest >> testMathExp [
 	self assert: a exp closeTo: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathLn [
 
 	| a b |
@@ -1398,7 +1398,7 @@ DataSeriesTest >> testMathLn [
 	self assert: a ln closeTo: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathLog [
 
 	| a b |
@@ -1409,7 +1409,7 @@ DataSeriesTest >> testMathLog [
 	self assert: a log closeTo: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathLog2 [
 
 	| a b |
@@ -1420,7 +1420,7 @@ DataSeriesTest >> testMathLog2 [
 	self assert: (a log: 2) closeTo: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathPowerScalar [
 
 	| a b |
@@ -1431,7 +1431,7 @@ DataSeriesTest >> testMathPowerScalar [
 	self assert: a ** 2 equals: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathSin [
 
 	| a b pi |
@@ -1443,7 +1443,7 @@ DataSeriesTest >> testMathSin [
 	self assert: a sin closeTo: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathSqrt [
 
 	| a b |
@@ -1454,7 +1454,7 @@ DataSeriesTest >> testMathSqrt [
 	self assert: a sqrt closeTo: b.
 ]
 
-{ #category : #'math functions' }
+{ #category : 'math functions' }
 DataSeriesTest >> testMathTan [
 
 	| a b |
@@ -1465,7 +1465,7 @@ DataSeriesTest >> testMathTan [
 	self assert: a tan closeTo: b.
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 DataSeriesTest >> testNewFrom [
 
 	| dataseries |
@@ -1476,13 +1476,13 @@ DataSeriesTest >> testNewFrom [
 	self assert: dataseries equals: series.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testNinth [
 
 	self assert: series ninth equals: 15.
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testNumericalCanBeMadeCategorical [
 
 	| numericalSeries |
@@ -1490,7 +1490,7 @@ DataSeriesTest >> testNumericalCanBeMadeCategorical [
 	self assert: numericalSeries makeCategorical isCategorical
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testNumericalCanBeMadeNumerical [
 
 	| numericalSeries |
@@ -1498,7 +1498,7 @@ DataSeriesTest >> testNumericalCanBeMadeNumerical [
 	self assert: numericalSeries makeNumerical isNumerical
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testNumericalIsNotCategorical [
 
 	| numericalSeries |
@@ -1506,7 +1506,7 @@ DataSeriesTest >> testNumericalIsNotCategorical [
 	self deny: numericalSeries isCategorical
 ]
 
-{ #category : #arithmetic }
+{ #category : 'arithmetic' }
 DataSeriesTest >> testNumericalIsNumerical [
 
 	| numericalSeries |
@@ -1514,7 +1514,7 @@ DataSeriesTest >> testNumericalIsNumerical [
 	self assert: numericalSeries isNumerical
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testReject [
 
 	| expected actual |
@@ -1528,7 +1528,7 @@ DataSeriesTest >> testReject [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataSeriesTest >> testRemoveAt [
 
 	| expected |
@@ -1543,7 +1543,7 @@ DataSeriesTest >> testRemoveAt [
 	self assert: series equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataSeriesTest >> testRemoveAtIndex [
 
 	| expected |
@@ -1558,7 +1558,7 @@ DataSeriesTest >> testRemoveAtIndex [
 	self assert: series equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataSeriesTest >> testRemoveNils [
 
 	| expected |
@@ -1569,7 +1569,7 @@ DataSeriesTest >> testRemoveNils [
 	self assert: series removeNils equals: expected.
 ]
 
-{ #category : #removing }
+{ #category : 'removing' }
 DataSeriesTest >> testRemoveNilsOnNamedSeries [
 
 	| expected |
@@ -1580,7 +1580,7 @@ DataSeriesTest >> testRemoveNilsOnNamedSeries [
 	self assert: series removeNils equals: expected.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testReplaceNilsWith [
 
 	| expected |
@@ -1597,7 +1597,7 @@ DataSeriesTest >> testReplaceNilsWith [
 	self assert: (series replaceNilsWith: 0.0) equals: expected.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testReplaceNilsWithAverage [
 
 	| expected |
@@ -1614,7 +1614,7 @@ DataSeriesTest >> testReplaceNilsWithAverage [
 	self assert: series replaceNilsWithAverage equals: expected.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testReplaceNilsWithFloat [
 
 	| expected |
@@ -1631,7 +1631,7 @@ DataSeriesTest >> testReplaceNilsWithFloat [
 	self assert: (series replaceNilsWith: 3.14) equals: expected.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testReplaceNilsWithMedian [
 
 	| expected |
@@ -1648,7 +1648,7 @@ DataSeriesTest >> testReplaceNilsWithMedian [
 	self assert: series replaceNilsWithMedian equals: expected.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testReplaceNilsWithMode [
 
 	| expected |
@@ -1665,7 +1665,7 @@ DataSeriesTest >> testReplaceNilsWithMode [
 	self assert: series replaceNilsWithMode equals: expected.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testReplaceNilsWithString [
 
 	| expected |
@@ -1682,7 +1682,7 @@ DataSeriesTest >> testReplaceNilsWithString [
 	self assert: (series replaceNilsWith: 'abc') equals: expected.
 ]
 
-{ #category : #'missing values' }
+{ #category : 'missing values' }
 DataSeriesTest >> testReplaceNilsWithZero [
 
 	| expected |
@@ -1699,13 +1699,13 @@ DataSeriesTest >> testReplaceNilsWithZero [
 	self assert: (series replaceNilsWithZero) equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testSecond [
 
 	self assert: series second equals: 7.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testSelect [
 
 	| expected actual |
@@ -1719,19 +1719,19 @@ DataSeriesTest >> testSelect [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testSeventh [
 
 	self assert: series seventh equals: 8.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testSixth [
 
 	self assert: series sixth equals: 9.
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSort [
 	| expected |
 	
@@ -1744,7 +1744,7 @@ DataSeriesTest >> testSort [
 	self assert: series equals: expected
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSortBlock [
 	| expected |
 	
@@ -1757,7 +1757,7 @@ DataSeriesTest >> testSortBlock [
 	self assert: series equals: expected
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSortDescending [
 	| expected |
 	
@@ -1770,7 +1770,7 @@ DataSeriesTest >> testSortDescending [
 	self assert: series equals: expected
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSorted [
 	| expected actual |
 	
@@ -1783,7 +1783,7 @@ DataSeriesTest >> testSorted [
 	self assert: actual equals: expected
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSortedBlock [
 	| expected actual |
 	
@@ -1796,7 +1796,7 @@ DataSeriesTest >> testSortedBlock [
 	self assert: actual equals: expected
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSortedBlockDoesNotChangeTheReceiver [
 	| expected |
 	
@@ -1809,7 +1809,7 @@ DataSeriesTest >> testSortedBlockDoesNotChangeTheReceiver [
 	self assert: series equals: expected
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSortedDescending [
 	| expected actual |
 	
@@ -1822,7 +1822,7 @@ DataSeriesTest >> testSortedDescending [
 	self assert: actual equals: expected
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSortedDescendingDoesNotChangeTheReceiver [
 	| expected |
 	
@@ -1835,7 +1835,7 @@ DataSeriesTest >> testSortedDescendingDoesNotChangeTheReceiver [
 	self assert: series equals: expected
 ]
 
-{ #category : #sorting }
+{ #category : 'sorting' }
 DataSeriesTest >> testSortedDoesNotChangeTheReceiver [
 	| expected |
 	
@@ -1848,13 +1848,13 @@ DataSeriesTest >> testSortedDoesNotChangeTheReceiver [
 	self assert: series equals: expected
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsAverage [
 
 	self assert: series average equals: (115/11).
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsCumulativeSum [
 
 	| seriesWithNils expected |
@@ -1872,55 +1872,55 @@ DataSeriesTest >> testStatsCumulativeSum [
 	self assert: seriesWithNils cumulativeSum equals: expected
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsFirstQuartile [
 
 	self assert: series firstQuartile equals: 7.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsFourthQuartile [
 
 	self assert: series fourthQuartile equals: 20.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsFourthQuartileEqualsMax [
 
 	self assert: series fourthQuartile equals: series max.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsInterquartileRange [
 
 	self assert: series interquartileRange equals: 8.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsMax [
 
 	self assert: series max equals: 20.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsMedian [
 
 	self assert: series median equals: 9.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsMin [
 
 	self assert: series min equals: 3.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsMode [
 
 	self assert: series mode equals: 8.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsQuantile [
 	
 	self assert: (series quantile: 0) equals: 3.
@@ -1931,7 +1931,7 @@ DataSeriesTest >> testStatsQuantile [
 	self assert: (series quantile: 100) equals: 20.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsQuantileDoesNotModifyTheSeries [
 	
 	| copy |
@@ -1940,7 +1940,7 @@ DataSeriesTest >> testStatsQuantileDoesNotModifyTheSeries [
 	self assert: series equals: copy.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsQuartile [
 	
 	self assert: (series quartile: 0) equals: 3.
@@ -1950,36 +1950,36 @@ DataSeriesTest >> testStatsQuartile [
 	self assert: (series quartile: 4) equals: 20.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsRange [
 
 	self assert: series range equals: 17.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsSecondQuartile [
 
 	self assert: series secondQuartile equals: 9.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsSecondQuartileEqualsMedian [
 
 	self assert: series secondQuartile equals: series median.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsStdev [
 
 	self assert: series stdev closeTo: 5.00727.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsSummary [
 	| expected actual |
 	
 	expected := DataSeries 
-		withKeys: #(Min '1st Qu.' Median Average '3rd Qu.' Max)
+		withKeys: #('Min' '1st Qu.' 'Median' 'Average' '3rd Qu.' 'Max')
 		values: { 3 . 7 . 9 . (115 / 11) . 15 . 20 }
 		name: series name.
 		
@@ -1988,31 +1988,31 @@ DataSeriesTest >> testStatsSummary [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsThirdQuartile [
 
 	self assert: series thirdQuartile equals: 15.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsVariance [
 
 	self assert: series variance closeTo: 25.07273.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsZerothQuartile [
 
 	self assert: series zerothQuartile equals: 3.
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 DataSeriesTest >> testStatsZerothQuartileEqualsMin [
 
 	self assert: series zerothQuartile equals: series min.
 ]
 
-{ #category : #'head/tail' }
+{ #category : 'head/tail' }
 DataSeriesTest >> testTail [
 	| expected actual |
 	
@@ -2025,7 +2025,7 @@ DataSeriesTest >> testTail [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #'head/tail' }
+{ #category : 'head/tail' }
 DataSeriesTest >> testTailN [
 	| expected actual |
 	
@@ -2038,13 +2038,13 @@ DataSeriesTest >> testTailN [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataSeriesTest >> testThird [
 
 	self assert: series third equals: 6.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithIndexCollect [
 
 	| actual expected |
@@ -2060,17 +2060,17 @@ DataSeriesTest >> testWithIndexCollect [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithIndexDetect [
 
 	| expected actual |
 	
 	expected := 6.
-	actual := series withIndexDetect: [ :x :i | (x > 5) and: (i odd) ].
+	actual := series withIndexDetect: [ :x :i | (x > 5) and: [i odd] ].
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithIndexDetectIfNone [
 
 	| expected actual |
@@ -2080,15 +2080,15 @@ DataSeriesTest >> testWithIndexDetectIfNone [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithIndexDetectNotFound [
 
 	self
 		should: [ series withIndexDetect: [ :x :i | i > 100 ] ]
-		raise: NotFound.
+		raise: self notFoundErrorClass.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithIndexDo [
 
 	| sum |
@@ -2100,7 +2100,7 @@ DataSeriesTest >> testWithIndexDo [
 	self assert: sum equals: (108173/4620).
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithIndexReject [
 
 	| expected actual |
@@ -2110,11 +2110,11 @@ DataSeriesTest >> testWithIndexReject [
 		values: #(3 6 8 8)
 		name: 'ExampleSeries'.
 		
-	actual := series withIndexReject: [ :x :i | x >= 10 or: i even ].
+	actual := series withIndexReject: [ :x :i | x >= 10 or: [i even] ].
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithIndexSelect [
 
 	| expected actual |
@@ -2124,11 +2124,11 @@ DataSeriesTest >> testWithIndexSelect [
 		values: #(3 6 8 8)
 		name: 'ExampleSeries'.
 		
-	actual := series withIndexSelect: [ :x :i | x < 10 and: i odd ].
+	actual := series withIndexSelect: [ :x :i | x < 10 and: [i odd] ].
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithKeyCollect [
 
 	| actual expected |
@@ -2144,35 +2144,35 @@ DataSeriesTest >> testWithKeyCollect [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithKeyDetect [
 
 	| expected actual |
 	
 	expected := 6.
-	actual := series withKeyDetect: [ :x :k | x > 5 and: (k = #c) ].
+	actual := series withKeyDetect: [ :x :k | x > 5 and: [k = #c] ].
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithKeyDetectIfNone [
 
 	| expected actual |
 	
 	expected := 'not found'.
-	actual := series withKeyDetect: [ :x :k | x > 5 and: (k = #NoSuchKey) ] ifNone: [ 'not found' ].
+	actual := series withKeyDetect: [ :x :k | x > 5 and: [k = #NoSuchKey] ] ifNone: [ 'not found' ].
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithKeyDetectNotFound [
 
 	self
-		should: [ series withKeyDetect: [ :x :k | x > 5 and: (k = #NoSuchKey) ] ]
-		raise: NotFound.
+		should: [ series withKeyDetect: [ :x :k | x > 5 and: [k = #NoSuchKey] ] ]
+		raise: self notFoundErrorClass.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithKeyDo [
 
 	| sum |
@@ -2184,7 +2184,7 @@ DataSeriesTest >> testWithKeyDo [
 	self assert: sum equals: (108173/4620).
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithKeyReject [
 
 	| expected actual |
@@ -2194,11 +2194,11 @@ DataSeriesTest >> testWithKeyReject [
 		values: #(3 6 8)
 		name: 'ExampleSeries'.
 		
-	actual := series withKeyReject: [ :x :k | x >= 10 or: (#(a c g) includes: k) not ].
+	actual := series withKeyReject: [ :x :k | x >= 10 or: [(#(a c g) includes: k) not] ].
 	self assert: actual equals: expected.
 ]
 
-{ #category : #enumerating }
+{ #category : 'enumerating' }
 DataSeriesTest >> testWithKeySelect [
 
 	| expected actual |
@@ -2208,6 +2208,6 @@ DataSeriesTest >> testWithKeySelect [
 		values: #(3 6 8)
 		name: 'ExampleSeries'.
 		
-	actual := series withKeySelect: [ :x :k | x < 10 and: (#(a c g) includes: k) ].
+	actual := series withKeySelect: [ :x :k | x < 10 and: [#(a c g) includes: k] ].
 	self assert: actual equals: expected.
 ]

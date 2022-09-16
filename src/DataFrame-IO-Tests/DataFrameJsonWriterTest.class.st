@@ -1,23 +1,29 @@
 Class {
-	#name : #DataFrameJsonWriterTest,
-	#superclass : #TestCase,
+	#name : 'DataFrameJsonWriterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'directory',
 		'df'
 	],
-	#category : #'DataFrame-IO-Tests'
+	#category : 'DataFrame-IO-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 DataFrameJsonWriterTest >> readFile: aFileReference [
+	<HACK: 'Buffer the whole stream to work around lack of character decoding'>
+
 	| stream contents |
 	stream := aFileReference readStream.
+
+	stream := ZnBufferedReadStream on: stream. "wrap with buffered stream to bypass https://github.com/GemTalk/FileSystemGs/issues/9"
+	stream sizeBuffer: aFileReference size. "part of workaround for GemTalk/FileSystemGs#9"
+
 	contents := stream upToEnd.
 	stream close.
 	^ contents
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 DataFrameJsonWriterTest >> setUp [
 	super setUp.
 	directory := FileSystem memory workingDirectory / 'testDataForJson'.
@@ -32,7 +38,7 @@ DataFrameJsonWriterTest >> setUp [
 	columnNames: #('col1' 'col2' 'col3' 'col4').
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameJsonWriterTest >> testWriteAsString [
 	| actual expected |
 	actual := DataFrameJsonWriter new writeAsString: df.
@@ -41,7 +47,7 @@ DataFrameJsonWriterTest >> testWriteAsString [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameJsonWriterTest >> testWriteTo [
 	| file actual expected |
 	file := directory / 'output.json'.
@@ -52,7 +58,7 @@ DataFrameJsonWriterTest >> testWriteTo [
 	self assert: actual lines equals: expected lines.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameJsonWriterTest >> testWriteToJson [
 	| file actual expected |
 	file := directory / 'output.json'.
@@ -63,7 +69,7 @@ DataFrameJsonWriterTest >> testWriteToJson [
 	self assert: actual lines equals: expected lines.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameJsonWriterTest >> testWriteToJsonOrient [
 	| file actual expected |
 	file := directory / 'output.json'.

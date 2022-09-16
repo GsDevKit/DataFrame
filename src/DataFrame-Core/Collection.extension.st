@@ -1,33 +1,39 @@
-Extension { #name : #Collection }
+Extension { #name : 'Collection' }
 
-{ #category : #'*DataFrame-Core-Base' }
+{ #category : '*DataFrame-Core-Base' }
 Collection >> ** arg [
 
 	^ self raisedTo: arg
+
 ]
 
-{ #category : #'*DataFrame-Core-Base' }
+{ #category : '*DataFrame-Core-Base' }
 Collection >> asDataSeries [
 
 	^ self as: DataSeries
 
 
+
 ]
 
-{ #category : #'*DataFrame-Core-Base' }
+{ #category : '*DataFrame-Core-Base' }
 Collection >> closeTo: aCollection [
+ 	"Tell whether the receiver and argument are close to one another.
+	 Question your reliance on imprecision!"
 
-	^ (self - aCollection) inject: true into: [ :accum :each |
-		accum and: (each closeTo: 0) ].
+	^ self - aCollection
+		inject: true
+		into: [ :accum :each | accum and: [ each closeTo: 0 ] ]
 ]
 
-{ #category : #'*DataFrame-Core-Base' }
+{ #category : '*DataFrame-Core-Base' }
 Collection >> variance [
 
 	^ self stdev squared.
+
 ]
 
-{ #category : #'*DataFrame-Core' }
+{ #category : '*DataFrame-Core' }
 Collection >> withSeries: aDataSeries collect: twoArgBlock [ 
 	"Collect and return the result of evaluating twoArgBlock with corresponding elements from this collection and aDataSeries."
 	| result |
@@ -42,4 +48,5 @@ Collection >> withSeries: aDataSeries collect: twoArgBlock [
 			value: (self at: i)
 			value: (aDataSeries at: key))].
 	^ result
+
 ]

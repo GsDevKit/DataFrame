@@ -1,6 +1,6 @@
 Class {
-	#name : #DataFrameCsvReader,
-	#superclass : #DataFrameReader,
+	#name : 'DataFrameCsvReader',
+	#superclass : 'DataFrameReader',
 	#instVars : [
 		'separator',
 		'includeRowNames',
@@ -9,10 +9,10 @@ Class {
 		'rows',
 		'columnNames'
 	],
-	#category : #'DataFrame-IO'
+	#category : 'DataFrame-IO'
 }
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameCsvReader >> createDataFrame [
 	| df |
 	df := DataFrame
@@ -25,32 +25,32 @@ DataFrameCsvReader >> createDataFrame [
 	^ df
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> defaultIncludeRowNames [
 	^ false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> defaultSeparator [
 	^ $,
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> defaultShouldInferTypes [
 	^ true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> includeRowNames [
 	^ includeRowNames
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> includeRowNames: anObject [
 	includeRowNames := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrameCsvReader >> initialize [ 
 	super initialize.
 	separator := self defaultSeparator.
@@ -58,15 +58,15 @@ DataFrameCsvReader >> initialize [
 	shouldInferTypes := self defaultShouldInferTypes.
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameCsvReader >> readColumnNamesWith: aReader [
 	columnNames := aReader readHeader.
 	
 	self includeRowNames ifTrue: [
-		columnNames := columnNames copyWithoutFirst ].
+		columnNames := columnNames allButFirst ].
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameCsvReader >> readFrom: aFileReference [
 	"Read data frame from a CSV file"
 	| df | 
@@ -77,11 +77,17 @@ DataFrameCsvReader >> readFrom: aFileReference [
 	
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameCsvReader >> readFromInternal: aFileReference [
+	<HACK: 'Buffer the whole stream to work around lack of character decoding'>
+
 	"Read data frame from a CSV file"
 	| stream reader df |
 	stream := aFileReference readStream.
+
+	stream := ZnBufferedReadStream on: stream. "wrap with buffered stream to bypass https://github.com/GemTalk/FileSystemGs/issues/9"
+	stream sizeBuffer: aFileReference size. "part of workaround for GemTalk/FileSystemGs#9"
+
 	reader := NeoCSVReader on: stream.
 	reader separator: self separator.
 	
@@ -95,7 +101,7 @@ DataFrameCsvReader >> readFromInternal: aFileReference [
 	
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameCsvReader >> readOnlyRowsWith: aReader [
 	rows := OrderedCollection new.
 	
@@ -103,7 +109,7 @@ DataFrameCsvReader >> readOnlyRowsWith: aReader [
 		rows add: aReader next ].
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameCsvReader >> readRowsAndRowNamesWith: aReader [
 	| line |
 	rowNames := OrderedCollection new.
@@ -112,32 +118,32 @@ DataFrameCsvReader >> readRowsAndRowNamesWith: aReader [
 	[ aReader atEnd ] whileFalse: [ 
 		line := aReader next.
 		rowNames add: line first.
-		rows add: line copyWithoutFirst ].
+		rows add: line allButFirst ].
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameCsvReader >> readRowsWith: aReader [
 	^ self includeRowNames
 		ifTrue: [ self readRowsAndRowNamesWith: aReader ]
 		ifFalse: [ self readOnlyRowsWith: aReader ].
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> separator [
 	^ separator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> separator: anObject [
 	separator := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> shouldInferTypes [
 	^ shouldInferTypes
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameCsvReader >> shouldInferTypes: anObject [
 	shouldInferTypes := anObject
 ]

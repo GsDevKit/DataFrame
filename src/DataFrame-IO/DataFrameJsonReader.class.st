@@ -1,6 +1,6 @@
 Class {
-	#name : #DataFrameJsonReader,
-	#superclass : #DataFrameReader,
+	#name : 'DataFrameJsonReader',
+	#superclass : 'DataFrameReader',
 	#instVars : [
 		'rowNames',
 		'rows',
@@ -9,10 +9,10 @@ Class {
 		'uniform',
 		'parseMap'
 	],
-	#category : #'DataFrame-IO'
+	#category : 'DataFrame-IO'
 }
 
-{ #category : #adding }
+{ #category : 'adding' }
 DataFrameJsonReader >> addDict: aDict [
 	"Adds aDict while respecting columnNames positions"
 	
@@ -24,7 +24,7 @@ DataFrameJsonReader >> addDict: aDict [
 	rows add: (columnNames collect: [ :col | aDict at: col ifAbsent: nil ]).
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameJsonReader >> createDataFrame [
 	| df |
 	
@@ -37,7 +37,7 @@ DataFrameJsonReader >> createDataFrame [
 	^ df
 ]
 
-{ #category : #'initialization - private' }
+{ #category : 'initialization - private' }
 DataFrameJsonReader >> inferOrientFromJson: json [
 	"Inferes the json type (orient parameter). Runs when orient='auto'"
 
@@ -48,13 +48,13 @@ DataFrameJsonReader >> inferOrientFromJson: json [
 				ifFalse: [ self orient: 'records' ]
 			]
 		ifFalse: [
-			((json at: (json keys first)) isKindOf: SequenceableCollection)
+			((json at: (json keys asArray first)) isKindOf: SequenceableCollection)
 				ifTrue: [ self orient: 'split' ]
 				ifFalse: [ self orient: 'columns' ].
 			].
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrameJsonReader >> initialize [
 	super initialize.
 	orient := self orientDefaultValue.
@@ -68,22 +68,22 @@ DataFrameJsonReader >> initialize [
 		}.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameJsonReader >> orient [
 	^ orient
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameJsonReader >> orient: aString [
 	orient := aString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameJsonReader >> orientDefaultValue [
 	^ 'auto'
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 DataFrameJsonReader >> parseFromColumns: aDict [
 	"Private. Accessed when orient = 'columns'.
 	 Slower if uniform is set to false.
@@ -98,7 +98,7 @@ DataFrameJsonReader >> parseFromColumns: aDict [
 	"
 	| colIndex rowIndex |
 
-	columnNames := OrderedCollection newFrom: aDict keys.
+	columnNames := OrderedCollection newFrom: aDict keys asArray.
 	rowNames := OrderedCollection new.
 	rows := OrderedCollection new.
 	
@@ -116,7 +116,7 @@ DataFrameJsonReader >> parseFromColumns: aDict [
 		].
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 DataFrameJsonReader >> parseFromRecords: anArray [
 	"Private. Accessed when orient = 'records'.
 	 Incoming json format is:
@@ -134,7 +134,7 @@ DataFrameJsonReader >> parseFromRecords: anArray [
 		].
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 DataFrameJsonReader >> parseFromRowNames: aDict [
 	"Private. Accessed when orient = 'rowNames'.
 	 Slower if uniform is set to false.
@@ -156,7 +156,7 @@ DataFrameJsonReader >> parseFromRowNames: aDict [
 		].
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 DataFrameJsonReader >> parseFromSplit: aDict [
 	"Private. Accessed when orient = 'split'.
 	 Incoming json format is:
@@ -172,14 +172,14 @@ DataFrameJsonReader >> parseFromSplit: aDict [
 	columnNames := aDict at: 'columns'.
 ]
 
-{ #category : #parsing }
+{ #category : 'parsing' }
 DataFrameJsonReader >> parseFromValues: anArrayOfArrays [
 	"Private. Accessed when orient = 'values'"
 	
 	rows := anArrayOfArrays.
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameJsonReader >> read: json [
 	"Loads parsed json"
 	
@@ -191,11 +191,17 @@ DataFrameJsonReader >> read: json [
 			].
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameJsonReader >> readFrom: aFileReference [
-	| reader |
-	
-	reader := NeoJSONReader on: aFileReference readStream.
+	<HACK: 'Buffer the whole stream to work around lack of character decoding'>
+
+	| stream reader |
+	stream := aFileReference readStream.
+
+	stream := ZnBufferedReadStream on: stream. "wrap with buffered stream to bypass https://github.com/GemTalk/FileSystemGs/issues/9"
+	stream sizeBuffer: aFileReference size. "part of workaround for GemTalk/FileSystemGs#9"
+
+	reader := NeoJSONReader on: stream.
 	self read: reader next.
 	reader close.
 	
@@ -203,7 +209,7 @@ DataFrameJsonReader >> readFrom: aFileReference [
 	
 ]
 
-{ #category : #reading }
+{ #category : 'reading' }
 DataFrameJsonReader >> readFromString: aString [
 	"Read dataframe from a string"
 	| json |
@@ -214,17 +220,17 @@ DataFrameJsonReader >> readFromString: aString [
 	^ self createDataFrame
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameJsonReader >> uniform [
 	^ uniform
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameJsonReader >> uniform: aBoolean [
 	uniform := aBoolean
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 DataFrameJsonReader >> uniformDefaultValue [
 	^ false
 ]

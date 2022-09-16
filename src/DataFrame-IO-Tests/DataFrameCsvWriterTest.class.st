@@ -1,25 +1,31 @@
 Class {
-	#name : #DataFrameCsvWriterTest,
-	#superclass : #TestCase,
+	#name : 'DataFrameCsvWriterTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'directory',
 		'dataFrame',
 		'commaQuoteCsvFile',
 		'tabQuoteCsvFile'
 	],
-	#category : #'DataFrame-IO-Tests'
+	#category : 'DataFrame-IO-Tests'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 DataFrameCsvWriterTest >> readFile: aFileReference [
+	<HACK: 'Buffer the whole stream to work around lack of character decoding'>
+
 	| stream contents |
 	stream := aFileReference readStream.
+
+	stream := ZnBufferedReadStream on: stream. "wrap with buffered stream to bypass https://github.com/GemTalk/FileSystemGs/issues/9"
+	stream sizeBuffer: aFileReference size. "part of workaround for GemTalk/FileSystemGs#9"
+
 	contents := stream upToEnd.
 	stream close.
 	^ contents
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 DataFrameCsvWriterTest >> setUp [
 	directory := FileSystem memory workingDirectory / 'testData'.
 	directory createDirectory.
@@ -35,11 +41,11 @@ DataFrameCsvWriterTest >> setUp [
 		(3.2 true 'rain')).
 		
 	dataFrame columnNames: #(temperature precipitation type).
-	dataFrame rowNames: (#('01:10' '01:30' '01:50' '02:10' '02:30')
+	dataFrame rowNames: (#('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00')
 		collect: #asTime).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameCsvWriterTest >> testWriteToCsv [
 	| actual expected |
 	dataFrame writeToCsv: commaQuoteCsvFile.
@@ -48,7 +54,7 @@ DataFrameCsvWriterTest >> testWriteToCsv [
 	self assert: actual lines equals: expected lines.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameCsvWriterTest >> testWriteToCsvLineEndLf [
 	| writer actual expected |
 	writer := DataFrameCsvWriter new.
@@ -59,7 +65,7 @@ DataFrameCsvWriterTest >> testWriteToCsvLineEndLf [
 	self assert: actual lines equals: expected lines.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameCsvWriterTest >> testWriteToCsvWithSeparatorTab [
 	| actual expected |
 	dataFrame writeToCsv: tabQuoteCsvFile withSeparator: Character tab.

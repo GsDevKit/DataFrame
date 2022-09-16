@@ -1,8 +1,5 @@
 Class {
 	#name : 'NotFound',
-	#superclass : 'Error',
-	#instVars : [
-		'object'
-	],
+	#superclass : 'LookupError',
 	#category : 'DataFrame-GemStone36-'
 }

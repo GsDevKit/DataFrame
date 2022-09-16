@@ -41,7 +41,7 @@ DataFrameCsvReaderTest >> setUp [
 		(-2.3 false '-')
 		(3.2 true 'rain')).
 		
-	dataFrameWithRowNames columnNames: #(temperature precipitation type).
+	dataFrameWithRowNames columnNames: #('temperature' 'precipitation' 'type').
 	dataFrameWithRowNames rowNames: (#('01:10:00' '01:30:00' '01:50:00' '02:10:00' '02:30:00')
 		collect: #asTime).
 		
@@ -52,7 +52,7 @@ DataFrameCsvReaderTest >> setUp [
 		{ '02:10:00' asTime . -2.3 . false . '-' } . 
 		{ '02:30:00' asTime . 3.2 . true . 'rain' }}.
 		
-	dataFrameWithoutRowNames columnNames: #(nil temperature precipitation type).
+	dataFrameWithoutRowNames columnNames: #(nil 'temperature' 'precipitation' 'type').
 ]
 
 { #category : 'tests' }

@@ -1,13 +1,13 @@
 Class {
-	#name : #DataFrameInternalTest,
-	#superclass : #TestCase,
+	#name : 'DataFrameInternalTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'df'
 	],
-	#category : #'DataFrame-Tests'
+	#category : 'DataFrame-Tests'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 DataFrameInternalTest >> setUp [
 
 	df := DataFrameInternal withRows: #(
@@ -16,7 +16,7 @@ DataFrameInternalTest >> setUp [
    		('London' 8.788 false)).
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testAddColumnAtPosition [
 
 	| expected |
@@ -33,7 +33,7 @@ DataFrameInternalTest >> testAddColumnAtPosition [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testAddColumnAtPositionSizeMismatch [
 	
 	| aBlock |
@@ -44,7 +44,7 @@ DataFrameInternalTest >> testAddColumnAtPositionSizeMismatch [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testAddRowAtPosition [
 
 	| expected |
@@ -62,7 +62,7 @@ DataFrameInternalTest >> testAddRowAtPosition [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testAddRowAtPositionSizeMismatch [
 	
 	| aBlock |
@@ -73,7 +73,7 @@ DataFrameInternalTest >> testAddRowAtPositionSizeMismatch [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testAsArrayOfColumns [
 
 	| expected |
@@ -88,7 +88,7 @@ DataFrameInternalTest >> testAsArrayOfColumns [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testAsArrayOfRows [
 
 	| expected |
@@ -103,13 +103,13 @@ DataFrameInternalTest >> testAsArrayOfRows [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testAtAt [
 	
 	self assert: (df at: 2 at: 2) closeTo: 2.789.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testAtAtPut [
 
 	| array2D expected actual |
@@ -128,7 +128,7 @@ DataFrameInternalTest >> testAtAtPut [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testCollect [
 
 	| dfInternal dfActual dfExpected |
@@ -146,7 +146,7 @@ DataFrameInternalTest >> testCollect [
 	self assert: dfActual equals: dfExpected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testColumnAt [
 
 	| actualColumn expectedColumn |
@@ -157,7 +157,7 @@ DataFrameInternalTest >> testColumnAt [
 	self assert: actualColumn equals: expectedColumn.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testColumnAtPut [
 
 	| actual expected |
@@ -168,13 +168,13 @@ DataFrameInternalTest >> testColumnAtPut [
    		('Z' 8.788 0)).
 	
 	actual := df.
-	actual columnAt: 1 put: #(X Y Z).
+	actual columnAt: 1 put: #('X' 'Y' 'Z').
 	actual columnAt: 3 put: #(0 1 0).
 	
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testColumnsAt [
 
 	| columnNumbers dfActual dfExpected |
@@ -191,7 +191,7 @@ DataFrameInternalTest >> testColumnsAt [
 	self assert: dfActual equals: dfExpected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testCreateDataFrameInternalWithColumns [
 
 	| array2D expected actual |
@@ -207,7 +207,7 @@ DataFrameInternalTest >> testCreateDataFrameInternalWithColumns [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testCreateDataFrameInternalWithRows [
 	
 	| array2D actual expected |
@@ -225,7 +225,7 @@ DataFrameInternalTest >> testCreateDataFrameInternalWithRows [
 	
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testDeepCopy [
 
 	| dfCopy |
@@ -236,7 +236,7 @@ DataFrameInternalTest >> testDeepCopy [
 	self deny: df == dfCopy.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testDo [
 
 	| dfInternal sum |
@@ -252,7 +252,7 @@ DataFrameInternalTest >> testDo [
 	self assert: sum equals: 21.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testFromArray2D [
 
 	| dfi array2D |
@@ -267,7 +267,7 @@ DataFrameInternalTest >> testFromArray2D [
 	self assert: dfi asArray2D equals: array2D.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testPrintOn [
 
 	| expected actual |
@@ -286,7 +286,7 @@ DataFrameInternalTest >> testPrintOn [
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testRemoveColumnAt [
 
 	| expected |
@@ -303,7 +303,7 @@ DataFrameInternalTest >> testRemoveColumnAt [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testRemoveColumnsOfRowElementsSatisfingOnRow [
 
 	| expected |
@@ -325,7 +325,7 @@ DataFrameInternalTest >> testRemoveColumnsOfRowElementsSatisfingOnRow [
 	self assert: (df removeColumnsOfRowElementsSatisfing: [ :ele | ele isNil ] onRow: 3) equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testRemoveRowAt [
 
 	| expected |
@@ -341,7 +341,7 @@ DataFrameInternalTest >> testRemoveRowAt [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testRemoveRowsOfColumnElementsSatisfingOnColumn [
 
 	| expected |
@@ -362,7 +362,7 @@ DataFrameInternalTest >> testRemoveRowsOfColumnElementsSatisfingOnColumn [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testReplaceMissingValuesStrings [
 
 	| expected |
@@ -382,7 +382,7 @@ DataFrameInternalTest >> testReplaceMissingValuesStrings [
 
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testReplaceMissingValuesStringsOnEmptySet [
 
 	| expected |
@@ -400,7 +400,7 @@ DataFrameInternalTest >> testReplaceMissingValuesStringsOnEmptySet [
 	self assert: (df replaceMissingValuesStrings: #() asSet) equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testRowAt [
 
 	| actualRow expectedRow |
@@ -411,7 +411,7 @@ DataFrameInternalTest >> testRowAt [
 	self assert: actualRow equals: expectedRow.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testRowAtPut [
 
 	| actual expected |
@@ -422,12 +422,12 @@ DataFrameInternalTest >> testRowAtPut [
    		('London' 8.788 false)).
 	
 	actual := df.
-	actual rowAt: 2 put: #(X Y Z).
+	actual rowAt: 2 put: #('X' 'Y' 'Z').
 	
 	self assert: actual equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testRowsAt [
 
 	| rowNumbers dfActual dfExpected |
@@ -443,7 +443,7 @@ DataFrameInternalTest >> testRowsAt [
 	self assert: dfActual equals: dfExpected.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testVarSizeInstanceCreation [
 
 	| dfActual |
@@ -453,7 +453,7 @@ DataFrameInternalTest >> testVarSizeInstanceCreation [
 	self assert: dfActual numberOfColumns equals: 8.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testWithColumns [
 
 	| dfi validOutput |
@@ -466,7 +466,7 @@ DataFrameInternalTest >> testWithColumns [
 	self assert: dfi asArray2D equals: validOutput.
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testWithIndicesCollect [
 
 	| dfInternal actual expected |
@@ -484,7 +484,7 @@ DataFrameInternalTest >> testWithIndicesCollect [
 	self assert: actual equals: expected
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testWithIndicesDo [
 
 	| dfInternal |
@@ -496,7 +496,7 @@ DataFrameInternalTest >> testWithIndicesDo [
 		self assert: each equals: ((i - 1) * 2 + j) ].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 DataFrameInternalTest >> testWithRows [
 
 	| dfi validOutput |

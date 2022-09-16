@@ -511,6 +511,8 @@ DataFrame >> average [
 
 { #category : 'comparing' }
 DataFrame >> closeTo: aDataFrame [
+ 	"Tell whether the receiver and argument are close to one another.
+	 Question your reliance on imprecision!"
 
 	aDataFrame species = self species
 		ifFalse: [ ^ false ].
@@ -528,7 +530,6 @@ DataFrame >> closeTo: aDataFrame [
 				ifFalse: [ ^ false ] ] ].
 	
 	^ true
-
 ]
 
 { #category : 'enumerating' }
@@ -646,12 +647,12 @@ DataFrame >> columnNames [
 DataFrame >> columnNames: anArray [
 	anArray size = self numberOfColumns 
 		ifFalse: [ SizeMismatch signal: 'Wrong number of column names' ].
-		
-	anArray asSet size = anArray size
-		ifFalse: [ Error signal: 'All column names must be distinct' ].
+
+	"Count them, since other Smalltalk dialects cannot add nil to a hashed collection."
+	(anArray asBag valuesAndCounts anySatisfy: [:count | count > 1])
+		ifTrue: [ Error signal: 'All column names must be distinct' ].
 		
 	columnNames := anArray asOrderedCollection
-
 ]
 
 { #category : 'accessing' }
@@ -862,17 +863,16 @@ DataFrame >> getJointColumnsWith: aDataFrame [
 	outputColumns := OrderedCollection new.
 	self columnNames do: [ :column |
 		(columnIntersection includes: column)
-			ifTrue: [ outputColumns add: ('' join: {column, '_x'}) ]
+			ifTrue: [ outputColumns add: (self newColumnNameFor: column withSuffix: '_x') ]
 			ifFalse: [ outputColumns add: column ]
 			].
 	aDataFrame columnNames do: [ :column |
 		(columnIntersection includes: column)
-			ifTrue: [ outputColumns add: ('' join: {column, '_y'}) ]
+			ifTrue: [ outputColumns add: (self newColumnNameFor: column withSuffix: '_y') ]
 			ifFalse: [ outputColumns add: column ]
 			].
 	
 	^ outputColumns
-
 ]
 
 { #category : 'grouping' }
@@ -1078,8 +1078,8 @@ DataFrame >> innerJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 	
 	"Since Key is common, remove duplicate key column if it is of same name"
 	(leftColumn = rightColumn) ifTrue: [
-		outputDf removeColumn: (rightColumn, '_y').
-		outputDf renameColumn: (leftColumn, '_x') to: leftColumn.
+		outputDf removeColumn: (self newColumnNameFor: rightColumn withSuffix: '_y').
+		outputDf renameColumn: (self newColumnNameFor: leftColumn withSuffix: '_x') to: leftColumn.
 		].
 	
 	^ outputDf
@@ -1151,8 +1151,8 @@ DataFrame >> leftJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 	
 	"Since Key is common, remove duplicate key column if it is of same name"
 	(leftColumn = rightColumn) ifTrue: [
-		outputDf removeColumn: (rightColumn, '_y').
-		outputDf renameColumn: (leftColumn, '_x') to: leftColumn.
+		outputDf removeColumn: (self newColumnNameFor: rightColumn withSuffix: '_y').
+		outputDf renameColumn: (self newColumnNameFor: leftColumn withSuffix: '_x') to: leftColumn.
 		].
 	
 	^ outputDf
@@ -1185,6 +1185,16 @@ DataFrame >> mode [
 
 	^ self applyToAllColumns: #mode
 
+]
+
+{ #category : 'private' }
+DataFrame >> newColumnNameFor: columnName withSuffix: aString [
+
+	| newName |
+	newName := columnName , aString.
+	^ columnName isSymbol
+		ifTrue: [ newName asSymbol ]
+		ifFalse: [ newName ]
 ]
 
 { #category : 'accessing' }
@@ -1279,8 +1289,8 @@ DataFrame >> outerJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 	
 	"Since Key is common, remove duplicate key column if it is of same name"
 	(leftColumn = rightColumn) ifTrue: [
-		outputDf removeColumn: (rightColumn, '_y').
-		outputDf renameColumn: (leftColumn, '_x') to: leftColumn.
+		outputDf removeColumn: (self newColumnNameFor: rightColumn withSuffix: '_y').
+		outputDf renameColumn: (self newColumnNameFor: leftColumn withSuffix: '_x') to: leftColumn.
 		].
 	
 	^ outputDf
@@ -1536,8 +1546,8 @@ DataFrame >> rightJoin: aDataFrame onLeft: leftColumn onRight: rightColumn [
 	
 	"Since Key is common, remove duplicate key column if it is of same name"
 	(leftColumn = rightColumn) ifTrue: [
-		outputDf removeColumn: (rightColumn, '_y').
-		outputDf renameColumn: (leftColumn, '_x') to: leftColumn.
+		outputDf removeColumn: (self newColumnNameFor: rightColumn withSuffix: '_y').
+		outputDf renameColumn: (self newColumnNameFor: leftColumn withSuffix: '_x') to: leftColumn.
 		].
 	
 	^ outputDf

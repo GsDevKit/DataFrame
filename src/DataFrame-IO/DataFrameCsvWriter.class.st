@@ -14,7 +14,7 @@ DataFrameCsvWriter >> defaultLineEndConvention [
 		String cr -> #cr.
 		String lf -> #lf.
 		String crlf -> #crlf
-	} asDictionary at: Smalltalk os lineEnding.
+	} asDictionary at: OSPlatform current lineEnding.
 ]
 
 { #category : 'accessing' }
